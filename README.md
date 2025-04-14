@@ -12,7 +12,7 @@ This leads us to our user stories, which reflect the diverse types of users we a
 As a participant in a tech bootcamp, I want an application that supports me as I progress in my career, so that I can find my community in the tech space.
 
 ### User Story 2: University Student
-As a university student pursuing a STEM degree, I want an application that helps me understand core engineering concepts, so that I can land internship roles in my desired career. 
+As a university student pursuing a STEM degree, I want an application that helps me network with other emerging engineers, so that I can land internship roles in my desired career. 
 
 ### User Story 3: Subject Matter Expert (SME)
 As a seasoned tech professional, I want to connect with aspiring junior technologists so I can offer mentorship and help them discover their unique niche in the tech industry.
