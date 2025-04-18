@@ -1,6 +1,6 @@
-package decode.app.src.main.java.decode.decodelifeapp;
+package com.codedifferently.projectoop.decode.decodelifeapp;
 
-import java.util.*;
+import java.util.Scanner;
 
 
 public class UserRegistration {
