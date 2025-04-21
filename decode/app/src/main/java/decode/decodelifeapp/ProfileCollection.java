@@ -28,7 +28,10 @@ public void createProfileList(){
     addProfile("David Kim", "student", 5559876543L, "david.kim123@gmail.com");
     addProfile("Ella Martinez", "student", 5558765432L, "ella.martinez@library.org");
     addProfile("Frank Zhao", "mentor", 5557654321L, "frankz@eduplace.net");
+    addProfile("Grace Chen", "mentor", 5556543210L, "grace.chen@studentmail.com");
+
     addProfile("Grace Chen", "menotr", 5556543210L, "grace.chen@studentmail.com");
+
     addProfile("Henry Patel", "student", 5555432109L, "henry.patel@team.org");
     addProfile("Isla Nguyen", "student", 5554321098L, "isla.nguyen@schoolmail.com");
     addProfile("Jack Rivera", "mentor", 5553210987L, "jack.rivera@eduadmin.org");
