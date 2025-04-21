@@ -2,6 +2,8 @@ package com.codedifferently.projectoop.decode.decodelifeapp;
 
 import java.util.Scanner;
 
+import javax.management.relation.InvalidRoleInfoException;
+
 
 public class UserRegistration {
         // Example User roles
@@ -19,7 +21,7 @@ public class UserRegistration {
             private Integer phonenumber;
             private String email;
 
-        public void getRoleFromUser() {
+        public void getRoleFromUser() throws Exception{
             System.out.println("Enter your role (STUDENT//MENTOR): ");
 
             String roleInput = input.nextLine().toUpperCase();
@@ -31,6 +33,7 @@ public class UserRegistration {
                 System.out.println("Profile created successfully as a MENTOR.");
             } else {
                 System.out.println("Invalid role. Please enter either STUDENT or MENTOR.");
+                throw new InvalidRoleInfoException("Invalid role entered.");
                 getRoleFromUser(); // Recursive call to ask again
             }
         }
