@@ -17,6 +17,7 @@ public ProfileCollection() {
 public void addProfile(String name, String role, String gender,long phoneNumber, String email) {
         profileNames.add(name);
         profileRoles.add(role);
+        profileGenders.add(gender);
         profilePhoneNumbers.add(phoneNumber);
         profileEmails.add(email);
     }
