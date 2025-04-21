@@ -1,7 +1,10 @@
 package decode.decodelifeapp;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
 
 public class EventTest {
 
@@ -17,7 +20,6 @@ public class EventTest {
     @Test
     public void testEventWithNoRSVP() {
         Event event = new Event("Open Mic Night", "Share your music or poetry!", false);
-
         assertFalse(event.isRsvpRequired());
     }
 
@@ -25,7 +27,6 @@ public class EventTest {
     public void testToStringFormat() {
         Event event = new Event("Dev Meetup", "Networking and talks.", true);
         String result = event.toString();
-
         assertTrue(result.contains("Dev Meetup"));
         assertTrue(result.contains("Networking and talks."));
         assertTrue(result.contains("Yes"));
