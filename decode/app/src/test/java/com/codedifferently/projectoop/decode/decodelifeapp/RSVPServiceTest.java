@@ -1,9 +1,11 @@
 package com.codedifferently.projectoop.decode.decodelifeapp;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RSVPServiceTest {
 
@@ -75,3 +77,4 @@ public class RSVPServiceTest {
         assertFalse(cancelled, "Should not cancel if RSVP does not exist");
     }
 }
+
