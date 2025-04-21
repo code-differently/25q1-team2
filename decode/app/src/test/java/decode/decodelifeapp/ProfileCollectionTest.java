@@ -7,7 +7,7 @@ public class ProfileCollectionTest {
     void testPrintProfile(){
         ProfileCollection profileCollection = new ProfileCollection();
         profileCollection.createProfileList();
-       profileCollection.addProfile("John Smith", "student", 5551234567L, "johnsmith@gmail.com");
+       profileCollection.addProfile("John Smith", "student", "male", 5551234567L, "johnsmith@gmail.com");
         profileCollection.printProfiles();
         assertEquals("John Smith", profileCollection.profileNames.get(0));
         assertEquals("student", profileCollection.profileRoles.get(0));
@@ -19,7 +19,7 @@ public class ProfileCollectionTest {
     void testAddProfile(){
         ProfileCollection profileCollection = new ProfileCollection();
         profileCollection.createProfileList();
-        profileCollection.addProfile("John Smith", "student", 5551234567L, "johnsmith@gmail.com");
+        profileCollection.addProfile("John Smith", "student","male", 5551234567L, "johnsmith@gmail.com");
         assertEquals("John Smith", profileCollection.profileNames.get(0));
         assertEquals("student", profileCollection.profileRoles.get(0));
         assertEquals(5551234567L, profileCollection.profilePhoneNumbers.get(0).longValue());
