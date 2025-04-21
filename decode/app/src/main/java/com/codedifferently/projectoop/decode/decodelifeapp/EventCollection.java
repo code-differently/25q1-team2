@@ -3,6 +3,8 @@ package com.codedifferently.projectoop.decode.decodelifeapp;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.codedifferently.projectoop.decode.decodelifeapp.exceptions.EmptyEventListException;
+
 public class EventCollection {
     Scanner input = new Scanner(System.in);
     ArrayList<String> events = new ArrayList<>();
@@ -21,7 +23,10 @@ public class EventCollection {
         events.add("Tech Talks");
     }
 
-    public void removeEvent(String event) {
+    public void removeEvent(String event) throws Exception {
+        if (events.size() == 0) {
+            throw new EmptyEventListException("No events to remove.");
+        } else
         events.remove(event);
     }
 
