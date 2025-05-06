@@ -1,16 +1,26 @@
-import React from "react";
-import { UserButton } from "@clerk/clerk-react";
+import React, { type JSX } from 'react';
+import styles from "./DashBoard.module.css";
+import Navbar from '../../components/Navbar/Navbar';
 
 /**
- * Protected dashboard page for logged-in users.
+ * Dashboard page for authenticated users.
  * 
+ * @component
  * @returns {JSX.Element}
  */
-const Dashboard = () => {
+const Dashboard: React.FC = (): JSX.Element => {
   return (
-    <div style={{ padding: "2rem", textAlign: "center" }}>
-      <h1>🎯 Welcome to your Dashboard!</h1>
-      <UserButton />
+    <div className={styles.dashboardContainer}>
+      <Navbar />
+      <div className={styles.dashboardContent}>
+        <h2>Your Interview Prep Toolkit</h2>
+        <ul>
+          <li>📚 Flashcard Review</li>
+          <li>🧠 Algorithm Practice</li>
+          <li>🎤 Mock Interview Simulator</li>
+          <li>⏱️ Timed Challenges</li>
+        </ul>
+      </div>
     </div>
   );
 };
