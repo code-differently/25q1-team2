@@ -2,7 +2,8 @@ import React, { type JSX } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Landing from "../features/Landing/Landing";
 import Dashboard from "../features/DashBoard/DashBoard";
-import { SignIn, SignUp, SignedIn, SignedOut, RedirectToSignIn } from "@clerk/clerk-react";
+import { SignUp, SignedIn, SignedOut, RedirectToSignIn } from "@clerk/clerk-react";
+import SignInPage from "../features/SignInPage/SignInPage";
 
 
 /**
@@ -36,7 +37,7 @@ const AppRoutes: React.FC = (): JSX.Element => {
         }
       />
 
-      <Route path="/sign-in/*" element={<SignIn routing="path" path="/sign-in" />} />
+      <Route path="/sign-in/*" element={<SignInPage />} />
       <Route path="/sign-up/*" element={<SignUp routing="path" path="/sign-up" />} />
 
       {/* Catch-all: go home */}
