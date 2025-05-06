@@ -1,32 +1,41 @@
-### The Problem:
-Breaking into the tech industry is hard — not just in terms of learning technical skills, but also in finding where you belong. Whether someone is coming from a coding bootcamp or a traditional university, many entry-level tech enthusiasts feel lost trying to find their niche, build a supportive network, and gain real-world experience.
+🎯 Decode — The Ultimate Technical Interview Prep Platform
+Decode is a next-generation web application that transforms technical interview preparation into a structured, interactive, and game-like experience. Designed for aspiring developers, industry professionals, and self-taught engineers, Decode provides an all-in-one toolkit to boost confidence, enhance problem-solving skills, and simulate real-world interview scenarios.
 
-There's a gap in how new tech professionals connect with others, access relevant guidance, and grow confidently in their careers. Too often, they feel isolated or unsure of their next steps.
+🚀 Overview
+Technical interviews are high-stakes and stressful — Decode aims to change that. By combining interactive flashcards, curated coding challenges, and realistic timed simulations, Decode helps users develop the skills, resilience, and mindset necessary to succeed in interviews at companies of any scale — from startups to top-tier tech giants.
 
-### Our Solution:
-Our team wants to build an inclusive platform called Decode that empowers anyone to enter the tech industry — regardless of their background — and find their place. Our app will support users throughout their journey by providing career development tools, a strong community, and opportunities to connect with mentors and peers who can guide them along the way.
+💡 Key Features
+🧠 Flashcard Engine
+Reinforce core computer science concepts, behavioral responses, and algorithm patterns through a fast-paced, responsive flashcard system.
 
-This leads us to our user stories, which reflect the diverse types of users we aim to support:
+🛠 Curated Interview Questions
+Access a growing library of coding challenges and system design prompts categorized by difficulty and topic.
 
-#### User Story 1 – University Student / Bootcamp Participant: Browse & RSVP to Events
-As a university student,  
-I want to browse upcoming tech-related events and RSVP to the ones that align with my interests,  
-so that I can grow my network and access career opportunities.
+🎬 Realistic Simulation Mode
+Experience mock interviews in a pressure-tested environment with time limits, role-based prompts, and feedback options.
 
-#### User Story 2 – Mentor: Browse Profiles & Offer Mentorship
-As a subject matter expert or mentor,  
-I want to create event listings sorted by tech interest and location,  
-so that mentees can align with my experience and attend events where I offer mentorship.
+📈 Progress Tracking & Insights
+Monitor your improvement over time and identify growth areas with performance analytics and milestone achievements.
 
-#### User Story 3 – Student Joining Peer Groups Events Based on Tech Stack
-As a participant,  
-I want to be automatically matched into events based on my role,  
-so that I can collaborate and stay motivated with peers on similar paths.
+🎮 Gamified Experience
+Turn practice into play with unlockable content, streaks, and performance rewards to maintain motivation and consistency.
 
-### Future Improvments:
+👥 Target Users
+👨‍💻 Trained Developer
+"As a trained developer who’s nervous about technical interviews, I want an interactive flashcard system that challenges me with real questions, so I can feel confident and prepared in front of any hiring manager."
 
-In regards to our solution, our team would love to modify and expand our Decode platform by:
+👩‍💼 Senior Engineer
+"As a senior software engineer, I want a way to simulate high-pressure interviews with realistic constraints, so I can hone my communication and decision-making skills under stress."
 
-- Creating a "success path" matching that connects newcomers with professionals who followed similar career journeys
-- Adding peer support groups organized by specific challenges such as job hunting, technical interviews, impostor syndrome, etc
-- Make our platform more accessible by developing it into a mobile app
+🧑‍🎓 Self-Taught Programmer
+"As a self-taught developer, I want access to structured, industry-aligned challenges so I can validate and showcase my skills on equal footing with formally trained peers."
+
+⚙️ Tech Stack
+Category	Technology
+Frontend	React + Vite + TypeScript
+Backend	Node.js + Express (REST API)
+Database	PostgreSQL / MongoDB / Supabase
+Deployment	Vercel or Fly.io
+Authentication	Clerk (planned integration)
+Version Control	Git + GitHub
+
