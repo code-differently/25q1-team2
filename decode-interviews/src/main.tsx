@@ -12,10 +12,13 @@ import './index.css'
  */
 
 const clerkPubKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+if (!clerkPubKey) {
+  throw new Error("VITE_CLERK_PUBLISHABLE_KEY is not defined");
+}
 
 createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ClerkProvider publishableKey={clerkPubKey}>
+    <ClerkProvider publishableKey={import.meta.env.VITE_CLERK_PUBLISHABLE_KEY}>
       <BrowserRouter>
         <AppRoutes />
       </BrowserRouter>
