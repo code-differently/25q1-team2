@@ -1,25 +1,29 @@
-{
-  "name": "25q1-team2",
-  "version": "1.0.0",
-  "description": "🎯 Decode — The Ultimate Technical Interview Prep Platform Decode is a next-generation web application that transforms technical interview preparation into a structured, interactive, and game-like experience. Designed for aspiring developers, industry professionals, and self-taught engineers, Decode provides an all-in-one toolkit to boost confidence, enhance problem-solving skills, and simulate real-world interview scenarios.",
-  "main": "index.js",
+  {
+    "name": "25q1-team2",
+    "version": "1.0.0",
+    "description": "🎯 Decode — The Ultimate Technical Interview Prep Platform Decode is a next-generation web application that transforms technical interview preparation into a structured, interactive, and game-like experience. Designed for aspiring developers, industry professionals, and self-taught engineers, Decode provides an all-in-one toolkit to boost confidence, enhance problem-solving skills, and simulate real-world interview scenarios.",
+    "main": "index.js",
   "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "vercel-build": "next build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/code-differently/25q1-team2.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/code-differently/25q1-team2/issues"
-  },
-  "homepage": "https://github.com/code-differently/25q1-team2#readme",
-  "dependencies": {
-    "next": "^15.3.2",
-    "react": "^19.1.0",
-    "react-router": "^7.6.0"
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/code-differently/25q1-team2.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/code-differently/25q1-team2/issues"
+    },
+    "homepage": "https://github.com/code-differently/25q1-team2#readme",
+    "dependencies": {
+      "next": "^15.3.2",
+      "react": "^19.1.0",
+      "react-router": "^7.6.0"
+    }
   }
-}
