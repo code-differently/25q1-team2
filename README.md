@@ -1,41 +1,36 @@
-🎯 Decode — The Ultimate Technical Interview Prep Platform
-Decode is a next-generation web application that transforms technical interview preparation into a structured, interactive, and game-like experience. Designed for aspiring developers, industry professionals, and self-taught engineers, Decode provides an all-in-one toolkit to boost confidence, enhance problem-solving skills, and simulate real-world interview scenarios.
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-🚀 Overview
-Technical interviews are high-stakes and stressful — Decode aims to change that. By combining interactive flashcards, curated coding challenges, and realistic timed simulations, Decode helps users develop the skills, resilience, and mindset necessary to succeed in interviews at companies of any scale — from startups to top-tier tech giants.
+## Getting Started
 
-💡 Key Features
-🧠 Flashcard Engine
-Reinforce core computer science concepts, behavioral responses, and algorithm patterns through a fast-paced, responsive flashcard system.
+First, run the development server:
 
-🛠 Curated Interview Questions
-Access a growing library of coding challenges and system design prompts categorized by difficulty and topic.
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-🎬 Realistic Simulation Mode
-Experience mock interviews in a pressure-tested environment with time limits, role-based prompts, and feedback options.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-📈 Progress Tracking & Insights
-Monitor your improvement over time and identify growth areas with performance analytics and milestone achievements.
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-🎮 Gamified Experience
-Turn practice into play with unlockable content, streaks, and performance rewards to maintain motivation and consistency.
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-👥 Target Users
-👨‍💻 Trained Developer
-"As a trained developer who’s nervous about technical interviews, I want an interactive flashcard system that challenges me with real questions, so I can feel confident and prepared in front of any hiring manager."
+## Learn More
 
-👩‍💼 Senior Engineer
-"As a senior software engineer, I want a way to simulate high-pressure interviews with realistic constraints, so I can hone my communication and decision-making skills under stress."
+To learn more about Next.js, take a look at the following resources:
 
-🧑‍🎓 Self-Taught Programmer
-"As a self-taught developer, I want access to structured, industry-aligned challenges so I can validate and showcase my skills on equal footing with formally trained peers."
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-⚙️ Tech Stack
-Category	Technology
-Frontend	React + Vite + TypeScript
-Backend	Node.js + Express (REST API)
-Database	PostgreSQL / MongoDB / Supabase
-Deployment	Vercel or Fly.io
-Authentication	Clerk (planned integration)
-Version Control	Git + GitHub
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
