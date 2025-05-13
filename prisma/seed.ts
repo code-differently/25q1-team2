@@ -16,12 +16,6 @@
             text: 'What does REST stand for?',
             answer: 'Representational State Transfer',
             },
-            {
-            text: 'Meiko is a fly guy',
-            answer: "Sure is"
-            },
-
-
             // Add more questions here...
         ],
         });
