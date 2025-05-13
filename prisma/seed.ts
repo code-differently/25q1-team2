@@ -3,27 +3,27 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-  const questions = [
-    {
-      question: 'What is a closure in JavaScript?',
-      correctAnswer: 'A closure is a function that has access to its outer function scope even after the outer function has returned.',
-    },
-    {
-      question: 'What does REST stand for?',
-      correctAnswer: 'Representational State Transfer',
-    },
-    // Add more questions here...
-  ];
+  const existingQuestions = await prisma.question.findMany();
 
-  for (const q of questions) {
-    await prisma.question.upsert({
-      where: { question: q.question }, // assumes `question` is unique
-      update: {}, // don’t update if exists
-      create: q,  // create if doesn't exist
+  if (existingQuestions.length === 0) {
+    await prisma.question.createMany({
+      data: [
+        {
+          text: 'What is a closure in JavaScript?',
+          answer: 'A closure is a function that has access to its outer function scope even after the outer function has returned.',
+        },
+        {
+          text: 'What does REST stand for?',
+          answer: 'Representational State Transfer',
+        },
+        // Add more questions here...
+      ],
     });
-  }
 
-  console.log('✅ Seeded questions successfully without duplication!');
+    console.log('✅ Seeded questions successfully!');
+  } else {
+    console.log('⚠️ Questions already exist. Skipping seeding.');
+  }
 }
 
 main()
