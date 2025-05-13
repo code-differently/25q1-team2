@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import React from 'react';  // Add this line at the top of your JSX/TSX files
+
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 

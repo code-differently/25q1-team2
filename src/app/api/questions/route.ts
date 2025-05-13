@@ -1,15 +1,12 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 // GET method to retrieve all questions from the database
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
-    // Query the database for all questions
     const questions = await prisma.question.findMany();
-    
-    // Return the questions as a JSON response
     return NextResponse.json(questions);
   } catch (error) {
     console.error(error);
@@ -18,19 +15,17 @@ export async function GET(req: NextRequest) {
 }
 
 // POST method to create a new question in the database
-export async function POST(req: NextRequest) {
+export async function POST(request: Request) {
   try {
-    const body = await req.json();
-    
-    // Create a new question using Prisma (using 'text' instead of 'question')
+    const body = await request.json();
+
     const newQuestion = await prisma.question.create({
       data: {
-        text: body.text,  // Use 'text' field instead of 'question'
+        text: body.text,
         answer: body.answer,
       },
     });
-    
-    // Return the newly created question as a response
+
     return NextResponse.json(newQuestion, { status: 201 });
   } catch (error) {
     console.error(error);
