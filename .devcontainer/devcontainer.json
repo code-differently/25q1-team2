@@ -43,10 +43,7 @@
 				"firsttris.vscode-jest-runner",
 				"bierner.lit-html",
 				"Prisma.prisma",
-				"evondev.indent-rainbow-palettes",
-				"oderwat.indent-rainbow",
-				"docker.docker",
-				"ms-azuretools.vscode-docker"
+				"evondev.indent-rainbow-palettes"
 
 			],
             "settings": {
