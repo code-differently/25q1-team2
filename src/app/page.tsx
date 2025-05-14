@@ -3,7 +3,6 @@
 
 import { SignedIn, SignedOut, RedirectToSignIn, UserButton } from "@clerk/nextjs";
 import React from 'react';
-import "../../styles/page.css"; // Importing the custom CSS
 
 export default function Home() {
   return (
