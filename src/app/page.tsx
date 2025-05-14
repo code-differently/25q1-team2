@@ -1,27 +1,22 @@
-import FlashcardForm from '../../components/FlashCardForm';  // Import the FlashcardForm component
-import FlashcardList from '../../components/FlashCardList';  // Import the FlashcardList component
+"use client";
+
+
+import { SignedIn, SignedOut, RedirectToSignIn, UserButton } from "@clerk/nextjs";
 import React from 'react';
-import "../../styles/page.css"; // Importing the custom CSS
 
 export default function Home() {
   return (
-    <div className="background">
-      <div className="container">
-        <header className="header">
-          <h1 className="page-title">Flashcard App</h1>
-          <p className="page-description">Create and review your flashcards</p>
-        </header>
+    <>
+      <SignedIn>
+        <div className="p-4">
+          <h1 className="text-2xl">Welcome to the Flashcard Game!</h1>
+          <UserButton />
+        </div>
+      </SignedIn>
 
-        <section className="section">
-          <h2 className="section-title">Create a New Flashcard</h2>
-          <FlashcardForm /> {/* Flashcard form to create new cards */}
-        </section>
-
-        <section>
-          <h2 className="section-title">Flashcard List</h2>
-          <FlashcardList /> {/* Display the list of flashcards */}
-        </section>
-      </div>
-    </div>
+      <SignedOut>
+        <RedirectToSignIn />
+      </SignedOut>
+    </>
   );
 }
