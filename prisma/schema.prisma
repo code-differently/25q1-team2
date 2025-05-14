@@ -14,3 +14,11 @@ model Question {
   difficulty String
   createdAt  DateTime @default(now())
 }
+
+model Flashcard {
+  id        Int      @id @default(autoincrement())
+  question  String
+  answer    String
+  createdAt DateTime @default(now())
+}
+

@@ -2,6 +2,7 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
+  
   const existingQuestions = await prisma.question.findMany();
 
   if (existingQuestions.length === 0) {
@@ -36,3 +37,5 @@ main()
   .finally(async () => {
     await prisma.$disconnect();
   });
+
+
