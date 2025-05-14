@@ -11,6 +11,6 @@ model Question {
   id         Int      @id @default(autoincrement())
   text       String
   answer     String
-  difficulty String   
+  difficulty String
   createdAt  DateTime @default(now())
 }
