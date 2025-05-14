@@ -32,3 +32,4 @@ model Flashcard {
   userId    String
   User      User[]   @relation("FavoriteFlashcards")
 }
+
