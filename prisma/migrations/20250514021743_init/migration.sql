@@ -1,7 +1,7 @@
 -- CreateTable
-CREATE TABLE "Question" (
+CREATE TABLE "Flashcard" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "text" TEXT NOT NULL,
+    "question" TEXT NOT NULL,
     "answer" TEXT NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );

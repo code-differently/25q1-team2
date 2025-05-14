@@ -41,7 +41,10 @@
 				"alexcvzz.vscode-sqlite",
 				"Orta.vscode-jest",
 				"firsttris.vscode-jest-runner",
-				"bierner.lit-html"
+				"bierner.lit-html",
+				"Prisma.prisma",
+				"evondev.indent-rainbow-palettes"
+
 			],
             "settings": {
                 "terminal.integrated.defaultProfile.linux": "zsh",

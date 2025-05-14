@@ -23,6 +23,7 @@ export async function POST(request: Request) {
       data: {
         text: body.text,
         answer: body.answer,
+        difficulty: body.difficulty, 
       },
     });
 
