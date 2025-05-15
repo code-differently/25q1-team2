@@ -6,11 +6,20 @@ type Question = {
   id: number;
   text: string;
 };
+type Result = {
+  questionId: number;
+  userAnswer: string;
+  correct: boolean;
+  correctAnswer: string;
+};
+
+
 
 export default function QuestionsPage() {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [loading, setLoading] = useState(true);
+  const [results, setResults] = useState<Result[] | null>(null);
 
   useEffect(() => {
     fetch('/api/questions')
@@ -32,24 +41,57 @@ export default function QuestionsPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      const tempResults: Result[] = [];
       for (const questionId in answers) {
         const answerText = answers[+questionId];
 
-        await fetch('/api/submit-answer', {
+        const res = await fetch('/api/questions', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ questionId: Number(questionId), answerText }),
         });
+  
+        const data = await res.json();
+  
+        tempResults.push({
+          questionId: Number(questionId),
+          userAnswer: answerText,
+          correct: data.correct,
+          correctAnswer: data.correctAnswer,
+        });
       }
-
-      alert('Answers submitted!');
-      setAnswers({});
+  
+      setResults(tempResults);
     } catch (err) {
       console.error('Submission failed:', err);
     }
   };
 
   if (loading) return <p>Loading questions...</p>;
+  if (results) {
+    const score = results.filter(r => r.correct).length;
+    return (
+      <div>
+        <h2>Your Score: {score} / {results.length}</h2>
+        {results.map(({ questionId, userAnswer, correct, correctAnswer }) => {
+          const question = questions.find(q => q.id === questionId);
+          return (
+            <div key={questionId} style={{ marginBottom: '20px' }}>
+              <p><strong>Question:</strong> {question?.text}</p>
+              <p><strong>Your answer:</strong> {userAnswer}</p>
+              <p style={{ color: correct ? 'green' : 'red' }}>
+                {correct ? 'Correct!' : `Wrong! Correct answer: ${correctAnswer}`}
+              </p>
+            </div>
+          );
+        })}
+        <button onClick={() => {
+          setResults(null);
+          setAnswers({});
+        }}>Try Again</button>
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -66,5 +108,6 @@ export default function QuestionsPage() {
       ))}
       <button type="submit">Submit</button>
     </form>
+    
   );
 }

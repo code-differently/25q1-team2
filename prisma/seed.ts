@@ -108,38 +108,6 @@ async function main() {
           answer: "Linear data structures arrange elements sequentially, meaning each element is connected to its predecessor and successor. Non-linear data structures, on the other hand, organize elements hierarchically or in a tree-like structure, allowing for more complex relationships between elements.",
           difficulty: "hard",
         },
-        { 
-          text: "How do you reverse a string?",
-          answer: `function reverseString(str: string): string {
- 
-          return str.split("").reverse().join("");}`,
-          difficulty: "easy",
-        },
-        {
-          text: "How do you determine if a string is a palindrome?",
-          answer: `function isPalindrome(str: string): boolean {
- const cleanStr = str.toLowerCase().replace(/[^a-z0-9]/g, '');
- const reversedStr = cleanStr.split('').reverse().join('');
- return cleanStr === reversedStr;
-}
-`,
-          difficulty: "medium",
-        },
-        {
-          text:"How do you calculate the number of numerical digits in a string?",
-          answer:`function countDigits(inputString: string): number {
-   let digitCount = 0;
-   for (const char of inputString) {
-       if (/\d/.test(char)) {
-           digitCount++;
-       }
-   }
-   return digitCount;
-}
-`,
-          difficulty: "hard",
-
-        }
 
       ],
     });
