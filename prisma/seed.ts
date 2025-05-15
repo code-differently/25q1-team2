@@ -40,7 +40,7 @@ async function main() {
         {
           text: "What is the difference between an array and a linked list?",
           answer: "Arrays store elements in contiguous memory locations, allowing for direct access to elements by their index. Linked lists store elements in nodes, which are not necessarily located in contiguous memory, and elements are linked to each other through pointers.",
-          difficutly: "medium",
+          difficulty: "medium",
 
 
         },
