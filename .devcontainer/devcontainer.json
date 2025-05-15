@@ -44,7 +44,9 @@
 				"bierner.lit-html",
 				"Prisma.prisma",
 				"evondev.indent-rainbow-palettes",
-				"oderwat.indent-rainbow"
+				"oderwat.indent-rainbow",
+				"docker.docker",
+				"ms-azuretools.vscode-docker"
 
 			],
             "settings": {
