@@ -1,0 +1,54 @@
+/* styles/DashboardHome.module.css */
+.home {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #0a0f2c; /* Deep blue background */
+    color: white;
+    text-align: center;
+  }
+  
+  .gradientOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient(120deg, #6f00ff, #00c3ff, #ff0084);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    opacity: 0.3; /* So you can still see the base blue behind it */
+    z-index: 0;
+  }
+  
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .title, .subtitle {
+    z-index: 1;
+  }
+  
+  .gifWrapper {
+    z-index: 1;
+    margin-top: 2rem;
+    width: 400px;
+    height: 300px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  }
+  

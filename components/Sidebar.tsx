@@ -1,32 +1,34 @@
+'use client';
+
 import React from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import styles from '../styles/Sidebar.module.css';
 
-type Page = 'flashcards' | 'interview' | 'mock' | 'about';
+const Sidebar: React.FC = () => {
+  const pathname = usePathname();
 
-interface SidebarProps {
-  activePage: Page;
-  setActivePage: React.Dispatch<React.SetStateAction<Page>>;
-}
-
-const Sidebar: React.FC<SidebarProps> = ({ activePage, setActivePage }) => {
-  const isActive = (page: Page) => (activePage === page ? styles.activeLink : '');
+  const isActive = (path: string) =>
+    pathname === `/dashboard/${path}` ? styles.activeLink : '';
 
   return (
     <div className={styles.sidebar}>
-      <div className={styles.title}>Hired.exe</div>
+      <Link href="/dashboard" className={styles.title}>
+        Hired.exe
+      </Link>      
       <nav className={styles.nav}>
-        <div className={`${styles.link} ${isActive('flashcards')}`} onClick={() => setActivePage('flashcards')}>
+        <Link href="/dashboard/flashcards" className={`${styles.link} ${isActive('flashcards')}`}>
           Flash Cards
-        </div>
-        <div className={`${styles.link} ${isActive('interview')}`} onClick={() => setActivePage('interview')}>
+        </Link>
+        <Link href="/dashboard/interview" className={`${styles.link} ${isActive('interview')}`}>
           Interview Questions
-        </div>
-        <div className={`${styles.link} ${isActive('mock')}`} onClick={() => setActivePage('mock')}>
+        </Link>
+        <Link href="/dashboard/mock" className={`${styles.link} ${isActive('mock')}`}>
           Mock Interview
-        </div>
-        <div className={`${styles.link} ${isActive('about')}`} onClick={() => setActivePage('about')}>
+        </Link>
+        <Link href="/dashboard/about" className={`${styles.link} ${isActive('about')}`}>
           About
-        </div>
+        </Link>
       </nav>
     </div>
   );
