@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import "../styles/FlashcardForm.css";
+import "../styles/flashcardForm.css";
 
 export default function FlashcardForm() {
   const [questionText, setQuestion] = useState('');
