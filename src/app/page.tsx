@@ -1,19 +1,21 @@
+// src/app/page.tsx or wherever your home page is
+
 "use client";
 
-
-import { SignedIn, SignedOut, RedirectToSignIn, UserButton } from "@clerk/nextjs";
+import { SignedOut, RedirectToSignIn,  } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import React from 'react';
 
 export default function Home() {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push("/dashboard");
+  }, [router]);
+
   return (
     <>
-      <SignedIn>
-        <div className="p-4">
-          <h1 className="text-2xl">Welcome to the Flashcard Game!</h1>
-          <UserButton />
-        </div>
-      </SignedIn>
-
       <SignedOut>
         <RedirectToSignIn />
       </SignedOut>

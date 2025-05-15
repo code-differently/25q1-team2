@@ -1,5 +1,5 @@
-import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient();
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
 
 async function main() {
   
@@ -151,12 +151,9 @@ async function main() {
 }
 
 main()
+  .then(() => console.log('Seeding complete.'))
   .catch((e) => {
-    console.error(e);
-    process.exit(1);
+    console.error(e)
+    process.exit(1)
   })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
-
-
+  .finally(() => prisma.$disconnect())
