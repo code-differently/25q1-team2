@@ -1,8 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import "../styles/flashcardList.css";
-
+import "../styles/flashcardList.module.css";
 interface Flashcard {
   id: number;
   questionText: string;
