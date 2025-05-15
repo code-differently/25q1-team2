@@ -37,3 +37,9 @@ export async function GET() {
     return NextResponse.json({ error: 'Failed to fetch flashcards' }, { status: 500 });
   }
 }
+
+export async function DELETE() {
+  try {
+    
+  }
+}
