@@ -1,5 +1,5 @@
-import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient();
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
 
 async function main() {
   
@@ -40,7 +40,7 @@ async function main() {
         {
           text: "What is the difference between an array and a linked list?",
           answer: "Arrays store elements in contiguous memory locations, allowing for direct access to elements by their index. Linked lists store elements in nodes, which are not necessarily located in contiguous memory, and elements are linked to each other through pointers.",
-          difficutly: "medium",
+          difficulty: "medium",
 
 
         },
@@ -151,12 +151,9 @@ async function main() {
 }
 
 main()
+  .then(() => console.log('Seeding complete.'))
   .catch((e) => {
-    console.error(e);
-    process.exit(1);
+    console.error(e)
+    process.exit(1)
   })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
-
-
+  .finally(() => prisma.$disconnect())
