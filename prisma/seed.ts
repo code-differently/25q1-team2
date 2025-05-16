@@ -17,7 +17,7 @@ async function main() {
         },
         {
           text: 'What does REST stand for?',
-          answer: 'Representational State Transfer',
+          answer: 'Representational State Transfer.',
           keywords: ['representational', 'state', 'transfer'],
           difficulty: 'medium',
         },
