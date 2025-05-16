@@ -96,6 +96,7 @@ export default function QuestionsPage() {
   return (
     <form onSubmit={handleSubmit}>
       <h1>Answer the Questions</h1>
+      <p>End each answer wih a period</p>
       {questions.map((q) => (
         <div key={q.id} style={{ marginBottom: '20px' }}>
           <p>{q.text}</p>
