@@ -1,107 +1,165 @@
+/* Adjust this width to match your sidebar width */
+.background {
+  position: fixed;
+  top: 0;
+  left: 250px;
+  right: 0;
+  bottom: 0;
+  background-image: url('./images/Untitleddesign.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.5);
+  z-index: 0;
+}
+
 .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem;
-    background: #0a0a23;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #ffffff;
+  position: fixed;
+  bottom: 20px;
+  left: calc(250px + (100vw - 250px) / 2);
+  transform: translateX(-50%);
+  width: 90vw;
+  max-width: 600px;
+  max-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background-color: rgba(10, 10, 35, 0.85);
+  padding: 1rem;
+  border-radius: 10px;
+  box-sizing: border-box;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
+  z-index: 10;
+  color: white;
+  overflow: hidden;
+}
+
+
+.chatWindow {
+  background: #1c1c3c;
+  border-radius: 10px;
+  padding: 1rem;
+  flex-grow: 1;           /* take all available vertical space */
+  min-height: 200px;      /* minimum height */
+  max-height: 100%;       /* max height constrained by container */
+  overflow-y: auto;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+}
+
+.message {
+  margin: 0.75rem 0;
+  display: flex;
+  align-items: flex-start;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.bubble {
+  max-width: 70%;
+  padding: 0.8rem 1.2rem;
+  border-radius: 18px;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+
+.bubbleAi {
+  background: #2e2e80;
+  color: #e0e0ff;
+  border-left: 4px solid #00ffff;
+}
+
+.bubbleUser {
+  background: #4a1c6f;
+  color: #ffd6ff;
+  border-right: 4px solid #ff66cc;
+}
+
+.controls {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;        /* wrap controls on small screens */
+}
+
+.controls textarea,
+.controls input[type="text"] {
+  flex-grow: 1;
+  min-width: 0;           /* lets input shrink properly in flexbox */
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #00ffff;
+  background: #111;
+  color: #fff;
+  font-size: 1rem;
+  resize: none;
+  outline: none;
+  box-shadow: none;
+  transition: border-color 0.3s ease;
+  min-height: 40px;
+  max-height: 100px;      /* max height for textarea */
+}
+
+.controls textarea:focus,
+.controls input[type="text"]:focus {
+  border-color: #00dddd;
+}
+
+.controls button {
+  background: #00ffff;
+  color: #0a0a23;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.controls button:hover {
+  background: #00dddd;
+}
+
+.toggleMode {
+  background: #ff66cc;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* Responsive tweaks for small screens */
+@media (max-width: 500px) {
+  .container {
+    max-height: 80vh;
+    padding: 0.75rem;
+    width: 95vw;
   }
-  
-  .chatWindow {
-    background: #1c1c3c;
-    border-radius: 10px;
-    padding: 1rem;
-    height: 500px;
-    overflow-y: auto;
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
-  }
-  
-  .message {
-    margin: 1rem 0;
-    display: flex;
-    align-items: flex-start;
-    animation: fadeIn 0.4s ease-in-out;
-  }
-  
-  .messageAi {
-    justify-content: flex-start;
-  }
-  
-  .messageUser {
-    justify-content: flex-end;
-  }
-  
-  .bubble {
-    max-width: 70%;
-    padding: 0.8rem 1.2rem;
-    border-radius: 18px;
-    line-height: 1.4;
-  }
-  
-  .bubbleAi {
-    background: #2e2e80;
-    color: #e0e0ff;
-    border-left: 4px solid #00ffff;
-  }
-  
-  .bubbleUser {
-    background: #4a1c6f;
-    color: #ffd6ff;
-    border-right: 4px solid #ff66cc;
-  }
-  
   .controls {
-    display: flex;
-    align-items: center;
-    margin-top: 1rem;
-    gap: 0.5rem;
+    flex-direction: column;
+    align-items: stretch;
   }
-  
-  .controls textarea {
-    flex-grow: 1;
-    padding: 0.6rem;
-    border-radius: 10px;
-    border: none;
-    resize: none;
-    font-size: 1rem;
-  }
-  
-  .controls button {
-    background: #00ffff;
-    color: #0a0a23;
-    padding: 0.6rem 1rem;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s ease;
-  }
-  
-  .controls button:hover {
-    background: #00dddd;
-  }
-  
+  .controls button,
   .toggleMode {
-    background: #ff66cc;
-    color: white;
-    padding: 0.4rem 0.8rem;
-    border-radius: 8px;
-    font-size: 0.8rem;
-    border: none;
+    width: 100%;
   }
-  
-  .audio {
-    margin-top: 0.5rem;
+  .controls textarea,
+  .controls input[type="text"] {
+    min-height: 50px;
   }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(8px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
   }
-  
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

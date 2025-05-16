@@ -79,48 +79,65 @@ export default function InterviewAssistant() {
       setUserText('');
     }
   };
-
-  return (
-    <div className={styles.container}>
-      <div className={styles.chatWindow}>
-        {chatLog.map((msg, index) => (
-          <div key={index} className={styles.message}>
-            <div className={`${styles.bubble} ${msg.sender === 'ai' ? styles.ai : styles.user}`}>
-              {msg.text}
-            </div>
+  
+    return (
+      <>
+        {/* Background image div */}
+        <div className={styles.background} />
+  
+        {/* Your main container */}
+        <div className={styles.container}>
+          <div className={styles.chatWindow}>
+            {chatLog.map((msg, index) => (
+              <div key={index} className={styles.message}>
+                <div
+                  className={`${styles.bubble} ${
+                    msg.sender === 'ai' ? styles.bubbleAi : styles.bubbleUser
+                  }`}
+                >
+                  {msg.text}
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-
-      <div className={styles.controls}>
-        <button onClick={() => setMode(mode === 'voice' ? 'text' : 'voice')} className={styles.toggleMode}>
-          🎚️ Switch to {mode === 'voice' ? 'Text' : 'Voice'} Mode
-        </button>
-
-        {mode === 'voice' ? (
-          <button onClick={isRecording ? stopRecording : startRecording}>
-            {isRecording ? '🛑 Stop Recording' : '🎙️ Start Speaking'}
-          </button>
-        ) : (
-          <form onSubmit={handleTextSubmit} style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}>
-            <input
-              type="text"
-              value={userText}
-              onChange={(e) => setUserText(e.target.value)}
-              placeholder="Type your answer..."
-              style={{
-                flexGrow: 1,
-                padding: '0.5rem',
-                borderRadius: '8px',
-                border: '1px solid #333',
-                background: '#111',
-                color: '#fff',
-              }}
-            />
-            <button type="submit">🚀 Send</button>
-          </form>
-        )}
-      </div>
-    </div>
-  );
+  
+          <div className={styles.controls}>
+            <button
+              onClick={() => setMode(mode === 'voice' ? 'text' : 'voice')}
+              className={styles.toggleMode}
+            >
+              🎚️ Switch to {mode === 'voice' ? 'Text' : 'Voice'} Mode
+            </button>
+  
+            {mode === 'voice' ? (
+              <button onClick={isRecording ? stopRecording : startRecording}>
+                {isRecording ? '🛑 Stop Recording' : '🎙️ Start Speaking'}
+              </button>
+            ) : (
+              <form
+                onSubmit={handleTextSubmit}
+                style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}
+              >
+                <input
+                  type="text"
+                  value={userText}
+                  onChange={(e) => setUserText(e.target.value)}
+                  placeholder="Type your answer..."
+                  style={{
+                    flexGrow: 1,
+                    padding: '0.5rem',
+                    borderRadius: '8px',
+                    border: '1px solid #333',
+                    background: '#111',
+                    color: '#fff',
+                  }}
+                />
+                <button type="submit">🚀 Send</button>
+              </form>
+            )}
+          </div>
+        </div>
+      </>
+    );
 }
+
