@@ -1,8 +1,8 @@
 // src/middleware.ts
-import { clerkMiddleware } from '@clerk/nextjs/server';
-
-export default clerkMiddleware();
+export function middleware() {
+  return new Response('ok');
+}
 
 export const config = {
-  matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'], // applies to all routes except static/image
+  matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
 };
