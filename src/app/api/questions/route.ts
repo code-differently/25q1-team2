@@ -34,13 +34,20 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Question not found' }, { status: 404 });
     }
 
-    const isCorrect = question.answer.trim().toLowerCase() === answerText.trim().toLowerCase();
+    const userAnswer = answerText.toLowerCase();
+    const requiredKeywords = question.keywords.map(k => k.toLowerCase());
+
+    const allKeywordsPresent = requiredKeywords.every(keyword =>
+      userAnswer.includes(keyword)
+    );
 
     return NextResponse.json(
-      { correct: isCorrect, correctAnswer: question.answer },
+      {
+        correct: allKeywordsPresent,
+        correctAnswer: requiredKeywords.join(', '),
+      },
       { status: 200 }
-    );
-  } catch (error) {
+  )} catch (error) {
     console.error('[POST ANSWER ERROR]', error);
     return NextResponse.json({ error: 'Failed to check answer' }, { status: 500 });
   }
