@@ -116,7 +116,31 @@ async function main() {
   } else {
     console.log('⚠️ Questions already exist. Skipping seeding.');
   }
+
+
+  const behavioralPrompts = [
+    'Describe a time when you had to step up and demonstrate leadership skills.',
+    'Tell me about a time you were under a lot of pressure at work or school. What was going on, and how did you get through it?',
+    'Give me an example of a time you managed numerous responsibilities. How did you handle that?',
+  ];
+
+  for (const prompt of behavioralPrompts) {
+    const existing = await prisma.behavioralQuestion.findFirst({
+      where: { prompt },
+    });
+  
+    if (!existing) {
+      await prisma.behavioralQuestion.create({
+        data: { prompt },
+      });
+    }
+  }
+  
+  console.log('✅ Seeded behavioral questions successfully!');
+
 }
+
+
 
 main()
   .then(() => console.log('Seeding complete.'))
