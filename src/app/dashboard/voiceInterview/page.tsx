@@ -1,6 +1,8 @@
 'use client';
 'use client';
+'use client';
 
+import React, { useRef, useState } from 'react';
 import React, { useRef, useState } from 'react';
 import styles from '../../../../styles/VoiceInterview.module.css';
 
@@ -23,6 +25,15 @@ export default function InterviewAssistant() {
     ]);
     setAiText(aiResponse);
     const utterance = new SpeechSynthesisUtterance(aiResponse);
+
+  const handleResponse = (userInput: string, aiResponse: string) => {
+    setChatLog((prev) => [
+      ...prev,
+      { sender: 'user', text: userInput },
+      { sender: 'ai', text: aiResponse },
+    ]);
+    setAiText(aiResponse);
+    const utterance = new SpeechSynthesisUtterance(aiResponse);
     utterance.rate = 1.1;
     utterance.pitch = 1.0;
     window.speechSynthesis.speak(utterance);
@@ -33,17 +44,32 @@ export default function InterviewAssistant() {
     const mediaRecorder = new MediaRecorder(stream);
     mediaRecorderRef.current = mediaRecorder;
     audioChunks.current = [];
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    const mediaRecorder = new MediaRecorder(stream);
+    mediaRecorderRef.current = mediaRecorder;
+    audioChunks.current = [];
 
     mediaRecorder.ondataavailable = (event) => {
+      if (event.data.size > 0) audioChunks.current.push(event.data);
+    };
       if (event.data.size > 0) audioChunks.current.push(event.data);
     };
 
     mediaRecorder.onstop = async () => {
       const audioBlob = new Blob(audioChunks.current, { type: 'audio/webm' });
       setAudioURL(URL.createObjectURL(audioBlob));
+      setAudioURL(URL.createObjectURL(audioBlob));
       const formData = new FormData();
       formData.append('audio', audioBlob, 'user-input.webm');
 
+      const res = await fetch('/api/transcribe', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await res.json();
+      if (data.aiText && data.transcript) {
+        handleResponse(data.transcript, data.aiText);
       const res = await fetch('/api/transcribe', {
         method: 'POST',
         body: formData,
@@ -58,6 +84,9 @@ export default function InterviewAssistant() {
     mediaRecorder.start();
     setIsRecording(true);
   };
+    mediaRecorder.start();
+    setIsRecording(true);
+  };
 
   const stopRecording = () => {
     mediaRecorderRef.current?.stop();
@@ -68,6 +97,16 @@ export default function InterviewAssistant() {
     e.preventDefault();
     if (!userText.trim()) return;
 
+    const res = await fetch('/api/transcribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: userText }),
+    });
+
+    const data = await res.json();
+    if (data.aiText) {
+      handleResponse(userText, data.aiText);
+      setUserText('');
     const res = await fetch('/api/transcribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -92,7 +131,21 @@ export default function InterviewAssistant() {
           </div>
         ))}
       </div>
+    <div className={styles.container}>
+      <div className={styles.chatWindow}>
+        {chatLog.map((msg, index) => (
+          <div key={index} className={styles.message}>
+            <div className={`${styles.bubble} ${msg.sender === 'ai' ? styles.ai : styles.user}`}>
+              {msg.text}
+            </div>
+          </div>
+        ))}
+      </div>
 
+      <div className={styles.controls}>
+        <button onClick={() => setMode(mode === 'voice' ? 'text' : 'voice')} className={styles.toggleMode}>
+          🎚️ Switch to {mode === 'voice' ? 'Text' : 'Voice'} Mode
+        </button>
       <div className={styles.controls}>
         <button onClick={() => setMode(mode === 'voice' ? 'text' : 'voice')} className={styles.toggleMode}>
           🎚️ Switch to {mode === 'voice' ? 'Text' : 'Voice'} Mode
@@ -124,6 +177,6 @@ export default function InterviewAssistant() {
       </div>
     </div>
   );
-  );
 }
+
 
