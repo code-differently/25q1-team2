@@ -20,7 +20,7 @@ const Sidebar: React.FC = () => {
         <Link href="/dashboard/flashcards" className={`${styles.link} ${isActive('flashcards')}`}>
           Flash Cards
         </Link>
-        <Link href="/dashboard/interview" className={`${styles.link} ${isActive('interview')}`}>
+        <Link href="/dashboard/questions" className={`${styles.link} ${isActive('questions')}`}>
           Interview Questions
         </Link>
         <Link href="/dashboard/mock" className={`${styles.link} ${isActive('mock')}`}>
