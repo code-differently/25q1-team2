@@ -78,8 +78,38 @@ export default function MockInterview() {
         ))
       }
     </ul>
+
+    <button
+      className={styles.saveButton}
+      onClick={async () => {
+        try {
+          const response = await fetch('/api/saveUserAnswer', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              questionId: 1, // Use real ID if you have one!
+              answer,
+              feedback
+            }),
+          });
+
+          if (response.ok) {
+            alert('Feedback saved!');
+          } else {
+            const { error } = await response.json();
+            alert(`Failed to save: ${error}`);
+          }
+        } catch (err) {
+          alert('Something went wrong saving feedback.');
+          console.error(err);
+        }
+      }}
+    >
+      Save Feedback
+    </button>
   </div>
 )}
+
   </div>
   )
 }

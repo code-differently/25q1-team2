@@ -17,7 +17,14 @@ export async function POST(req: NextRequest) {
     if (!questionId || !answer || !feedback) {
       return NextResponse.json({ error: 'Missing fields' }, { status: 400 });
     }
-
+    await prisma.user.upsert({
+        where: { id: userId },
+        update: {},
+        create: {
+          id: userId,
+          // any other required fields like email, name, etc.
+        },
+      });
     const saved = await prisma.userAnswer.create({
       data: { userId, questionId, answer, feedback },
     });
