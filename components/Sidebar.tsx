@@ -26,6 +26,9 @@ const Sidebar: React.FC = () => {
         <Link href="/dashboard/mockInterview" className={`${styles.link} ${isActive('mockInterview')}`}>
           Mock Interview
         </Link>
+        <Link href="/dashboard/userFeedback" className={`${styles.link} ${isActive('mockInterview')}`}>
+          User Feedback
+        </Link>
         <Link href="/dashboard/about" className={`${styles.link} ${isActive('about')}`}>
           About
         </Link>
