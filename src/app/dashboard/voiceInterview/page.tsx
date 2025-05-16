@@ -1,74 +1,126 @@
-"use client";
+'use client';
 
-
-import { useRef, useState } from 'react';
-import React from 'react';
+import React, { useRef, useState } from 'react';
+import styles from '../../../../styles/VoiceInterview.module.css';
 
 export default function InterviewAssistant() {
-  const [isRecording, setIsRecording] = useState(false)
-  const [audioURL, setAudioURL] = useState<string | null>(null)
-  const [aiAudioURL, setAiAudioURL] = useState<string | null>(null)
-  const mediaRecorderRef = useRef<MediaRecorder | null>(null)
-  const audioChunks = useRef<Blob[]>([])
+  const [isRecording, setIsRecording] = useState(false);
+  const [audioURL, setAudioURL] = useState<string | null>(null);
+  const [aiText, setAiText] = useState<string | null>(null);
+  const [userText, setUserText] = useState('');
+  const [chatLog, setChatLog] = useState<{ sender: 'user' | 'ai'; text: string }[]>([]);
+  const [mode, setMode] = useState<'voice' | 'text'>('voice');
+
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const audioChunks = useRef<Blob[]>([]);
+
+  const handleResponse = (userInput: string, aiResponse: string) => {
+    setChatLog((prev) => [
+      ...prev,
+      { sender: 'user', text: userInput },
+      { sender: 'ai', text: aiResponse },
+    ]);
+    setAiText(aiResponse);
+    const utterance = new SpeechSynthesisUtterance(aiResponse);
+    utterance.rate = 1.1;
+    utterance.pitch = 1.0;
+    window.speechSynthesis.speak(utterance);
+  };
 
   const startRecording = async () => {
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
-    const mediaRecorder = new MediaRecorder(stream)
-    mediaRecorderRef.current = mediaRecorder
-    audioChunks.current = []
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    const mediaRecorder = new MediaRecorder(stream);
+    mediaRecorderRef.current = mediaRecorder;
+    audioChunks.current = [];
 
     mediaRecorder.ondataavailable = (event) => {
-      if (event.data.size > 0) audioChunks.current.push(event.data)
-    }
+      if (event.data.size > 0) audioChunks.current.push(event.data);
+    };
 
     mediaRecorder.onstop = async () => {
-      const audioBlob = new Blob(audioChunks.current, { type: 'audio/webm' })
-      const formData = new FormData()
-      formData.append('audio', audioBlob, 'user-input.webm')
+      const audioBlob = new Blob(audioChunks.current, { type: 'audio/webm' });
+      setAudioURL(URL.createObjectURL(audioBlob));
+      const formData = new FormData();
+      formData.append('audio', audioBlob, 'user-input.webm');
 
-      setAudioURL(URL.createObjectURL(audioBlob))
-
-      const res = await fetch('/api/interview-voice', {
+      const res = await fetch('/api/transcribe', {
         method: 'POST',
         body: formData,
-      })
+      });
 
-      const data = await res.json()
-      setAiAudioURL(data.audioUrl)
-    }
+      const data = await res.json();
+      if (data.aiText && data.transcript) {
+        handleResponse(data.transcript, data.aiText);
+      }
+    };
 
-    mediaRecorder.start()
-    setIsRecording(true)
-  }
+    mediaRecorder.start();
+    setIsRecording(true);
+  };
 
   const stopRecording = () => {
-    mediaRecorderRef.current?.stop()
-    setIsRecording(false)
-  }
+    mediaRecorderRef.current?.stop();
+    setIsRecording(false);
+  };
+
+  const handleTextSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!userText.trim()) return;
+
+    const res = await fetch('/api/transcribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: userText }),
+    });
+
+    const data = await res.json();
+    if (data.aiText) {
+      handleResponse(userText, data.aiText);
+      setUserText('');
+    }
+  };
 
   return (
-    <div className="p-8 text-white">
-      <h1 className="text-2xl font-bold mb-4">🎤 AI Interview Assistant</h1>
-      <button
-        onClick={isRecording ? stopRecording : startRecording}
-        className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-xl shadow-xl"
-      >
-        {isRecording ? '🛑 Stop Recording' : '🎙️ Start Speaking'}
-      </button>
+    <div className={styles.container}>
+      <div className={styles.chatWindow}>
+        {chatLog.map((msg, index) => (
+          <div key={index} className={styles.message}>
+            <div className={`${styles.bubble} ${msg.sender === 'ai' ? styles.ai : styles.user}`}>
+              {msg.text}
+            </div>
+          </div>
+        ))}
+      </div>
 
-      {audioURL && (
-        <div className="mt-6">
-          <h2 className="font-semibold">Your Input:</h2>
-          <audio controls src={audioURL} className="mt-2" />
-        </div>
-      )}
+      <div className={styles.controls}>
+        <button onClick={() => setMode(mode === 'voice' ? 'text' : 'voice')} className={styles.toggleMode}>
+          🎚️ Switch to {mode === 'voice' ? 'Text' : 'Voice'} Mode
+        </button>
 
-      {aiAudioURL && (
-        <div className="mt-6">
-          <h2 className="font-semibold">AI Response:</h2>
-          <audio controls src={aiAudioURL} className="mt-2" />
-        </div>
-      )}
+        {mode === 'voice' ? (
+          <button onClick={isRecording ? stopRecording : startRecording}>
+            {isRecording ? '🛑 Stop Recording' : '🎙️ Start Speaking'}
+          </button>
+        ) : (
+          <form onSubmit={handleTextSubmit} style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}>
+            <input
+              type="text"
+              value={userText}
+              onChange={(e) => setUserText(e.target.value)}
+              placeholder="Type your answer..."
+              style={{
+                flexGrow: 1,
+                padding: '0.5rem',
+                borderRadius: '8px',
+                border: '1px solid #333',
+                background: '#111',
+                color: '#fff',
+              }}
+            />
+            <button type="submit">🚀 Send</button>
+          </form>
+        )}
+      </div>
     </div>
-  )
+  );
 }
