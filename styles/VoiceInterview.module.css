@@ -19,8 +19,8 @@
   left: calc(250px + (100vw - 250px) / 2);
   transform: translateX(-50%);
   width: 90vw;
-  max-width: 600px;
-  max-height: 60vh;
+  max-width: 700px;
+  max-height: 50vh;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -75,9 +75,7 @@
 
 .controls {
   display: flex;
-  gap: 0.5rem;
-  align-items: center;
-  flex-wrap: wrap;        /* wrap controls on small screens */
+  
 }
 
 .controls textarea,
@@ -131,6 +129,20 @@
   flex-shrink: 0;
   white-space: nowrap;
 }
+
+.cursor {
+  display: inline-block;
+  width: 1ch;
+  background-color: white;
+  animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+
 
 /* Responsive tweaks for small screens */
 @media (max-width: 500px) {
