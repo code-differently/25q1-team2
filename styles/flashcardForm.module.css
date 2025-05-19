@@ -1,0 +1,92 @@
+.flashcard-form-container {
+  background: linear-gradient(135deg, #4a98ba, #73cfed);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.flashcard-form-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.flashcard-form-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.flashcard-form-subtitle {
+  font-size: 1.2rem;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #73cfed;
+  box-shadow: 0 0 5px rgba(115, 207, 237, 0.7);
+}
+
+.button {
+  background-color: #4a98ba;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #73cfed;
+}
+
+.success-alert {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 12px;
+  border-radius: 4px;
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .flashcard-form-container {
+    padding: 1.5rem;
+  }
+
+  .flashcard-form-title {
+    font-size: 1.8rem;
+  }
+
+  .flashcard-form-subtitle {
+    font-size: 1rem;
+  }
+}

@@ -1,53 +1,52 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import React from 'react';
-import "../styles/flashcardList.css";
-
-/**
- * FlashcardList component displays a list of flashcards fetched from the API.
- *
- * The component fetches all flashcards from the backend API and displays them in a list.
- * If there are no flashcards, a message indicating the absence is shown. Each flashcard 
- * displays a question and an answer.
- *
- * @returns {JSX.Element} The FlashcardList component.
- */
+import React, { useEffect, useState } from 'react';
+import "../styles/flashcardList.module.css";
 interface Flashcard {
   id: number;
-  question: string;
+  questionText: string;
   answer: string;
 }
 
 export default function FlashcardList() {
   const [flashcards, setFlashcards] = useState<Flashcard[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  /**
-   * Fetches flashcards from the backend API when the component is mounted.
-   * 
-   * @async
-   * @function fetchFlashcards
-   */
   useEffect(() => {
     async function fetchFlashcards() {
-      const res = await fetch('/api/flashcards');
-      const data = await res.json();
-      setFlashcards(data);
+      try {
+        const res = await fetch('/api/flashcards');
+        if (!res.ok) throw new Error('Failed to fetch flashcards');
+        const data = await res.json();
+        setFlashcards(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
     }
+
     fetchFlashcards();
   }, []);
+
+  if (loading)
+    return <p className="no-flashcards">Loading flashcards...</p>;
 
   return (
     <div className="flashcard-list-container">
       <h2 className="flashcard-list-title">Flashcards</h2>
       {flashcards.length === 0 ? (
-        <p className="no-flashcards">No flashcards available.</p>
+        <p className="no-flashcards">No flashcards yet. Add some!</p>
       ) : (
         <ul className="flashcard-list">
-          {flashcards.map((flashcard) => (
-            <li key={flashcard.id} className="flashcard-item">
-              <p className="flashcard-question"><strong>Q:</strong> {flashcard.question}</p>
-              <p className="flashcard-answer"><strong>A:</strong> {flashcard.answer}</p>
+          {flashcards.map(({ id, questionText, answer }) => (
+            <li key={id} className="flashcard-item">
+              <p className="flashcard-question">
+                <strong>Q:</strong> {questionText}
+              </p>
+              <p className="flashcard-answer">
+                <strong>A:</strong> {answer}
+              </p>
             </li>
           ))}
         </ul>

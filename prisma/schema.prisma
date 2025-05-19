@@ -3,22 +3,48 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-model Question {
+model User {
+  id         String       @id @default(uuid())
+  email      String?      @unique
+  // Other fields you want here
+  UserAnswer UserAnswer[]
+}
+
+model UserAnswer {
   id         Int      @id @default(autoincrement())
-  text       String
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String
+  question   Question @relation(fields: [questionId], references: [id])
+  questionId Int
   answer     String
-  difficulty String
+  feedback   String
   createdAt  DateTime @default(now())
 }
 
-model Flashcard {
-  id        Int      @id @default(autoincrement())
-  question  String
-  answer    String
-  createdAt DateTime @default(now())
+model Question {
+  id         Int          @id @default(autoincrement())
+  text       String
+  answer     String
+  keywords   String[]
+  difficulty String
+  createdAt  DateTime     @default(now())
+  UserAnswer UserAnswer[]
 }
 
+model Flashcard {
+  id           Int      @id @default(autoincrement())
+  questionText String
+  answer       String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model BehavioralQuestion {
+  id        Int      @id @default(autoincrement())
+  prompt    String
+  createdAt DateTime @default(now())
+}

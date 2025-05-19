@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 // src/app/layout.tsx
+=======
+>>>>>>> origin/main
 import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
 import React from "react";
