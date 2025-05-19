@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import MockInterview from '@/app/dashboard/mockInterview/page';
 import React from "react";
+
 describe('MockInterviewPage', () => {
   it('renders the mock interview questions', () => {
     render(<MockInterview />);
@@ -9,8 +10,5 @@ describe('MockInterviewPage', () => {
     expect(screen.getByText(/question:/i)).toBeInTheDocument();
   });
 
-  it('allows the user to submit a text', () => {
-    render(<MockInterview />);
-    expect(screen.)
-  })
+
 });
