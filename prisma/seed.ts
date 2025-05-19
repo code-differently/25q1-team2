@@ -125,6 +125,86 @@ async function main() {
           keywords: ["linear", "data", "structures", "sequentially", "predecessor", "successor", "hierarchical", "tree", "complex"],
           difficulty: "hard",
         },
+        {
+          text: "What are the five solid principles?",
+          answer: "Single Resonspibility Principle, Open/Closed Principle, Liskov Substitution Principle, Interface Segregation Pirnciple, Dependecny Inversion Principle.",
+          keywords: ["single", "responsibility", "open", "closed", "liskov", "substitution", "interface", "segregation", "dependency", "inversion"],
+          difficulty: "medium",
+        },
+        {
+          text: "Which solid principle says a class should have only one responsibility?",
+          answer: "Single Responsibility Principle.",
+          keywords: ["principle", "responsibility", "single"],
+          difficulty: "easy",
+
+        },
+        {
+          text: "Which solid principle says a class should be open for extension but closed for modification?",
+          answer: "Open/Closed Principle.",
+          keywords: ["principle", "open", "closed",],
+          difficulty: "easy",
+        },
+        {
+          text:"Which solid principle says objects should be replaceable by instances of their subtypes?",
+          answer: "Liskov Substitution Principle.",
+          keywords: ["principle", "liskov", "substitution"],
+          difficulty: "easy",
+        },
+        {
+          text: "Which solid principle says a class should not depend on methods it doesn’t use?",
+          answer: "Interface Segregation Principle.",
+          keywords: ["principle", "interface", "segregation"],
+          difficulty: "easy",
+        },
+        {
+          text: "Which solid principle encourages depending on abstractions rather than concrete implementations?",
+          answer: "Dependency Inversion Principle.",
+          keywords: ["principle", "dependency", "inversion"],
+          difficulty: "easy",
+        },
+        {
+          text: "What are the four pillars of Object-Oriented Programming?",
+          answer: "Encapsulation, Abstraction, Inheritance, Polymorphism.",
+          keywords: ["encapsulation", "abstraction", "inheritance", "polymorphism"],
+          difficulty: "hard",
+        },
+      {
+        text: "What is encapsulation?",
+        answer: "Encapsulation is the bundling of data with the methods that operate on that data.",
+        keywords: ["bundling", "data", "methods"],
+        difficulty: "easy",
+      },
+      {
+        text: "What is abstraction?",
+        answer: "Abstraction is the concept of hiding the complex reality while exposing only the necessary parts.",
+        keywords: ["hiding", "complex", "reality", "exposing"],
+        difficulty: "easy",
+      },
+      {
+        text: "What is inheritance?",
+        answer: "Inheritance is a mechanism in which one class acquires the properties and behaviors of another class.",
+        keywords: ["mechanism", "class", "properties", "behaviors"],
+        difficulty: "easy",
+      },
+      {
+        text: "What is polymorphism?",
+        answer: "Polymorphism allows objects of different classes to be treated as objects of a common superclass.",
+        keywords: ["objects", "classes", "treated", "superclass"],
+        difficulty: "easy",
+      },
+      {
+        text: "What is the purpose of a constructor in a class?",
+        answer: "A constructor is a special method used to initialize objects when they are created.",
+        keywords: ["special", "method", "initialize", "objects"],
+        difficulty: "medium",
+      },
+      {
+        text: "What is the purpose of a destructor in a class?",
+        answer: "A destructor is a special method that is called when an object is destroyed.",
+        keywords: ["special", "method", "destroyed"],
+        difficulty: "medium",
+      },
+
 
       ],
     });
