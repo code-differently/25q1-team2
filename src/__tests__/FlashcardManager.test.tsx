@@ -2,6 +2,7 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import FlashcardManager from '../components/FlashcardManager';
+import React from 'react';
 
 // Mock the fetch API globally
 global.fetch = jest.fn(() =>
