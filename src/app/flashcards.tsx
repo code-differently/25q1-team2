@@ -1,5 +1,5 @@
-import FlashcardForm from '../../../components/FlashCardForm';
-import FlashcardList from '../../../components/FlashCardList';
+import FlashcardForm from '../../components/FlashCardForm';
+import FlashcardList from '../../components/FlashCardList';
 import React from 'react';
 
 export default function FlashcardsPage() {

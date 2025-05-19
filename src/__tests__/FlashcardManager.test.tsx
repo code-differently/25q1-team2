@@ -1,7 +1,8 @@
 // src/__tests__/FlashcardManager.test.tsx
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import FlashcardsPage from '../app/flashcards.tsx'; 
+import React from 'react';
 import '@testing-library/jest-dom';
-import FlashcardManager from '../components/FlashcardManager';
 
 // Mock the fetch API globally
 global.fetch = jest.fn(() =>
@@ -12,7 +13,8 @@ global.fetch = jest.fn(() =>
 
 describe('FlashcardManager', () => {
   it('renders input fields and creates a flashcard', async () => {
-    render(<FlashcardManager />);
+    render(<FlashcardsPage />);
+
 
     // Get input fields and button
     const questionInput = screen.getByPlaceholderText(/enter question/i);
