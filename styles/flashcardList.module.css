@@ -1,71 +1,20 @@
+.title {
+  color: #fff;
+  font-size: 1.7rem;
+  margin-bottom: 10px;
+  margin-top: 28px;
+  font-family: 'Orbitron', 'Arial', sans-serif;
+}
 
-  
-  /* Flashcard List Container */
-  .flashcard-list-container {
-    background: linear-gradient(135deg, #4a98ba, #73cfed);
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 2;
-  }
-  
-  /* Flashcard List Title */
-  .flashcard-list-title {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 1rem;
-  }
-  
-  /* No Flashcards Message */
-  .no-flashcards {
-    font-size: 1.2rem;
-    color: #fff;
-    text-align: center;
-    margin-top: 2rem;
-  }
-  
-  /* Flashcard List */
-  .flashcard-list {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  /* Flashcard Item */
-  .flashcard-item {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 12px;
-    margin-bottom: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Flashcard Question and Answer */
-  .flashcard-question,
-  .flashcard-answer {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-    color: #333;
-  }
-  
-  /* Responsive Adjustments */
-  @media (max-width: 768px) {
-    .flashcard-list-container {
-      padding: 1.5rem;
-    }
-  
-    .flashcard-list-title {
-      font-size: 1.8rem;
-    }
-  
-    .flashcard-question,
-    .flashcard-answer {
-      font-size: 1rem;
-    }
-  }
-  
+.listWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.noFlashcards {
+  color: #c2f5c4;
+  margin-top: 24px;
+  font-size: 1.2rem;
+}

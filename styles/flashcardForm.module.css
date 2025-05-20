@@ -1,92 +1,67 @@
 .flashcard-form-container {
-  background: linear-gradient(135deg, #4a98ba, #73cfed);
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 2;
+  background: rgba(34, 40, 44, 0.97);
+  border-radius: 16px;
+  padding: 32px 28px;
+  margin-bottom: 26px;
+  margin-top: 16px;
+  box-shadow: 0 2px 12px #0006;
+  width: 420px;
+  max-width: 94vw;
 }
 
 .flashcard-form-header {
-  text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 16px;
 }
 
 .flashcard-form-title {
-  font-size: 2rem;
-  font-weight: 700;
   color: #fff;
-  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  font-family: 'Orbitron', 'Arial', sans-serif;
 }
 
 .flashcard-form-subtitle {
-  font-size: 1.2rem;
-  color: #fff;
-  margin-bottom: 1.5rem;
+  color: #5ecb74;
+  font-size: 1rem;
+  margin-top: 2px;
 }
 
 .input {
   width: 100%;
+  margin-bottom: 14px;
   padding: 12px;
-  margin-bottom: 1rem;
-  border-radius: 4px;
-  border: 1px solid #ddd;
-  font-size: 1rem;
-  background-color: #fff;
-  color: #333;
-  box-sizing: border-box;
-}
-
-.input:focus {
-  outline: none;
-  border-color: #73cfed;
-  box-shadow: 0 0 5px rgba(115, 207, 237, 0.7);
+  border-radius: 8px;
+  border: none;
+  font-size: 1.1rem;
+  background: #10181f;
+  color: #fff;
 }
 
 .button {
-  background-color: #4a98ba;
+  background: linear-gradient(90deg, #0984ff 0%, #46e37e 100%);
   color: #fff;
-  padding: 12px 20px;
+  padding: 10px 24px;
   border: none;
-  border-radius: 4px;
-  font-size: 1.1rem;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-family: 'Orbitron', 'Arial', sans-serif;
+  font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  width: 100%;
-}
-
-.button:hover {
-  background-color: #73cfed;
-}
-
-.success-alert {
-  background-color: #4caf50;
-  color: #fff;
-  padding: 12px;
-  border-radius: 4px;
-  margin-top: 1rem;
-  text-align: center;
-  font-size: 1.1rem;
+  margin-top: 6px;
+  transition: filter 0.2s;
 }
 
 .button:disabled {
-  background-color: #ccc;
+  opacity: 0.65;
+  filter: grayscale(0.3);
   cursor: not-allowed;
 }
 
-@media (max-width: 768px) {
-  .flashcard-form-container {
-    padding: 1.5rem;
-  }
-
-  .flashcard-form-title {
-    font-size: 1.8rem;
-  }
-
-  .flashcard-form-subtitle {
-    font-size: 1rem;
-  }
+.success-alert {
+  background: #21c76e;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-top: 10px;
+  font-weight: bold;
+  font-family: 'Orbitron', 'Arial', sans-serif;
 }
