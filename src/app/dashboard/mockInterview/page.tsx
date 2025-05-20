@@ -5,7 +5,7 @@ import { useState } from 'react';
 import React from "react";
 import styles from "../../../../styles/mockInterviews.module.css";
 
-const questions = [
+const questions = [ 
   "Describe a time when you had to step up and demonstrate leadership skills.",
   "Tell me about a time you were under a lot of pressure at work or school. What was going on, and how did you get through it?",
   "Give me an example of a time you managed numerous responsibilities. How did you handle that?",
