@@ -12,7 +12,6 @@
     "cypress": "cypress open",
     "test:mock": "cypress run --spec 'cypress/e2e/mockInterview.cy.ts'",
     "test:questions": "cypress run --spec 'cypress/e2e/questions.cy.ts'"
-    
   },
   "dependencies": {
     "@clerk/backend": "^1.32.2",

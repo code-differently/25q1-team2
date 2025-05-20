@@ -1,47 +1,51 @@
-describe('Interview Questions Page', () => {
-    beforeEach(() => {
-      // Clear localStorage to reset seen questions
-      cy.clearLocalStorage();
-      cy.visit('/dashboard/questions'); // Adjust the path if necessary
-    });
+describe('Interview Questions Full Flow', () => {
+    it('logs in, navigates to interview questions, answers all five questions, submits, receives score, and resets questions', () => {
+      // Visit landing page and click Login
+      cy.visit('/');
+      cy.contains('button', /^login$/i).click();
   
-    it('loads 5 questions on page load', () => {
+      // Login form
+      cy.get('input#identifier-field').type('testbot123@gmail.com', { force: true });
+      cy.contains('button', /^continue$/i).click();
+  
+      cy.get('input#password-field').type('Thisisate$t');
+      cy.contains('button', /^continue$/i).click();
+  
+      // Wait for dashboard to load
+      cy.url({ timeout: 30000 }).should('include', '/dashboard');
+      cy.contains('Welcome to Hired.exe!');
+  
+      // Navigate to Interview Questions
+      cy.contains('Interview Questions').click();
+      cy.url({ timeout: 30000 }).should('include', '/dashboard/questions');
       cy.contains('Answer the Questions');
+  
+      // Ensure 5 questions are rendered
       cy.get('input').should('have.length', 5);
-    });
   
-    it('allows typing answers into all fields', () => {
-      cy.get('input').each((input, index) => {
-        cy.wrap(input).type(`Test answer ${index + 1}.`);
+      // Type in answers for each input
+      cy.get('input').each((_, index) => {
+        // Re-query inside the callback to ensure the element is fresh
+        cy.get('input').eq(index).should('be.visible').clear().type(`Test answer ${index + 1}.`);
       });
-    });
+      
+      
+      
   
-    it('submits answers and shows results', () => {
-      // Fill answers
-      cy.get('input').each((input, index) => {
-        cy.wrap(input).type(`Test answer ${index + 1}.`);
-      });
-  
-      // Submit form
+      // Submit answers
       cy.get('button[type="submit"]').click();
+      cy.url({ timeout: 30000 }).should('include', '/dashboard/questions');
+
   
-      // Check results summary appears
+      // Validate results
       cy.contains('Your Score:').should('exist');
-  
-      // Check that answers and correctness feedback appear
       cy.get('p').contains('Your answer:').should('exist');
       cy.get('p').contains(/Correct!|Wrong!/).should('exist');
-    });
   
-    it('resets questions when reset button is clicked', () => {
-      // Fill and submit form
-      cy.get('input').first().type('Something.');
-      cy.get('button[type="submit"]').click();
-  
-      // Click reset button
+      // Reset questions
       cy.get('button').contains('Reset Questions').click();
   
-      // Should go back to the form
+      // Confirm form has reset
       cy.contains('Answer the Questions');
       cy.get('input').should('have.length', 5);
     });
