@@ -11,7 +11,8 @@
     "lint": "next lint",
     "cypress": "cypress open",
     "test:mock": "cypress run --spec 'cypress/e2e/mockInterview.cy.ts'",
-    "test:user": "cypress run --spec 'cypress/e2e/clerkUser.cy.ts'"
+    "test:questions": "cypress run --spec 'cypress/e2e/questions.cy.ts'"
+    
   },
   "dependencies": {
     "@clerk/backend": "^1.32.2",
