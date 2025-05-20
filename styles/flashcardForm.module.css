@@ -1,67 +1,81 @@
-.flashcard-form-container {
-  background: rgba(34, 40, 44, 0.97);
-  border-radius: 16px;
-  padding: 32px 28px;
-  margin-bottom: 26px;
-  margin-top: 16px;
-  box-shadow: 0 2px 12px #0006;
-  width: 420px;
-  max-width: 94vw;
+.flashcardForm {
+  background: linear-gradient(120deg, #22282c 60%, #1c4427 100%);
+  border-radius: 22px;
+  box-shadow: 0 4px 32px #000a;
+  padding: 48px 36px 36px 36px;   /* Larger padding */
+  display: flex;
+  flex-direction: column;
+  min-width: 420px;               /* Wider min width */
+  max-width: 600px;               /* Larger max width */
+  gap: 28px;                      /* More gap between rows */
 }
 
-.flashcard-form-header {
-  margin-bottom: 16px;
+
+.inputRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
-.flashcard-form-title {
-  color: #fff;
-  font-size: 2rem;
-  font-family: 'Orbitron', 'Arial', sans-serif;
+.iconLabel {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
 }
 
-.flashcard-form-subtitle {
-  color: #5ecb74;
-  font-size: 1rem;
-  margin-top: 2px;
+.inputIcon {
+  color: #46e37e;
+  font-size: 1.3rem;
+  margin-right: 6px;
 }
 
 .input {
-  width: 100%;
-  margin-bottom: 14px;
-  padding: 12px;
-  border-radius: 8px;
+  flex: 1;
+  background: #161e24;
   border: none;
-  font-size: 1.1rem;
-  background: #10181f;
+  border-radius: 10px;
+  font-size: 1.22rem;
   color: #fff;
+  padding: 20px 18px;
+  outline: 2px solid transparent;
+  transition: outline 0.17s, box-shadow 0.18s;
+}
+
+.input:focus {
+  outline: 2px solid #46e37e;
+  box-shadow: 0 0 0 3px #21c76e44;
 }
 
 .button {
   background: linear-gradient(90deg, #0984ff 0%, #46e37e 100%);
   color: #fff;
-  padding: 10px 24px;
+  padding: 16px 0;
   border: none;
-  border-radius: 8px;
-  font-size: 1.05rem;
-  font-family: 'Orbitron', 'Arial', sans-serif;
-  font-weight: bold;
+  border-radius: 10px;
+  font-size: 1.16rem;
+  font-family: 'Orbitron', Arial, sans-serif;
+  font-weight: 700;
   cursor: pointer;
-  margin-top: 6px;
-  transition: filter 0.2s;
+  margin-top: 12px;
+  transition: filter 0.18s, background 0.14s;
+  width: 100%;
 }
 
 .button:disabled {
-  opacity: 0.65;
-  filter: grayscale(0.3);
+  filter: grayscale(0.3) brightness(0.9);
   cursor: not-allowed;
 }
 
-.success-alert {
+.successAlert {
   background: #21c76e;
   color: #fff;
-  padding: 8px 12px;
+  padding: 10px 12px;
   border-radius: 8px;
-  margin-top: 10px;
+  margin-top: 14px;
   font-weight: bold;
-  font-family: 'Orbitron', 'Arial', sans-serif;
+  font-family: 'Orbitron', Arial, sans-serif;
+  text-align: center;
+  box-shadow: 0 1px 8px #0006;
 }

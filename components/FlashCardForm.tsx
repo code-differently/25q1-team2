@@ -1,15 +1,18 @@
 'use client';
 
 import React, { useState } from 'react';
+import { FaCircleQuestion, FaLightbulb } from 'react-icons/fa6'; // You need react-icons installed!
 import styles from '../styles/flashcardForm.module.css';
 
-export default function FlashcardForm() {
+export default function FlashcardForm({ onSuccess }: { onSuccess?: () => void }) {
   const [questionText, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
   const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       const res = await fetch('/api/flashcards', {
@@ -22,48 +25,57 @@ export default function FlashcardForm() {
         setQuestion('');
         setAnswer('');
         setSuccess(true);
-        setTimeout(() => setSuccess(false), 3000);
+        if (onSuccess) onSuccess();
+        setTimeout(() => setSuccess(false), 1600);
       } else {
         const error = await res.json();
         alert(error.error || 'Failed to add flashcard');
       }
     } catch {
       alert('Network error or server not reachable');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className={styles['flashcard-form-container']}>
-      <div className={styles['flashcard-form-header']}>
-        <h1 className={styles['flashcard-form-title']}>Add a Flashcard</h1>
-        <p className={styles['flashcard-form-subtitle']}>Create your study cards easily</p>
+    <form className={styles.flashcardForm} onSubmit={handleSubmit} autoComplete="off">
+      <div className={styles.inputRow}>
+        <label className={styles.iconLabel}>
+          <FaCircleQuestion className={styles.inputIcon} />
+          <input
+            className={styles.input}
+            type="text"
+            placeholder="Question"
+            value={questionText}
+            onChange={(e) => setQuestion(e.target.value)}
+            required
+            disabled={loading}
+          />
+        </label>
       </div>
-      <form onSubmit={handleSubmit}>
-        <input
-          className={styles.input}
-          type="text"
-          placeholder="Question"
-          value={questionText}
-          onChange={(e) => setQuestion(e.target.value)}
-          required
-        />
-        <input
-          className={styles.input}
-          type="text"
-          placeholder="Answer"
-          value={answer}
-          onChange={(e) => setAnswer(e.target.value)}
-          required
-        />
-        <button
-          className={styles.button}
-          type="submit"
-          disabled={!questionText || !answer}
-        >
-          Add Flashcard
-        </button>
-        {success && <div className={styles['success-alert']}>Flashcard added!</div>}
-      </form>
-    </div>
+      <div className={styles.inputRow}>
+        <label className={styles.iconLabel}>
+          <FaLightbulb className={styles.inputIcon} />
+          <input
+            className={styles.input}
+            type="text"
+            placeholder="Answer"
+            value={answer}
+            onChange={(e) => setAnswer(e.target.value)}
+            required
+            disabled={loading}
+          />
+        </label>
+      </div>
+      <button
+        className={styles.button}
+        type="submit"
+        disabled={!questionText || !answer || loading}
+      >
+        {loading ? 'Creating...' : 'Create Flashcard'}
+      </button>
+      {success && <div className={styles.successAlert}>Flashcard added!</div>}
+    </form>
   );
 }
