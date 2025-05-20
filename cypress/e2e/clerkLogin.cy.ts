@@ -3,13 +3,13 @@ describe('Clerk Sign In', () => {
       cy.visit('/');
       cy.contains('button', /^login$/i).click();
       // Switch to Clerk’s domain if modal is cross-origin, or just interact if on same domain
-      cy.get('input#identifier-field').type('testuser1747710952403@example.com');
+      cy.get('input#identifier-field').type("testbot123@gmail.com", { force: true });
       cy.contains('button', /^continue$/i).click();
 
-      cy.get('input#password-field').type('SuperSecret!a1');
-      cy.contains('button', /sign in/i).click();
-      cy.url({ timeout: 20000 }).should('include', '/dashboard');
-      cy.contains('Mock Interview Practice'); // Update for your dashboard
+      cy.get('input#password-field').type('Thisisate$t');
+      cy.contains('button', /^continue$/i).click();
+      cy.url({ timeout: 10000 }).should('include', '/dashboard');
+      cy.contains('Welcome to Hired.exe!'); // Update for your dashboard
     });
   });
   
