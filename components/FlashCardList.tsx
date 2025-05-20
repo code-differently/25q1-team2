@@ -1,7 +1,9 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import "../styles/flashcardList.module.css";
+import FlashcardFlip from './FlashCardFlip';
+import styles from '../styles/flashcardList.module.css';
+
 interface Flashcard {
   id: number;
   questionText: string;
@@ -29,28 +31,24 @@ export default function FlashcardList() {
     fetchFlashcards();
   }, []);
 
-  if (loading)
-    return <p className="no-flashcards">Loading flashcards...</p>;
+  if (loading) return <p className={styles.noFlashcards}>Loading flashcards...</p>;
 
   return (
-    <div className="flashcard-list-container">
-      <h2 className="flashcard-list-title">Flashcards</h2>
-      {flashcards.length === 0 ? (
-        <p className="no-flashcards">No flashcards yet. Add some!</p>
-      ) : (
-        <ul className="flashcard-list">
-          {flashcards.map(({ id, questionText, answer }) => (
-            <li key={id} className="flashcard-item">
-              <p className="flashcard-question">
-                <strong>Q:</strong> {questionText}
-              </p>
-              <p className="flashcard-answer">
-                <strong>A:</strong> {answer}
-              </p>
-            </li>
-          ))}
-        </ul>
-      )}
+    <div>
+      <h2 className={styles.title}>Your Flashcards</h2>
+      <div className={styles.listWrapper}>
+        {flashcards.length === 0 ? (
+          <p className={styles.noFlashcards}>No flashcards yet. Add some!</p>
+        ) : (
+          flashcards.map(card => (
+            <FlashcardFlip
+              key={card.id}
+              question={card.questionText}
+              answer={card.answer}
+            />
+          ))
+        )}
+      </div>
     </div>
   );
 }

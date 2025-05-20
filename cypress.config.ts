@@ -11,6 +11,7 @@ const clerkClient = createClerkClient({
 
 export default defineConfig({
   e2e: {
+    defaultCommandTimeout: 30000,    // 10 seconds for most commands
     baseUrl: 'http://localhost:3000',
     specPattern: 'cypress/e2e/**/*.cy.{js,ts}',
     screenshotsFolder: 'cypress/screenshots',
