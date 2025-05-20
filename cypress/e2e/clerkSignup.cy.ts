@@ -1,17 +1,17 @@
 // cypress/e2e/clerkSignup.cy.ts
-import { setupClerkTestingToken } from '@clerk/testing/cypress';
 
 describe('Clerk E2E Signup', () => {
   it('signs up a user with email and accesses dashboard', () => {
-    setupClerkTestingToken();
     const timestamp = Date.now();
     const email = `testuser${timestamp}@example.com`;
     const username = `testuser${timestamp}`;
     const password = `StrongP@ssword8008`;
 
     cy.visit('/');
+
     // Click "Sign Up" on the landing page
     cy.contains('button', /sign up/i).click();
+
     // Now fill out the form fields. 
     cy.get('input[placeholder="First name"], input#firstName-field').type('Test', { force: true });
     cy.get('input[placeholder="Last name"], input#lastName-field').type('User', { force: true });
