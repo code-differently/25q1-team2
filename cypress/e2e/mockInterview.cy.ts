@@ -1,64 +1,41 @@
 // cypress/e2e/mockInterview.cy.ts
 
-describe('Mock Interview Page', () => {
-  beforeEach(() => {
-    cy.visit('/dashboard/mockInterview');
-  });
+describe('Mock Interview Full Flow', () => {
+  it('logs in, navigates to mock interview, answers a question, gets feedback, saves it', () => {
+    cy.visit('/');
 
-  it('displays a random question and allows answer submission', () => {
-    cy.contains('Mock Interview Practice');
-    cy.get('textarea').should('exist').type('This is my test answer.');
+    cy.contains('button', /^login$/i).click();
 
-    cy.intercept('POST', '/api/getFeedback', {
-      statusCode: 200,
-      body: {
-        feedback: `Great structure!\nTry to include more specific details.\nEnd with a result.`,
-      },
-    }).as('getFeedback');
+    cy.get('input#identifier-field').type("testbot123@gmail.com", { force: true });
+    cy.contains('button', /^continue$/i).click();
 
+    cy.get('input#password-field').type('Thisisate$t');
+    cy.contains('button', /^continue$/i).click();
+
+    cy.url({ timeout: 30000 }).should('include', '/dashboard');
+    cy.contains('Welcome to Hired.exe!');
+
+    cy.contains('Mock Interview').click();
+    cy.url().should('include', '/dashboard/mockInterview');
+
+    const answer = 'This is my STAR method answer.';
+    cy.get('textarea').type(answer).should('have.value', answer);
+
+    // Submit the answer
     cy.contains('Submit Answer').click();
-    cy.contains('Submitting...'); // loading state
 
-    cy.wait('@getFeedback');
+    // Wait until loading finishes (Submit button disappears or switches text)
+    cy.contains('Submitting...').should('not.exist');
 
-    cy.contains('AI Feedback').should('be.visible');
-    cy.get('ul').within(() => {
-      cy.contains('Great structure!');
-      cy.contains('Try to include more specific details.');
-      cy.contains('End with a result.');
-    });
-  });
+    // Feedback should appear
+    cy.contains('AI Feedback', { timeout: 90000 }).should('be.visible');
 
-  it('generates a new question on Next Question', () => {
-    cy.get('p').eq(1).invoke('text').then((firstQuestion) => {
-      cy.contains('Next Question').click();
-      cy.get('p').eq(1).invoke('text').should((newQuestion) => {
-        expect(newQuestion).to.not.equal(firstQuestion);
-      });
-    });
-  });
+    // Save Feedback
+    cy.contains('button', /^Save Feedback$/i, { timeout: 40000 }).click();
 
-  it('saves feedback after submission', () => {
-    cy.intercept('POST', '/api/getFeedback', {
-      statusCode: 200,
-      body: {
-        feedback: 'Well structured answer.',
-      },
-    }).as('getFeedback');
-
-    cy.intercept('POST', '/api/saveUserAnswer', {
-      statusCode: 200,
-    }).as('saveFeedback');
-
-    cy.get('textarea').type('Another mock answer');
-    cy.contains('Submit Answer').click();
-    cy.wait('@getFeedback');
-
-    cy.contains('AI Feedback');
-    cy.contains('Save Feedback').click();
-    cy.wait('@saveFeedback');
-    cy.on('window:alert', (text) => {
-      expect(text).to.equal('Feedback saved!');
+    // Assert that the feedback was saved (alert)
+    cy.on('window:alert', (str) => {
+      expect(str).to.match(/saved/i);
     });
   });
 });

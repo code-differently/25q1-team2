@@ -17,7 +17,7 @@ export default defineConfig({
     screenshotsFolder: 'cypress/screenshots',
     videosFolder: 'cypress/videos',
     video: true,
-    screenshotOnRunFailure: true,
+    screenshotOnRun: true,
 
     // This is the correct way to set up node events and register tasks
     setupNodeEvents(on, config) {

@@ -1,48 +1,45 @@
-// src/app/api/getFeedback/route.ts
-import { NextRequest, NextResponse } from "next/server";
-import { getAuth } from "@clerk/nextjs/server";
-import { PrismaClient } from "@prisma/client";
-import { getFeedbackOnAnswer } from "../../lib/openai";
+describe('Mock Interview Full Flow', () => {
+  it('logs in, navigates to mock interview, answers a question, gets feedback, saves it', () => {
+    cy.visit('/');
 
-const prisma = new PrismaClient();
+    cy.contains('button', /^login$/i).click();
+    cy.get('input#identifier-field').type("testbot123@gmail.com", { force: true });
+    cy.contains('button', /^continue$/i).click();
+    cy.get('input#password-field').type('Thisisate$t');
+    cy.contains('button', /^continue$/i).click();
+    cy.url({ timeout: 20000 }).should('include', '/dashboard');
+    cy.contains('Welcome to Hired.exe!');
 
-export async function POST(req: NextRequest) {
-  try {
-    const { userId } = getAuth(req);
+    cy.contains('Mock Interview').click();
+    cy.url().should('include', '/dashboard/mockInterview');
 
-    if (!userId) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    const { question, answer } = await req.json();
-
-    if (typeof question !== "string" || typeof answer !== "string") {
-      return NextResponse.json(
-        { error: "Missing or invalid question or answer" },
-        { status: 400 }
-      );
-    }
-
-    // Get AI feedback
-    const feedback = await getFeedbackOnAnswer(question, answer);
-
-    // Save to database
-    await prisma.behavioralQuestion.create({
-      data: {
-        prompt: question,
-        // You might want a separate model or field for answers and feedback
-        // but assuming prompt stores the question for now
-        // Extend your schema as needed to save answer + feedback + userId
+    // 💡 Intercept the API call before clicking submit
+    cy.intercept('POST', '/api/getFeedback', {
+      statusCode: 200,
+      body: {
+        feedback: "This is your mock AI feedback. Great job using the STAR method!",
       },
-    });
+    }).as('mockGetFeedback');
 
-    // Return AI feedback
-    return NextResponse.json({ feedback }, { status: 200 });
-  } catch (error) {
-    console.error("Error in getFeedback API:", error);
-    return NextResponse.json(
-      { error: "Failed to get feedback" },
-      { status: 500 }
-    );
-  }
-}
+    const answer = 'This is my STAR method answer.';
+    cy.get('textarea').type(answer).should('have.value', answer);
+
+    cy.contains('Submit Answer').click();
+
+    // 🕒 Wait for the fake API to resolve
+    cy.wait('@mockGetFeedback');
+
+    // 🔄 Wait for the loading state to disappear
+    cy.contains('Submitting...').should('not.exist', { timeout: 30000 });
+
+    // ✅ Feedback section should now show
+    cy.contains('AI Feedback').should('be.visible');
+
+    // 💾 Save feedback
+    cy.contains('button', /^Save Feedback$/i, { timeout: 10000 }).click();
+
+    cy.on('window:alert', (str) => {
+      expect(str).to.match(/saved/i);
+    });
+  });
+});
