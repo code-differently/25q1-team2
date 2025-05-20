@@ -1,4 +1,3 @@
-import { defineConfig } from 'cypress';
 import { createClerkClient } from '@clerk/backend';
 import { clerkSetup } from '@clerk/testing/cypress';
 import { defineConfig } from 'cypress';
@@ -17,7 +16,7 @@ export default defineConfig({
     screenshotsFolder: 'cypress/screenshots',
     videosFolder: 'cypress/videos',
     video: true,
-    screenshotOnRun: true,
+    screenshotOnRunFailure: true,
 
     // This is the correct way to set up node events and register tasks
     setupNodeEvents(on, config) {

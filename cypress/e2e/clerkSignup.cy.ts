@@ -13,7 +13,7 @@ describe('Clerk E2E Signup', () => {
 
     cy.visit('/signin');
 
-    cy.get(`button`).contains(/login).click({force: true});
+    cy.get(`button`).contains(/login/i).click({force: true});
 
     cy.get('input#username-field').type(username, { force: true });
     cy.get('input#emailAddress-field').type(email, { force: true });
