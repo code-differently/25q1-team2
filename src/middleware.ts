@@ -6,7 +6,7 @@ export default clerkMiddleware();
 export const config = {
   matcher: [
     // Protect all routes except for static files and public routes
-    '/((?!_next/static|_next/image|favicon.ico|public).*)',
+    '/((?!_next/static|_next/image|favicon.ico|public|api/__coverage__).*)',
     // Ensure API routes are also protected
     '/api/(.*)',
   ],

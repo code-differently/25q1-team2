@@ -1,177 +1,106 @@
-/* Adjust this width to match your sidebar width */
+/* VoiceInterview.module.css */
+
+/* Full‑screen static background */
 .background {
   position: fixed;
-  top: 0;
-  left: 250px;
-  right: 0;
-  bottom: 0;
-  background-image: url('./images/Untitleddesign.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('./images/Untitleddesign.png') center/cover no-repeat;
   filter: brightness(0.5);
   z-index: 0;
 }
 
+/* Centered chat container, fixed 20px from bottom */
 .container {
   position: fixed;
   bottom: 20px;
-  left: calc(250px + (100vw - 250px) / 2);
+  left: 50%;
   transform: translateX(-50%);
   width: 90vw;
   max-width: 700px;
-  max-height: 50vh;
+  max-height: 60vh;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   background-color: rgba(10, 10, 35, 0.85);
   padding: 1rem;
   border-radius: 10px;
-  box-sizing: border-box;
   box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
-  z-index: 10;
-  color: white;
+  color: #fff;
   overflow: hidden;
+  z-index: 10;
 }
 
-
 .chatWindow {
+  flex: 1;
   background: #1c1c3c;
   border-radius: 10px;
   padding: 1rem;
-  flex-grow: 1;           /* take all available vertical space */
-  min-height: 200px;      /* minimum height */
-  max-height: 100%;       /* max height constrained by container */
   overflow-y: auto;
+  min-height: 200px;
   box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
 }
 
 .message {
-  margin: 0.75rem 0;
-  display: flex;
-  align-items: flex-start;
+  margin: 0.5rem 0;
   animation: fadeIn 0.4s ease-in-out;
 }
 
 .bubble {
+  display: inline-block;
   max-width: 70%;
-  padding: 0.8rem 1.2rem;
+  padding: 0.6rem 1rem;
   border-radius: 18px;
   line-height: 1.4;
-  word-wrap: break-word;
+  word-break: break-word;
 }
 
-.bubbleAi {
-  background: #2e2e80;
-  color: #e0e0ff;
-  border-left: 4px solid #00ffff;
-}
-
-.bubbleUser {
-  background: #4a1c6f;
-  color: #ffd6ff;
-  border-right: 4px solid #ff66cc;
-}
+.ai  { background: #2e2e80; color: #e0e0ff; border-left: 4px solid #00ffff; }
+.user{ background: #4a1c6f; color: #ffd6ff; border-right:4px solid #ff66cc; }
 
 .controls {
   display: flex;
-  
+  gap: 0.5rem;
+  align-items: center;
 }
 
-.controls textarea,
-.controls input[type="text"] {
-  flex-grow: 1;
-  min-width: 0;           /* lets input shrink properly in flexbox */
-  padding: 0.5rem 0.75rem;
+.textInput {
+  flex: 1;
+  padding: 0.5rem;
   border-radius: 6px;
   border: 1px solid #00ffff;
   background: #111;
   color: #fff;
-  font-size: 1rem;
-  resize: none;
-  outline: none;
-  box-shadow: none;
-  transition: border-color 0.3s ease;
-  min-height: 40px;
-  max-height: 100px;      /* max height for textarea */
 }
 
-.controls textarea:focus,
-.controls input[type="text"]:focus {
-  border-color: #00dddd;
-}
-
-.controls button {
-  background: #00ffff;
-  color: #0a0a23;
+.recordButton,
+.sendButton,
+.toggleMode,
+.stopButton {
   padding: 0.6rem 1rem;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
-  transition: background 0.3s ease;
-  flex-shrink: 0;
   white-space: nowrap;
 }
 
-.controls button:hover {
-  background: #00dddd;
+.recordButton { background: #00ffff; color: #0a0a23; }
+.sendButton   { background: #00ffff; color: #0a0a23; }
+.toggleMode   { background: #ff66cc; color: #fff; }
+.stopButton   { background: #ff4444; color: #fff; }
+
+.recordButton:hover,
+.sendButton:hover,
+.toggleMode:hover,
+.stopButton:hover {
+  filter: brightness(0.9);
 }
 
-.toggleMode {
-  background: #ff66cc;
-  color: white;
-  padding: 0.4rem 0.8rem;
-  border-radius: 8px;
-  font-size: 0.8rem;
-  border: none;
-  cursor: pointer;
-  flex-shrink: 0;
-  white-space: nowrap;
-}
-
-.cursor {
-  display: inline-block;
-  width: 1ch;
-  background-color: white;
-  animation: blink 1s steps(2, start) infinite;
-}
-
-@keyframes blink {
-  to {
-    visibility: hidden;
-  }
-}
-
-
-/* Responsive tweaks for small screens */
 @media (max-width: 500px) {
-  .container {
-    max-height: 80vh;
-    padding: 0.75rem;
-    width: 95vw;
-  }
-  .controls {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .controls button,
-  .toggleMode {
-    width: 100%;
-  }
-  .controls textarea,
-  .controls input[type="text"] {
-    min-height: 50px;
-  }
+  .container { width: 95vw; max-height: 80vh; padding: 0.75rem; }
+  .controls { flex-direction: column; }
 }
-
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
