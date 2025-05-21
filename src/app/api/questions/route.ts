@@ -44,7 +44,7 @@ export async function POST(req: Request) {
     return NextResponse.json(
       {
         correct: allKeywordsPresent,
-        correctAnswer: requiredKeywords.join(', '),
+        correctAnswer: question.answer,
       },
       { status: 200 }
   )} catch (error) {
