@@ -63,7 +63,7 @@ describe('Flashcards Page – create, flip, delete', () => {
         .should('have.attr', 'aria-pressed', 'true');
   
       // 4) delete: stub DELETE + auto‑confirm
-      cy.intercept('DELETE', /api/flashcards/${newCard.id}, {
+      cy.intercept('DELETE', `/api/flashcards/${newCard.id}`, {
         statusCode: 200,
         body: {},
       }).as('deleteCard');
