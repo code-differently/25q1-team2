@@ -11,12 +11,7 @@
     "lint": "next lint",
     "cypress": "cypress open",
     "test:mock": "cypress run --spec 'cypress/e2e/mockInterview.cy.ts'",
-    "test:user": "cypress run --spec 'cypress/e2e/clerkUser.cy.ts'",
-    "test": "NODE_ENV=test cypress run",
-    "dev:coverage": "NEXT_PUBLIC_COVERAGE=true next dev",
-    "cypress:run": "cypress run",
-    "coverage:report": "nyc report --reporter=html --report-dir coverage",
-    "test:coverage": "rm -rf .nyc_output && npm run dev:coverage"
+    "test:questions": "cypress run --spec 'cypress/e2e/questions.cy.ts'"
   },
   "dependencies": {
     "@clerk/backend": "^1.32.2",
