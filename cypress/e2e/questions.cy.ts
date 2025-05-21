@@ -24,8 +24,7 @@ describe('Interview Questions Full Flow', () => {
       cy.get('input').should('have.length', 5);
   
       // Type in answers for each input
-      cy.get('input').each((_, index) => {
-        // Re-query inside the callback to ensure the element is fresh
+      cy.get('input').each((_, index: number) => {
         cy.get('input').eq(index).should('be.visible').clear().type(`Test answer ${index + 1}.`);
       });
       
