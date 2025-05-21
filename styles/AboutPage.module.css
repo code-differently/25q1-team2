@@ -1,0 +1,71 @@
+.container {
+  position: relative;
+  padding: 4rem 2rem;
+  background: linear-gradient(to bottom, #1c263f, #2b3f4a);
+  color: white;
+  min-height: 100vh;
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.gradientOverlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at bottom, #446878 10%, transparent 40%);
+  z-index: 0;
+}
+
+.title {
+  font-size: 4rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: 2rem;
+  z-index: 1;
+  position: relative;
+}
+
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  text-align: middle;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.content p {
+  margin-bottom: .7rem;
+}
+
+.callToAction {
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+  text-align: center;
+}
+.teamSection {
+  margin-top: 1.5rem;
+  border: #666363 2px solid;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background-color: #d5d6da;
+  max-width: 800px;
+}
+
+.teamHeading {
+  font-size: 1.3rem; 
+  font-weight: 600;
+  color: rgb(0, 0, 0);
+  margin-bottom: .3rem;
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.teamMember {
+  font-size: .9rem; 
+  color: #000000;
+  margin-bottom: .3rem;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 500;
+}
