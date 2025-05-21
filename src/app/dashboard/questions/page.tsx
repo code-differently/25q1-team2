@@ -1,7 +1,8 @@
 "use client";
 import React, { useEffect, useState } from 'react';
+import styles from "../../../../styles/InterviewQuestions.module.css";
 
-
+//Define types for question and result structure
 type Question = {
   id: number;
   text: string;
@@ -16,16 +17,35 @@ type Result = {
 
 
 export default function QuestionsPage() {
+  // State for the questions fetched from the backend
   const [questions, setQuestions] = useState<Question[]>([]);
+  // State to track the user's answers by question ID
   const [answers, setAnswers] = useState<Record<number, string>>({});
+   // State to indicate loading state
   const [loading, setLoading] = useState(true);
+  // State to store the results after submission
   const [results, setResults] = useState<Result[] | null>(null);
-
+  // Fetch questions from the API on component mount
   useEffect(() => {
+    const seenIds = JSON.parse(localStorage.getItem('seenQuestionIds') || '[]') as number[];
+  
     fetch('/api/questions')
       .then((res) => res.json())
       .then((data: Question[]) => {
-        setQuestions(data);
+        // Filter out questions that have already been seen
+        const unseen = data.filter((q) => !seenIds.includes(q.id));
+  
+        // If not enough unseen, fallback to random 5 from all
+        const source = unseen.length >= 5 ? unseen : data;
+  
+        const shuffled = [...source].sort(() => Math.random() - 0.5);
+        const selected = shuffled.slice(0, 5);
+  
+        // Update localStorage with new seen IDs
+        const updatedSeen = [...new Set([...seenIds, ...selected.map((q) => q.id)])];
+        localStorage.setItem('seenQuestionIds', JSON.stringify(updatedSeen));
+  
+        setQuestions(selected);
         setLoading(false);
       })
       .catch((err) => {
@@ -33,15 +53,16 @@ export default function QuestionsPage() {
         setLoading(false);
       });
   }, []);
-
+  // Update the user's answer for a given question
   const handleChange = (id: number, value: string) => {
     setAnswers((prev) => ({ ...prev, [id]: value }));
   };
-
+  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const tempResults: Result[] = [];
+      // For each answered question, submit the answer to the API
       for (const questionId in answers) {
         const answerText = answers[+questionId];
 
@@ -52,7 +73,7 @@ export default function QuestionsPage() {
         });
   
         const data = await res.json();
-  
+        // Collect the result
         tempResults.push({
           questionId: Number(questionId),
           userAnswer: answerText,
@@ -60,14 +81,15 @@ export default function QuestionsPage() {
           correctAnswer: data.correctAnswer,
         });
       }
-  
+       // Save all results to show to the user
       setResults(tempResults);
     } catch (err) {
       console.error('Submission failed:', err);
     }
   };
-
+  // Show loading spinner while questions are being fetched
   if (loading) return <p>Loading questions...</p>;
+  // Show results after the user has submitted their answers
   if (results) {
     const score = results.filter(r => r.correct).length;
     return (
@@ -85,30 +107,31 @@ export default function QuestionsPage() {
             </div>
           );
         })}
-        <button onClick={() => {
-          setResults(null);
-          setAnswers({});
-        }}>Try Again</button>
+        <button className = {styles.button} onClick={() => {
+  localStorage.removeItem('seenQuestionIds');
+  window.location.reload();
+}}>
+ Reset Questions
+</button>
       </div>
     );
-  }
-
+  } 
   return (
     <form onSubmit={handleSubmit}>
       <h1>Answer the Questions</h1>
-      <p>End each answer wih a period</p>
+      <p>End each answer wih a period.</p>
       {questions.map((q) => (
         <div key={q.id} style={{ marginBottom: '20px' }}>
           <p>{q.text}</p>
-          <input
+          <input className ={styles.input}
             type="text"
             value={answers[q.id] || ''}
             onChange={(e) => handleChange(q.id, e.target.value)}
           />
         </div>
       ))}
-      <button type="submit">Submit</button>
+      <button  className={styles.button} type="submit">Submit</button>
     </form>
-    
+  
   );
 }
