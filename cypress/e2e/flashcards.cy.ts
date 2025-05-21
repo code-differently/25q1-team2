@@ -10,7 +10,7 @@ describe('Flashcards Page – create, flip, delete', () => {
     };
   
     beforeEach(() => {
-      // ==== login ====
+      // ==== login ====-
       cy.visit('/');
       cy.contains('button', /^login$/i).click();
       cy.get('input#identifier-field').type(email, { force: true });
