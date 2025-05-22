@@ -1,7 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import styles from '../../../../styles/mockInterviews.module.css';
+
 import React, { useState, useEffect } from 'react';
 import styles from '../../../../styles/mockInterviews.module.css';
 
@@ -18,7 +17,7 @@ const questions = [
 ];
 
 export default function MockInterview() {
-  const [index, setIndex] = useState(0);
+
   const [index, setIndex] = useState(0);
   const [answer, setAnswer] = useState('');
   const [feedback, setFeedback] = useState('');
