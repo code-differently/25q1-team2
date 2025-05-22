@@ -15,7 +15,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           <Sidebar />
           <div style={{ flex: 1, padding: '2rem', backgroundColor: '#1a2634', color: 'white', overflowY: 'auto' }}>
             <header style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '1rem' }}>
-              <UserButton afterSignOutUrl="/sign-in" />
+              <UserButton afterSignOutUrl="/" />
             </header>
             {children}
           </div>
