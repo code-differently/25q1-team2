@@ -8,21 +8,18 @@
 ---
 
 ## Table of Contents
-- [App Description](#app-description)
-- [Demo](#demo)
-- [Screenshot Gallery](#screenshot-gallery)
-- [Motivation](#motivation)
+
+- [Overview](#overview)
+- [Demo & Screenshots](#demo--screenshots)
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Getting Started](#getting-started)
-- [Usage](#usage)
+- [Usage Guide](#usage-guide)
 - [Testing](#testing)
 - [Known Issues](#known-issues)
-- [Roadmap & Future Features](#roadmap--future-features)
+- [Roadmap](#roadmap)
 - [Team UNIFY](#team-unify)
-- [Contributing](#contributing)
 - [License](#license)
-- [Acknowledgements](#acknowledgements)
 
 ---
 
