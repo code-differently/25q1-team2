@@ -1,0 +1,433 @@
+{
+  "/workspaces/25q1-team2/src/app/page.tsx": {
+    "path": "/Users/dlafferty251/25q1-team2/src/app/page.tsx",
+    "statementMap": {
+      "0": {
+        "start": {
+          "line": 10,
+          "column": 17
+        },
+        "end": {
+          "line": 10,
+          "column": 28
+        }
+      },
+      "1": {
+        "start": {
+          "line": 11,
+          "column": 25
+        },
+        "end": {
+          "line": 11,
+          "column": 34
+        }
+      },
+      "2": {
+        "start": {
+          "line": 13,
+          "column": 2
+        },
+        "end": {
+          "line": 17,
+          "column": 27
+        }
+      },
+      "3": {
+        "start": {
+          "line": 14,
+          "column": 4
+        },
+        "end": {
+          "line": 16,
+          "column": 5
+        }
+      },
+      "4": {
+        "start": {
+          "line": 15,
+          "column": 6
+        },
+        "end": {
+          "line": 15,
+          "column": 32
+        }
+      },
+      "5": {
+        "start": {
+          "line": 19,
+          "column": 2
+        },
+        "end": {
+          "line": 36,
+          "column": 4
+        }
+      }
+    },
+    "fnMap": {
+      "0": {
+        "name": "Home",
+        "decl": {
+          "start": {
+            "line": 9,
+            "column": 24
+          },
+          "end": {
+            "line": 9,
+            "column": 28
+          }
+        },
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 31
+          },
+          "end": {
+            "line": 37,
+            "column": 1
+          }
+        },
+        "line": 9
+      },
+      "1": {
+        "name": "(anonymous_1)",
+        "decl": {
+          "start": {
+            "line": 13,
+            "column": 12
+          },
+          "end": {
+            "line": 13,
+            "column": 13
+          }
+        },
+        "loc": {
+          "start": {
+            "line": 13,
+            "column": 18
+          },
+          "end": {
+            "line": 17,
+            "column": 3
+          }
+        },
+        "line": 13
+      }
+    },
+    "branchMap": {
+      "0": {
+        "loc": {
+          "start": {
+            "line": 14,
+            "column": 4
+          },
+          "end": {
+            "line": 16,
+            "column": 5
+          }
+        },
+        "type": "if",
+        "locations": [
+          {
+            "start": {
+              "line": 14,
+              "column": 4
+            },
+            "end": {
+              "line": 16,
+              "column": 5
+            }
+          },
+          {
+            "start": {},
+            "end": {}
+          }
+        ],
+        "line": 14
+      }
+    },
+    "s": {
+      "0": 12,
+      "1": 12,
+      "2": 12,
+      "3": 4,
+      "4": 1,
+      "5": 12
+    },
+    "f": {
+      "0": 12,
+      "1": 4
+    },
+    "b": {
+      "0": [
+        1,
+        3
+      ]
+    },
+    "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    "hash": "838c5df2bc2155c08c46a381d7af7f5a7db03733"
+  },
+  "/workspaces/25q1-team2/src/app/dashboard/page.tsx": {
+    "path": "/Users/dlafferty251/25q1-team2/src/app/dashboard/page.tsx",
+    "statementMap": {
+      "0": {
+        "start": {
+          "line": 7,
+          "column": 2
+        },
+        "end": {
+          "line": 20,
+          "column": 4
+        }
+      }
+    },
+    "fnMap": {
+      "0": {
+        "name": "DashboardHome",
+        "decl": {
+          "start": {
+            "line": 6,
+            "column": 24
+          },
+          "end": {
+            "line": 6,
+            "column": 37
+          }
+        },
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 40
+          },
+          "end": {
+            "line": 21,
+            "column": 1
+          }
+        },
+        "line": 6
+      }
+    },
+    "branchMap": {},
+    "s": {
+      "0": 4
+    },
+    "f": {
+      "0": 4
+    },
+    "b": {},
+    "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    "hash": "8e5d2ba17a4ed316b7b0ab3785fbd55b0d01c0c5"
+  },
+  "/workspaces/25q1-team2/components/Sidebar.tsx": {
+    "path": "/Users/dlafferty251/25q1-team2/components/Sidebar.tsx",
+    "statementMap": {
+      "0": {
+        "start": {
+          "line": 8,
+          "column": 26
+        },
+        "end": {
+          "line": 41,
+          "column": 1
+        }
+      },
+      "1": {
+        "start": {
+          "line": 9,
+          "column": 19
+        },
+        "end": {
+          "line": 9,
+          "column": 32
+        }
+      },
+      "2": {
+        "start": {
+          "line": 11,
+          "column": 19
+        },
+        "end": {
+          "line": 12,
+          "column": 62
+        }
+      },
+      "3": {
+        "start": {
+          "line": 12,
+          "column": 4
+        },
+        "end": {
+          "line": 12,
+          "column": 62
+        }
+      },
+      "4": {
+        "start": {
+          "line": 14,
+          "column": 2
+        },
+        "end": {
+          "line": 40,
+          "column": 4
+        }
+      }
+    },
+    "fnMap": {
+      "0": {
+        "name": "(anonymous_0)",
+        "decl": {
+          "start": {
+            "line": 8,
+            "column": 26
+          },
+          "end": {
+            "line": 8,
+            "column": 27
+          }
+        },
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 32
+          },
+          "end": {
+            "line": 41,
+            "column": 1
+          }
+        },
+        "line": 8
+      },
+      "1": {
+        "name": "(anonymous_1)",
+        "decl": {
+          "start": {
+            "line": 11,
+            "column": 19
+          },
+          "end": {
+            "line": 11,
+            "column": 20
+          }
+        },
+        "loc": {
+          "start": {
+            "line": 12,
+            "column": 4
+          },
+          "end": {
+            "line": 12,
+            "column": 62
+          }
+        },
+        "line": 12
+      }
+    },
+    "branchMap": {
+      "0": {
+        "loc": {
+          "start": {
+            "line": 12,
+            "column": 4
+          },
+          "end": {
+            "line": 12,
+            "column": 62
+          }
+        },
+        "type": "cond-expr",
+        "locations": [
+          {
+            "start": {
+              "line": 12,
+              "column": 40
+            },
+            "end": {
+              "line": 12,
+              "column": 57
+            }
+          },
+          {
+            "start": {
+              "line": 12,
+              "column": 60
+            },
+            "end": {
+              "line": 12,
+              "column": 62
+            }
+          }
+        ],
+        "line": 12
+      }
+    },
+    "s": {
+      "0": 1,
+      "1": 4,
+      "2": 4,
+      "3": 24,
+      "4": 4
+    },
+    "f": {
+      "0": 4,
+      "1": 24
+    },
+    "b": {
+      "0": [
+        0,
+        24
+      ]
+    },
+    "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    "hash": "87a6464fb08d4b8d7f3ff790e44561d45fd1813b"
+  },
+  "/workspaces/25q1-team2/src/app/dashboard/layout.tsx": {
+    "path": "/Users/dlafferty251/25q1-team2/src/app/dashboard/layout.tsx",
+    "statementMap": {
+      "0": {
+        "start": {
+          "line": 11,
+          "column": 2
+        },
+        "end": {
+          "line": 29,
+          "column": 4
+        }
+      }
+    },
+    "fnMap": {
+      "0": {
+        "name": "DashboardLayout",
+        "decl": {
+          "start": {
+            "line": 10,
+            "column": 24
+          },
+          "end": {
+            "line": 10,
+            "column": 39
+          }
+        },
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 85
+          },
+          "end": {
+            "line": 30,
+            "column": 1
+          }
+        },
+        "line": 10
+      }
+    },
+    "branchMap": {},
+    "s": {
+      "0": 4
+    },
+    "f": {
+      "0": 4
+    },
+    "b": {},
+    "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
+    "hash": "07d8854007c3e5d19fc9722fd12a8b2910d4ff57"
+  }
+}
