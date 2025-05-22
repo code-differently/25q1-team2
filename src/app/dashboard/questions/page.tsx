@@ -4,6 +4,7 @@ import styles from '../../../../styles/InterviewQuestions.module.css';
 
 // Define types for question and result structure
 // Define types for question and result structure
+// Define types for question and result structure
 type Question = {
   id: number;
   text: string;
@@ -24,17 +25,22 @@ export default function QuestionsPage() {
   // Fetch questions on mount
 
   // Fetch questions on mount
+
+  // Fetch questions on mount
   useEffect(() => {
     const seenIds = JSON.parse(localStorage.getItem('seenQuestionIds') || '[]') as number[];
     fetch('/api/questions')
       .then(res => res.json())
       .then(res => res.json())
+      .then(res => res.json())
       .then((data: Question[]) => {
+        const unseen = data.filter(q => !seenIds.includes(q.id));
         const unseen = data.filter(q => !seenIds.includes(q.id));
         const unseen = data.filter(q => !seenIds.includes(q.id));
         const source = unseen.length >= 5 ? unseen : data;
         const shuffled = [...source].sort(() => Math.random() - 0.5);
         const selected = shuffled.slice(0, 5);
+        const updatedSeen = Array.from(new Set([...seenIds, ...selected.map(q => q.id)]));
         const updatedSeen = Array.from(new Set([...seenIds, ...selected.map(q => q.id)]));
         const updatedSeen = Array.from(new Set([...seenIds, ...selected.map(q => q.id)]));
         localStorage.setItem('seenQuestionIds', JSON.stringify(updatedSeen));
@@ -43,16 +49,20 @@ export default function QuestionsPage() {
       })
       .catch(err => {
       .catch(err => {
+      .catch(err => {
         console.error('Failed to fetch questions:', err);
         setLoading(false);
       });
   }, []);
 
 
+
   const handleChange = (id: number, value: string) => {
     setAnswers(prev => ({ ...prev, [id]: value }));
     setAnswers(prev => ({ ...prev, [id]: value }));
+    setAnswers(prev => ({ ...prev, [id]: value }));
   };
+
 
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -63,14 +73,18 @@ export default function QuestionsPage() {
         const answerText = answers[+qId];
       for (const qId in answers) {
         const answerText = answers[+qId];
+      for (const qId in answers) {
+        const answerText = answers[+qId];
         const res = await fetch('/api/questions', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ questionId: Number(qId), answerText }),
           body: JSON.stringify({ questionId: Number(qId), answerText }),
+          body: JSON.stringify({ questionId: Number(qId), answerText }),
         });
         const data = await res.json();
         tempResults.push({
+          questionId: Number(qId),
           questionId: Number(qId),
           questionId: Number(qId),
           userAnswer: answerText,
@@ -83,6 +97,20 @@ export default function QuestionsPage() {
       console.error('Submission failed:', err);
     }
   };
+
+  // Loading state
+  if (loading) {
+    return (
+      <div className={styles.pageWrapper}>
+        <div className={styles.background} />
+        <div className={styles.container}>
+          <p>Loading questions...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Results view
 
   // Loading state
   if (loading) {
@@ -171,8 +199,39 @@ export default function QuestionsPage() {
             Reset Questions
           </button>
         </div>
+      <div className={styles.pageWrapper}>
+        <div className={styles.background} />
+        <div className={styles.container}>
+          <h2 className={styles.score}>Your Score: {score} / {results.length}</h2>
+          <div className={styles.results}>
+            {results.map(({ questionId, userAnswer, correct, correctAnswer }) => {
+              const question = questions.find(q => q.id === questionId);
+              return (
+                <div key={questionId} className={styles.resultItem}>
+                  <p className={styles.questionText}>{question?.text}</p>
+                  <p className={styles.answerText}>Your answer: {userAnswer}</p>
+                  <p className={correct ? styles.correct : styles.incorrect}>
+                    {correct ? 'Correct!' : `Wrong! Correct answer: ${correctAnswer}`}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+          <button
+            className={styles.button}
+            onClick={() => {
+              localStorage.removeItem('seenQuestionIds');
+              window.location.reload();
+            }}
+          >
+            Reset Questions
+          </button>
+        </div>
       </div>
     );
+  }
+
+  // Default form view
   }
 
   // Default form view
@@ -226,7 +285,28 @@ export default function QuestionsPage() {
         </form>
       </div>
     </div>
+    <div className={styles.pageWrapper}>
+      <div className={styles.background} />
+      <div className={styles.container}>
+        <h1>Answer the Questions</h1>
+        <p>End each answer with a period.</p>
+        <form onSubmit={handleSubmit}>
+          {questions.map(q => (
+            <div key={q.id} style={{ marginBottom: '20px' }}>
+              <p className={styles.questionText}>{q.text}</p>
+              <input
+                className={styles.input}
+                type="text"
+                value={answers[q.id] || ''}
+                onChange={e => handleChange(q.id, e.target.value)}
+              />
+            </div>
+          ))}
+          <button className={styles.button} type="submit">
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
   );
-}
-
 }

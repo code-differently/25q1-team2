@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../../../../styles/mockInterviews.module.css';
 
+
 const questions = [
   'Describe a time when you had to step up and demonstrate leadership skills.',
   'Tell me about a time you were under a lot of pressure at work or school. What was going on, and how did you get through it?',
@@ -16,6 +17,7 @@ const questions = [
 ];
 
 export default function MockInterview() {
+
   const [index, setIndex] = useState(0);
   const [answer, setAnswer] = useState('');
   const [feedback, setFeedback] = useState('');
@@ -60,6 +62,7 @@ export default function MockInterview() {
 
   const handleSubmit = async () => {
     if (!answer.trim()) return handleShake();
+
     setLoading(true);
     const res = await fetch('/api/getFeedback', {
       method: 'POST',
@@ -106,6 +109,32 @@ export default function MockInterview() {
             disabled={loading}
           />
           <label className={answer ? styles.filled : ''}>Your Answer</label>
+        </div>
+
+        <div className={styles.floating}>
+          <textarea
+            className={styles.textarea}
+            value={answer}
+            onChange={e => setAnswer(e.target.value)}
+            disabled={loading}
+          />
+          <label className={answer ? styles.filled : ''}>Your Answer</label>
+        </div>
+
+        <div className={styles.navButtons}>
+          <button className={styles.button} onClick={handlePrev} disabled={loading}>
+            ← Previous
+          </button>
+          <button
+            className={`${styles.button} ${loading ? styles.loading : ''} ${shake ? styles.shake : ''}`}
+            onClick={handleSubmit}
+            disabled={loading}
+          >
+            {loading ? 'Thinking…' : 'Submit Answer'}
+          </button>
+          <button className={styles.button} onClick={handleNext} disabled={loading}>
+            Next →
+          </button>
         </div>
 
         <div className={styles.navButtons}>
