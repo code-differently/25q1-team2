@@ -27,7 +27,16 @@
 ---
 
 ## App Description
-Decode (formerly **Hired.exe**) is a web‑based quiz application that empowers aspiring programmers and tech professionals to prepare for technical interviews through randomized question sets and AI‑assisted feedback. Users can also create and study custom flashcards to reinforce key concepts before attempting quizzes—combining active recall with practical application for a well‑rounded prep experience.
+**Hired.exe** is a web-based quiz application that empowers aspiring programmers and tech professionals to prepare for technical interviews through randomized question sets and AI-assisted feedback. Users can also create and study custom flashcards to reinforce key concepts before attempting quizzes, combining active recall with practical application for a well-rounded prep experience.
+
+## Group Photo
+
+<p align="center">
+  <img src="./images/group.png" alt="Team UNIFY Group Photo" style="max-width: 100%; height: auto;/>
+</p>
+
+<p align="center"><em>Team UNIFY – Built different 💪</em></p>
+
 
 ## Demo
 🔗 Live: [https://25q1-team2.vercel.app](https://25q1-team2.vercel.app)
@@ -174,7 +183,33 @@ open coverage/lcov-report/index.html
 
 ## Team UNIFY
 
-<!-- team section omitted for brevity -->
+### Our Mission
+> Empower aspiring tech professionals with engaging, AI‑driven practice tools that build confidence and simulate real interview scenarios.
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="./images/karen.png" alt="Karen Alabi" width="100" height="100" /><br>
+      <strong>Karen Alabi</strong><br>Project Manager
+    </td>
+    <td align="center">
+      <img src="./images/justin.png" alt="Justin Eklund" width="100" height="100" /><br>
+      <strong>Justin Eklund</strong><br>QA & Documentation
+    </td>
+    <td align="center">
+      <img src="./images/dylan.png" alt="Dylan Lafferty" width="100" height="100" /><br>
+      <strong>Dylan Lafferty</strong><br>Lead Developer
+    </td>
+    <td align="center">
+      <img src="./images/bryana.png" alt="Bryana Singleton‑Barnhart" width="100" height="100" /><br>
+      <strong>Bryana Singleton‑Barnhart</strong><br>UI/UX Designer
+    </td>
+    <td align="center">
+      <img src="./images/meiko.png" alt="Meiko Stephens" width="100" height="100" /><br>
+      <strong>Meiko Stephens</strong><br>DevOps Engineer
+    </td>
+  </tr>
+</table>
 
 ---
 
