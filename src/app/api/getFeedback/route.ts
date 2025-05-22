@@ -42,21 +42,11 @@ export async function POST(req: NextRequest) {
     // Get AI feedback
     const feedback = await getFeedbackOnAnswer(question, answer);
 
-    // Save to database
+    // Save question to database
     await prisma.behavioralQuestion.create({
       data: {
         prompt: question,
-<<<<<<< HEAD
-<<<<<<< HEAD
-      
-=======
 
->>>>>>> 92ec69c (Feat deployment fix (#63))
-=======
-        // You might want a separate model or field for answers and feedback
-        // but assuming prompt stores the question for now
-        // Extend your schema as needed to save answer + feedback + userId
->>>>>>> 4a8c8ce (task:added javadoc comments to code and finished feedback test)
       },
     });
 
