@@ -13,6 +13,17 @@ type FeedbackEntry = {
   createdAt: string;
 };
 
+/**
+ * FeedbackHistoryPage is a client-side React component that displays
+ * a logged-in user's past interview answers and corresponding AI-generated feedback.
+ *
+ * Features:
+ * - Fetches feedback history from the `/api/getFeedbackHistory` endpoint on mount.
+ * - Shows loading and error states appropriately.
+ * - Displays each feedback entry with the original question, user answer, feedback, and submission timestamp.
+ *
+ * @returns The rendered Feedback History page.
+ */
 export default function FeedbackHistoryPage() {
   const [history, setHistory] = useState<FeedbackEntry[]>([]);
   const [filtered, setFiltered] = useState<FeedbackEntry[]>([]);
@@ -81,58 +92,23 @@ export default function FeedbackHistoryPage() {
   if (!filtered.length) return <p className={styles.message}>No feedback matches your search.</p>;
 
   return (
-    <>
-      <div className={styles.background} />
-      <div className={styles.pageWrapper}>
-        <div className={styles.container}>
-          <h1 className={styles.title}>Your Interview Feedback History</h1>
-
-          <div className={styles.toolbar}>
-            <input
-              type="text"
-              placeholder="🔍 Search feedback..."
-              className={styles.searchInput}
-              value={searchTerm}
-              onChange={e => setSearchTerm(e.target.value)}
-            />
+    <div className={styles.container}>
+      <h1 className={styles.title}>Your Interview Feedback History</h1>
+      {history.map((entry) => (
+        <div key={entry.id} className={styles.card}>
+          <p>
+            <strong> Question:</strong> {entry.question}
+          </p>
+          <p>
+            <strong>✍️ Your Answer:</strong> {entry.answer}
+          </p>
+          <div>
+            <strong> AI Feedback:</strong>
+            <pre className={styles.feedback}>{entry.feedback}</pre>
           </div>
-
-          <div className={styles.timeline}>
-            {filtered.map(entry => (
-              <details key={entry.id} className={styles.card}>
-                <summary className={styles.cardHeader}>
-                  <span className={styles.dot} />
-                  <span className={styles.summaryText}>{entry.question}</span>
-                  <span className={styles.preview}>
-                    {entry.feedback.slice(0, 50)}{entry.feedback.length > 50 ? '…' : ''}
-                  </span>
-                </summary>
-                <div className={styles.cardBody}>
-                  <div className={styles.actionRow}>
-                    <button className={styles.viewBtn} onClick={() => setModalEntry(entry)}>
-                      View Full
-                    </button>
-                    <button className={styles.deleteBtn} onClick={() => handleDelete(entry.id)}>
-                      <Trash2 size={16} />
-                    </button>
-                  </div>
-
-                  <p><strong>✍️ Your Answer:</strong> {entry.answer}</p>
-                  <div className={styles.feedbackWrapper}>
-                    <pre className={styles.feedback}>{entry.feedback}</pre>
-                    <button
-                      className={styles.copyBtn}
-                      onClick={() => copyFeedback(entry.feedback)}
-                      title="Copy feedback"
-                    >
-                      <Copy size={16}/>
-                    </button>
-                  </div>
-                  <p className={styles.timestamp}>🕒 {new Date(entry.createdAt).toLocaleString()}</p>
-                </div>
-              </details>
-            ))}
-          </div>
+          <p className={styles.timestamp}>
+             Submitted on: {new Date(entry.createdAt).toLocaleString()}
+          </p>
         </div>
 
         {modalEntry && (
