@@ -6,6 +6,15 @@ import AddFlashcardButton from '../../../../components/addFlashcardButton';
 import FlashcardModal from '../../../../components/flashcardModal';
 import FlashcardForm from '../../../../components/FlashCardForm';
 import styles from '../../../../styles/flashcardsPage.module.css';
+<<<<<<< HEAD
+=======
+
+export interface Flashcard {
+  id: number;
+  questionText: string;
+  answer: string;
+}
+>>>>>>> 92ec69c (Feat deployment fix (#63))
 
 export interface Flashcard {
   id: number;

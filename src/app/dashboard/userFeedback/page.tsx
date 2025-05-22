@@ -92,6 +92,7 @@ export default function FeedbackHistoryPage() {
   if (!filtered.length) return <p className={styles.message}>No feedback matches your search.</p>;
 
   return (
+<<<<<<< HEAD
     <div className={styles.container}>
       <h1 className={styles.title}>Your Interview Feedback History</h1>
       {history.map((entry) => (
@@ -109,6 +110,60 @@ export default function FeedbackHistoryPage() {
           <p className={styles.timestamp}>
              Submitted on: {new Date(entry.createdAt).toLocaleString()}
           </p>
+=======
+    <>
+      <div className={styles.background} />
+      <div className={styles.pageWrapper}>
+        <div className={styles.container}>
+          <h1 className={styles.title}>Your Interview Feedback History</h1>
+
+          <div className={styles.toolbar}>
+            <input
+              type="text"
+              placeholder="🔍 Search feedback..."
+              className={styles.searchInput}
+              value={searchTerm}
+              onChange={e => setSearchTerm(e.target.value)}
+            />
+          </div>
+
+          <div className={styles.timeline}>
+            {filtered.map(entry => (
+              <details key={entry.id} className={styles.card}>
+                <summary className={styles.cardHeader}>
+                  <span className={styles.dot} />
+                  <span className={styles.summaryText}>{entry.question}</span>
+                  <span className={styles.preview}>
+                    {entry.feedback.slice(0, 50)}{entry.feedback.length > 50 ? '…' : ''}
+                  </span>
+                </summary>
+                <div className={styles.cardBody}>
+                  <div className={styles.actionRow}>
+                    <button className={styles.viewBtn} onClick={() => setModalEntry(entry)}>
+                      View Full
+                    </button>
+                    <button className={styles.deleteBtn} onClick={() => handleDelete(entry.id)}>
+                      <Trash2 size={16} />
+                    </button>
+                  </div>
+
+                  <p><strong>✍️ Your Answer:</strong> {entry.answer}</p>
+                  <div className={styles.feedbackWrapper}>
+                    <pre className={styles.feedback}>{entry.feedback}</pre>
+                    <button
+                      className={styles.copyBtn}
+                      onClick={() => copyFeedback(entry.feedback)}
+                      title="Copy feedback"
+                    >
+                      <Copy size={16}/>
+                    </button>
+                  </div>
+                  <p className={styles.timestamp}>🕒 {new Date(entry.createdAt).toLocaleString()}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+>>>>>>> 92ec69c (Feat deployment fix (#63))
         </div>
 
         {modalEntry && (
