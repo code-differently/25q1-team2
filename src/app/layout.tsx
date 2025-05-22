@@ -3,6 +3,11 @@ import { ClerkProvider } from "@clerk/nextjs";
 import React from "react";
 import "./globals.css";
 
+const inter = Inter({ subsets: ["latin"] });
+
+/**
+ * Metadata for the application, used for setting the document title and description.
+ */
 export const metadata = {
   title: "Flashcard Game",
   description: "Built with Clerk + Next.js",
