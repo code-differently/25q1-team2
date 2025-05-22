@@ -11,12 +11,26 @@ const questions = [
   "Give me an example of a time you managed numerous responsibilities. How did you handle that?",
 ];
 
+/**
+ * MockInterview is a client-side component for practicing behavioral interview questions.
+ *
+ * Features:
+ * - Randomly selects a question from a preset list.
+ * - Accepts user input for answers.
+ * - Submits the answer to an API endpoint to receive AI-generated feedback.
+ * - Displays and optionally saves feedback.
+ *
+ * @returns The rendered Mock Interview practice interface.
+ */
 export default function MockInterview() {
   const [question, setQuestion] = useState(questions[Math.floor(Math.random() * questions.length)]);
   const [answer, setAnswer] = useState('');
   const [feedback, setFeedback] = useState('');
   const [loading, setLoading] = useState(false);
 
+  /**
+   * Submits the user's answer to the feedback API and displays the result.
+   */
   const handleSubmit = async () => {
     setLoading(true);
     const res = await fetch('/api/getFeedback', {

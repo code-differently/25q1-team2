@@ -4,8 +4,23 @@ import { getAuth } from '@clerk/nextjs/server';
 
 const prisma = new PrismaClient();
 
+/**
+ * Handles POST requests to save a user's mock interview answer and AI feedback.
+ *
+ * This endpoint:
+ * - Authenticates the user using Clerk.
+ * - Validates the incoming request body to ensure all fields are present.
+ * - Upserts the user record to ensure the user exists in the database.
+ * - Saves the answer and feedback to the database.
+ * - Returns a 401 if the user is not authenticated.
+ * - Returns a 400 if required fields are missing.
+ * - Returns a 500 if an internal error occurs.
+ *
+ * @param req The incoming Next.js request object containing JSON with `questionId`, `answer`, and `feedback`.
+ * @returns A JSON response with the saved record or an error message.
+ */
 export async function POST(req: NextRequest) {
-  const { userId } = getAuth(req); // now req is NextRequest, so this works
+  const { userId } = getAuth(req); 
 
   if (!userId) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -22,7 +37,7 @@ export async function POST(req: NextRequest) {
         update: {},
         create: {
           id: userId,
-          // any other required fields like email, name, etc.
+          
         },
       });
     const saved = await prisma.userAnswer.create({

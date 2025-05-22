@@ -5,6 +5,18 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+/**
+ * Handles GET requests to retrieve the feedback history for the authenticated user.
+ * 
+ * This endpoint:
+ * - Authenticates the user via Clerk.
+ * - Fetches the user's previous answers from the database, ordered by most recent.
+ * - Returns a 401 response if the user is not authenticated.
+ * - Returns a 500 response if there's an error retrieving the data.
+ * - Returns a 200 response with the user's feedback history if successful.
+ * @param req The incoming Next.js request object.
+ * @returns A JSON response with the user's feedback history or an error message.
+ */
 export async function GET(req: NextRequest) {
   const { userId } = getAuth(req);
 

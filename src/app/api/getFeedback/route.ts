@@ -6,6 +6,22 @@ import { getFeedbackOnAnswer } from "../../lib/openai";
 
 const prisma = new PrismaClient();
 
+/**
+ * Handles POST requests to generate AI feedback for a user's interview answer.
+ *
+ * This endpoint:
+ * - Authenticates the user via Clerk.
+ * - Expects a JSON body containing a `question` and `answer` string.
+ * - Uses the OpenAI-powered `getFeedbackOnAnswer` function to generate feedback.
+ * - Saves the behavioral question to the database.
+ * - Returns the generated feedback as a JSON response.
+ * - Returns a 401 if the user is not authenticated.
+ * - Returns a 400 if required fields are missing or invalid.
+ * - Returns a 500 if an error occurs during processing.
+ *
+ * @param req The incoming Next.js request containing a JSON object with `question` and `answer`.
+ * @returns A JSON response with the AI-generated feedback or an error message.
+ */
 export async function POST(req: NextRequest) {
   try {
     const { userId } = getAuth(req);
@@ -30,9 +46,7 @@ export async function POST(req: NextRequest) {
     await prisma.behavioralQuestion.create({
       data: {
         prompt: question,
-        // You might want a separate model or field for answers and feedback
-        // but assuming prompt stores the question for now
-        // Extend your schema as needed to save answer + feedback + userId
+      
       },
     });
 

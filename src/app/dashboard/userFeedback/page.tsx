@@ -11,6 +11,17 @@ type FeedbackEntry = {
   createdAt: string;
 };
 
+/**
+ * FeedbackHistoryPage is a client-side React component that displays
+ * a logged-in user's past interview answers and corresponding AI-generated feedback.
+ *
+ * Features:
+ * - Fetches feedback history from the `/api/getFeedbackHistory` endpoint on mount.
+ * - Shows loading and error states appropriately.
+ * - Displays each feedback entry with the original question, user answer, feedback, and submission timestamp.
+ *
+ * @returns The rendered Feedback History page.
+ */
 export default function FeedbackHistoryPage() {
   const [history, setHistory] = useState<FeedbackEntry[]>([]);
   const [loading, setLoading] = useState(true);
@@ -44,17 +55,17 @@ export default function FeedbackHistoryPage() {
       {history.map((entry) => (
         <div key={entry.id} className={styles.card}>
           <p>
-            <strong>🧠 Question:</strong> {entry.question}
+            <strong> Question:</strong> {entry.question}
           </p>
           <p>
             <strong>✍️ Your Answer:</strong> {entry.answer}
           </p>
           <div>
-            <strong>🤖 AI Feedback:</strong>
+            <strong> AI Feedback:</strong>
             <pre className={styles.feedback}>{entry.feedback}</pre>
           </div>
           <p className={styles.timestamp}>
-            🕒 Submitted on: {new Date(entry.createdAt).toLocaleString()}
+             Submitted on: {new Date(entry.createdAt).toLocaleString()}
           </p>
         </div>
       ))}
