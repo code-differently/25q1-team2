@@ -13,12 +13,6 @@ export interface Flashcard {
   answer: string;
 }
 
-export interface Flashcard {
-  id: number;
-  questionText: string;
-  answer: string;
-}
-
 /**
  * FlashcardsPage is a client-side component that displays the flashcards interface.
  *

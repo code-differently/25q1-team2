@@ -1,4 +1,3 @@
-// src/app/dashboard/userFeedback/page.tsx
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -175,7 +174,6 @@ export default function FeedbackHistoryPage() {
                       <Trash2 size={16} />
                     </button>
                   </div>
-
                   <p><strong>✍️ Your Answer:</strong> {entry.answer}</p>
                   <div className={styles.feedbackWrapper}>
                     <pre className={styles.feedback}>{entry.feedback}</pre>
