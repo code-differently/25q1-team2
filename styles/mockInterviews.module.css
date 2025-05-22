@@ -13,7 +13,7 @@
   background: linear-gradient(270deg, #1a2634, #2e2e80, #4a1c6f);
   background-size: 600% 600%;
   animation: wave 20s ease infinite;
-  z-index: 0;
+  z-index: -1;
 }
 
 /* card */
@@ -87,18 +87,8 @@
 }
 
 .shake { animation:shake 0.5s; }
-@keyframes spin { to { transform:rotate(360deg); } }
+@keyframes spin { to{transform:rotate(360deg);} }
 @keyframes shake { 0%,100%{transform:translateX(0);}25%{transform:translateX(-5px);}75%{transform:translateX(5px);} }
-
-/* save feedback button */
-.saveBtn {
-  display:block; width:100%; margin:1rem 0 0;
-  padding:0.6rem 1.2rem; background:#38e37e; color:#0a0a23;
-  border:none; border-radius:8px; font-weight:600; cursor:pointer;
-  transition:background 0.2s, transform 0.1s;
-}
-.saveBtn:hover:not(:disabled) { background:#2cc26b; transform:translateY(-1px); }
-.saveBtn:disabled { opacity:0.6; cursor:not-allowed; }
 
 /* feedback cards */
 .feedbackBox { margin-top:1.5rem; background:#111; border:1px solid #444; border-radius:8px; overflow:hidden; }
@@ -115,4 +105,4 @@
   .title { font-size:1.8rem; }
   .progressBar { height:4px; }
   .navButtons { flex-direction:column; }
-}
+} 
