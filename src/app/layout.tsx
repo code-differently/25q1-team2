@@ -3,12 +3,6 @@ import { ClerkProvider } from "@clerk/nextjs";
 import React from "react";
 import "./globals.css";
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4a8c8ce (task:added javadoc comments to code and finished feedback test)
-const inter = Inter({ subsets: ["latin"] });
-
 /**
  * Metadata for the application, used for setting the document title and description.
  */
@@ -41,6 +35,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
+        <body>{children}</body>
         <body>{children}</body>
       </html>
     </ClerkProvider>
