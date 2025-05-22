@@ -6,6 +6,17 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import styles from "../../styles/Landing.module.css";
 
+/**
+ * Home is the landing page component for the application.
+ *
+ * Features:
+ * - Redirects authenticated users to the dashboard automatically.
+ * - Displays a welcome screen with login and sign-up buttons when signed out.
+ * - Uses Clerk's `useUser` and `SignedOut` to handle authentication state.
+ * - Styled using a custom CSS module.
+ *
+ * @returns The landing page JSX with login/sign-up options or a redirect if signed in.
+ */
 export default function Home() {
   const router = useRouter();
   const { isSignedIn } = useUser();

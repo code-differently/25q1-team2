@@ -4,7 +4,18 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-// Handle POST: Create a flashcard
+/**
+ * Handles POST requests to create a new flashcard.
+ *
+ * This endpoint:
+ * - Validates the incoming request body to ensure all fields are present.
+ * - Creates a new flashcard in the database.
+ * - Returns a 400 if required fields are missing.
+ * - Returns a 500 if an internal error occurs.
+ *
+ * @param req The incoming Next.js request object containing JSON with `questionText` and `answer`.
+ * @returns A JSON response with the created flashcard or an error message.
+ */
 export async function POST(req: Request) {
   try {
     const { questionText, answer } = await req.json();
@@ -24,7 +35,6 @@ export async function POST(req: Request) {
   }
 }
 
-// Handle GET: Fetch all flashcards
 export async function GET() {
   try {
     const flashcards = await prisma.flashcard.findMany({
