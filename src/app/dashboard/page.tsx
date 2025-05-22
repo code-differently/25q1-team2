@@ -19,6 +19,7 @@ import React from "react";
  */
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
+JavaDoc-commments-and-get-feedback-test
     <>
       <SignedIn>
         <div style={{ display: 'flex', height: '100vh' }}>
@@ -36,5 +37,19 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <RedirectToSignIn />
       </SignedOut>
     </>
+
+    <div className={styles.home}>
+      <div className={styles.gradientOverlay} />
+      <h1 className={styles.title}>Welcome to HIRED.EXE!</h1>
+      <p className={styles.subtitle}>“Debug Your Doubts. Code Your Confidence.”</p>
+      <div className={styles.gifWrapper}>
+        <img
+          src="https://giffiles.alphacoders.com/787/7879.gif"
+          alt="Interview assistant animation"
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+        />
+      </div>
+    </div>
+ main
   );
 }
