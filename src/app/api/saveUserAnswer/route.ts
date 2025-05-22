@@ -1,4 +1,5 @@
 // app/api/feedback/route.ts
+// app/api/feedback/route.ts
 import { NextResponse, NextRequest } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import { getAuth } from '@clerk/nextjs/server';
@@ -49,6 +50,8 @@ export async function POST(req: NextRequest) {
     if (!questionId || !answer || !feedback) {
       return NextResponse.json({ error: 'Missing fields' }, { status: 400 });
     }
+
+    // Ensure user exists
 
     // Ensure user exists
     await prisma.user.upsert({
