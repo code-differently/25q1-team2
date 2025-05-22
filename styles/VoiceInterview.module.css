@@ -1,19 +1,26 @@
 /* VoiceInterview.module.css */
 
-/* Full‑screen static background */
+/* 🔵 Full‑screen static background */
 .background {
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: url('./images/Untitleddesign.png') center/cover no-repeat;
+  top: 0;
+  left: 250px;
+  right: 0;
+  bottom: 0;
+  background-image: url('./images/Untitleddesign.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   filter: brightness(0.5);
   z-index: 0;
 }
 
-/* Centered chat container, fixed 20px from bottom */
+/* 🟢 Centered chat container, fixed 20px from bottom (offset for 250px sidebar) */
 .container {
   position: fixed;
   bottom: 20px;
-  left: 50%;
+  /* center within content area, accounting for 250px sidebar */
+  left: calc(50vw + 125px);
   transform: translateX(-50%);
   width: 90vw;
   max-width: 700px;
@@ -30,6 +37,7 @@
   z-index: 10;
 }
 
+/* 💬 Chat window */
 .chatWindow {
   flex: 1;
   background: #1c1c3c;
@@ -40,6 +48,7 @@
   box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
 }
 
+/* 🧠 Message bubbles */
 .message {
   margin: 0.5rem 0;
   animation: fadeIn 0.4s ease-in-out;
@@ -54,15 +63,26 @@
   word-break: break-word;
 }
 
-.ai  { background: #2e2e80; color: #e0e0ff; border-left: 4px solid #00ffff; }
-.user{ background: #4a1c6f; color: #ffd6ff; border-right:4px solid #ff66cc; }
+.ai {
+  background: #2e2e80;
+  color: #e0e0ff;
+  border-left: 4px solid #00ffff;
+}
+.user {
+  background: #4a1c6f;
+  color: #ffd6ff;
+  border-right: 4px solid #ff66cc;
+}
 
+/* 🎛️ Control panel layout */
 .controls {
   display: flex;
   gap: 0.5rem;
   align-items: center;
+  flex-wrap: wrap;
 }
 
+/* 🧾 Text input */
 .textInput {
   flex: 1;
   padding: 0.5rem;
@@ -72,6 +92,7 @@
   color: #fff;
 }
 
+/* 🎙️ Buttons */
 .recordButton,
 .sendButton,
 .toggleMode,
@@ -96,10 +117,31 @@
   filter: brightness(0.9);
 }
 
-@media (max-width: 500px) {
-  .container { width: 95vw; max-height: 80vh; padding: 0.75rem; }
-  .controls { flex-direction: column; }
+/* 🗣️ Voice dropdown */
+.voiceSelect {
+  background: #222;
+  color: #00ffff;
+  border: 1px solid #00ffff;
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  font-weight: bold;
 }
+
+/* 📱 Responsive tweaks */
+@media (max-width: 500px) {
+  .container {
+    bottom: 10px;
+    width: 95vw;
+    max-height: 80vh;
+    padding: 0.75rem;
+  }
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* ✨ Fade-in animation */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }

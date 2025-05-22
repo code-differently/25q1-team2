@@ -30,9 +30,7 @@ export async function POST(req: NextRequest) {
     await prisma.behavioralQuestion.create({
       data: {
         prompt: question,
-        // You might want a separate model or field for answers and feedback
-        // but assuming prompt stores the question for now
-        // Extend your schema as needed to save answer + feedback + userId
+
       },
     });
 

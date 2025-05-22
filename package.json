@@ -11,16 +11,7 @@
     "lint": "next lint",
     "cypress": "cypress open",
     "test:mock": "cypress run --spec 'cypress/e2e/mockInterview.cy.ts'",
-<<<<<<< HEAD
     "test:questions": "cypress run --spec 'cypress/e2e/questions.cy.ts'"
-=======
-    "test:user": "cypress run --spec 'cypress/e2e/clerkUser.cy.ts'",
-    "test": "NODE_ENV=test cypress run",
-    "dev:coverage": "NEXT_PUBLIC_COVERAGE=true next dev",
-    "cypress:run": "cypress run",
-    "coverage:report": "nyc report --reporter=html --report-dir coverage",
-    "test:coverage": "rm -rf .nyc_output && npm run dev:coverage"
->>>>>>> 110031a4 (feat: adds way to test code coverage, currently at 83% coverage)
   },
   "dependencies": {
     "@clerk/backend": "^1.32.2",
@@ -28,7 +19,7 @@
     "@clerk/nextjs": "^6.19.3",
     "@prisma/client": "^6.7.0",
     "dotenv": "^16.5.0",
-    "dotenv": "^16.5.0",
+    "lucide-react": "^0.511.0",
     "next": "^15.3.2",
     "openai": "^4.98.0",
     "pg": "^8.16.0",
