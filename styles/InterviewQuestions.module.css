@@ -19,6 +19,7 @@
 /* Central card/container styling */
 .container {
   background: rgba(255, 255, 255, 0.85);
+  color: black;
   max-width: 800px;
   width: 100%;
   margin: 1rem;

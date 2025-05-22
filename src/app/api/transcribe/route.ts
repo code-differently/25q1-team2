@@ -83,7 +83,7 @@ export async function POST(req: NextRequest) {
             
                       Then, give a brief example of how their answer could look in a STAR format, based on their response.
 
-                      After your feedback and example, always ask a relevant follow-up interview question to keep the practice going. Stay friendly, motivating, and concise.',`,
+                      After your feedback and example, always ask a relevant follow-up interview question to keep the practice going. Stay friendly, motivating, and keep your responses short no more than 3-5 sentences.',`,
           },
           {
             role: "user",

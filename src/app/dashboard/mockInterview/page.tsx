@@ -4,16 +4,17 @@ import React, { useState, useEffect } from "react";
 import styles from "../../../../styles/mockInterviews.module.css";
 
 const questions = [
-  "Describe a time when you had to step up and demonstrate leadership skills.",
-  "Tell me about a time you were under a lot of pressure at work or school. What was going on, and how did you get through it?",
-  "Give me an example of a time you managed numerous responsibilities. How did you handle that?",
-  "Can you share an example of a time when you had to adapt to a rapidly changing project requirement?",
-  "Tell me about a time you worked well under pressure.",
-  "Describe a time you received tough or critical feedback. How did you respond to it?",
-  "Describe a time when you had to give someone difficult feedback. How did you handle it?",
-  "Describe a time when you anticipated potential problems and developed preventive measures.",
-  "Tell me about a time when you had to deal with a significant change at work. How did you adapt to this change?",
+  { id: 1, text: "Describe a time when you had to step up and demonstrate leadership skills." },
+  { id: 2, text: "Tell me about a time you were under a lot of pressure at work or school. What was going on, and how did you get through it?" },
+  { id: 3, text: "Give me an example of a time you managed numerous responsibilities. How did you handle that?" },
+  { id: 4, text: "Can you share an example of a time when you had to adapt to a rapidly changing project requirement?" },
+  { id: 5, text: "Tell me about a time you worked well under pressure." },
+  { id: 6, text: "Describe a time you received tough or critical feedback. How did you respond to it?" },
+  { id: 7, text: "Describe a time when you had to give someone difficult feedback. How did you handle it?" },
+  { id: 8, text: "Describe a time when you anticipated potential problems and developed preventive measures." },
+  { id: 9, text: "Tell me about a time when you had to deal with a significant change at work. How did you adapt to this change?" },
 ];
+
 
 export default function MockInterview() {
   const [index, setIndex] = useState(0);
@@ -73,6 +74,27 @@ export default function MockInterview() {
     setLoading(false);
   };
 
+  const handleSave = async () => {
+    try {
+      const res = await fetch("/api/saveUserAnswer", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          questionId: question.id,
+          answer,
+          feedback,
+        }),
+      });
+  
+      const result = await res.json();
+      if (!res.ok) throw new Error(result.error || "Unknown error");
+      alert("✅ Feedback saved!");
+    } catch (err) {
+      alert("❌ Failed to save feedback.");
+      console.error(err);
+    }
+  };
+
   const handleNext = () => {
     setIndex((i) => (i + 1) % questions.length);
   };
@@ -100,7 +122,7 @@ export default function MockInterview() {
         </p>
 
         <p className={styles.questionLabel}>Question:</p>
-        <p className={styles.questionText}>{question}</p>
+        <p className={styles.questionText}>{question.text}</p>
 
         <div className={styles.floating}>
           <textarea
@@ -139,13 +161,17 @@ export default function MockInterview() {
         {feedback && (
           <details open className={styles.feedbackBox}>
             <summary className={styles.feedbackTitle}>AI Feedback</summary>
-            <ul className={styles.feedbackList}>
-              {feedback.split("\n").map((line, i) => (
-                <li key={i} className={styles.feedbackItem}>
-                  {line.trim()}
-                </li>
-              ))}
-            </ul>
+
+            <div className={styles.feedbackWrapper}>
+              <pre className={styles.feedback}>{feedback}</pre>
+              <button
+                className={styles.button}
+                onClick={handleSave}
+                style={{ marginTop: "1rem" }}
+              >
+                💾 Save Feedback
+              </button>
+            </div>
           </details>
         )}
       </div>

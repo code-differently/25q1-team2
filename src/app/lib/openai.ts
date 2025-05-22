@@ -25,7 +25,7 @@ export async function getFeedbackOnAnswer(
     {
       role: "system",
       content:
-        "You are an expert interviewer who evaluates answers based on the STAR method (Situation, Task, Action, Result). Provide constructive feedback and a score from 1 to 10.",
+        "You are an expert interviewer who evaluates answers based on the STAR method (Situation, Task, Action, Result). Provide constructive feedback and a score from 1 to 10. And please do not send over markdown please keep the answers short",
     },
     {
       role: "user",

@@ -18,7 +18,7 @@
   background: linear-gradient(270deg, #1a2634, #2e2e80, #4a1c6f);
   background-size: 600% 600%;
   animation: wave 20s ease infinite;
-  z-index: -1;
+  z-index: 0;
 }
 
 /* card */
@@ -238,4 +238,42 @@
   .navButtons {
     flex-direction: column;
   }
+}
+
+.feedbackWrapper {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #1a1a2e;
+  border-radius: 8px;
+  border-left: 4px solid #00ffff;
+  max-height: 250px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  color: #e0e0ff;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+}
+
+.feedbackWrapper .copyBtn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: transparent;
+  border: none;
+  color: #00ffff;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.feedbackWrapper .copyBtn:hover {
+  transform: scale(1.2);
+
+}
+
+.feedback {
+  white-space: pre-wrap;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #e0e0ff;
+  word-break: break-word;
 }
