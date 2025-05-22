@@ -1,4 +1,3 @@
-// src/app/dashboard/userFeedback/page.tsx
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -13,6 +12,10 @@ type FeedbackEntry = {
   createdAt: string;
 };
 
+/**
+ * FeedbackHistoryPage is a client-side React component that displays
+ * a logged-in user's past interview answers and corresponding AI-generated feedback.
+ */
 export default function FeedbackHistoryPage() {
   const [history, setHistory] = useState<FeedbackEntry[]>([]);
   const [filtered, setFiltered] = useState<FeedbackEntry[]>([]);
@@ -116,7 +119,6 @@ export default function FeedbackHistoryPage() {
                       <Trash2 size={16} />
                     </button>
                   </div>
-
                   <p><strong>✍️ Your Answer:</strong> {entry.answer}</p>
                   <div className={styles.feedbackWrapper}>
                     <pre className={styles.feedback}>{entry.feedback}</pre>

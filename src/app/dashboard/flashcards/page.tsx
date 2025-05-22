@@ -13,6 +13,18 @@ export interface Flashcard {
   answer: string;
 }
 
+/**
+ * FlashcardsPage is a client-side component that displays the flashcards interface.
+ *
+ * This page includes:
+ * - A title for the flashcards section.
+ * - A form for adding new flashcards.
+ * - A list displaying existing flashcards.
+ *
+ * Styling is applied using CSS modules.
+ *
+ * @returns The rendered Flashcards page.
+ */
 export default function FlashcardsPage() {
   const [showModal, setShowModal] = useState(false);
   const [flashcards, setFlashcards] = useState<Flashcard[]>([]);

@@ -5,6 +5,18 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
+/**
+ * Generates AI feedback on a user's behavioral interview answer using OpenAI's GPT model.
+ *
+ * The function:
+ * - Sends a prompt to OpenAI including the interview question and user's answer.
+ * - Requests feedback based on the STAR method (Situation, Task, Action, Result).
+ * - Asks the AI to provide constructive suggestions and a score from 1 to 10.
+ *
+ * @param questionPrompt The interview question the user was responding to.
+ * @param userAnswer The user's answer to the question.
+ * @returns A string containing the AI-generated feedback, or a fallback message if no feedback is available.
+ */
 export async function getFeedbackOnAnswer(questionPrompt: string, userAnswer: string) {
   const messages = [
     {
