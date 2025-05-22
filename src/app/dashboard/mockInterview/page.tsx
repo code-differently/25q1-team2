@@ -1,8 +1,8 @@
 'use client';
 
-
 import React, { useState, useEffect } from 'react';
 import styles from '../../../../styles/mockInterviews.module.css';
+
 
 const questions = [
   'Describe a time when you had to step up and demonstrate leadership skills.',
@@ -61,7 +61,7 @@ export default function MockInterview() {
 
   const handleSubmit = async () => {
     if (!answer.trim()) return handleShake();
-    if (!answer.trim()) return handleShake();
+
     setLoading(true);
     const res = await fetch('/api/getFeedback', {
       method: 'POST',
@@ -103,8 +103,6 @@ export default function MockInterview() {
 
         <p className={styles.questionLabel}>Question:</p>
         <p className={styles.questionText}>{question}</p>
-        <p className={styles.questionLabel}>Question:</p>
-        <p className={styles.questionText}>{question}</p>
 
         <div className={styles.floating}>
           <textarea
@@ -115,6 +113,7 @@ export default function MockInterview() {
           />
           <label className={answer ? styles.filled : ''}>Your Answer</label>
         </div>
+
         <div className={styles.floating}>
           <textarea
             className={styles.textarea}
@@ -140,6 +139,7 @@ export default function MockInterview() {
             Next →
           </button>
         </div>
+
         <div className={styles.navButtons}>
           <button className={styles.button} onClick={handlePrev} disabled={loading}>
             ← Previous
