@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
     if (typeof question !== "string" || typeof answer !== "string") {
       return NextResponse.json(
         { error: "Missing or invalid question or answer" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -46,7 +46,6 @@ export async function POST(req: NextRequest) {
     await prisma.behavioralQuestion.create({
       data: {
         prompt: question,
-
       },
     });
 
@@ -56,7 +55,7 @@ export async function POST(req: NextRequest) {
     console.error("Error in getFeedback API:", error);
     return NextResponse.json(
       { error: "Failed to get feedback" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

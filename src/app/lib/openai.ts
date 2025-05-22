@@ -17,7 +17,10 @@ const openai = new OpenAI({
  * @param userAnswer The user's answer to the question.
  * @returns A string containing the AI-generated feedback, or a fallback message if no feedback is available.
  */
-export async function getFeedbackOnAnswer(questionPrompt: string, userAnswer: string) {
+export async function getFeedbackOnAnswer(
+  questionPrompt: string,
+  userAnswer: string,
+) {
   const messages = [
     {
       role: "system",

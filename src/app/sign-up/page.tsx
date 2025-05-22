@@ -1,7 +1,7 @@
 "use client";
 
-import { SignUp } from '@clerk/nextjs';
-import React from 'react';
+import { SignUp } from "@clerk/nextjs";
+import React from "react";
 
 /**
  * SignUpPage is a client-side page component that renders the Clerk-provided sign-up form.

@@ -1,8 +1,8 @@
-import { setupClerkTestingToken } from '@clerk/testing/cypress'
+import { setupClerkTestingToken } from "@clerk/testing/cypress";
 
-it('sign up', () => {
-  setupClerkTestingToken()
+it("sign up", () => {
+  setupClerkTestingToken();
 
-  cy.visit('/sign-up')
+  cy.visit("/sign-up");
   // Add any other actions to test
-})
+});

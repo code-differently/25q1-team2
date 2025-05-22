@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import React from 'react';
-import FlashcardFlip from './FlashCardFlip';
-import styles from '../styles/flashcardList.module.css';
-import type { Flashcard } from '@/app/dashboard/flashcards/page';
+import React from "react";
+import FlashcardFlip from "./FlashCardFlip";
+import styles from "../styles/flashcardList.module.css";
+import type { Flashcard } from "@/app/dashboard/flashcards/page";
 
 interface FlashcardListProps {
   flashcards: Flashcard[];
@@ -11,7 +11,11 @@ interface FlashcardListProps {
   onDelete: (id: number) => void;
 }
 
-export default function FlashcardList({ flashcards, loading, onDelete }: FlashcardListProps) {
+export default function FlashcardList({
+  flashcards,
+  loading,
+  onDelete,
+}: FlashcardListProps) {
   if (loading) {
     return <p className={styles.noFlashcards}>Loading flashcards...</p>;
   }
@@ -26,15 +30,17 @@ export default function FlashcardList({ flashcards, loading, onDelete }: Flashca
         <h2 className={styles.title}>Your Flashcards</h2>
       </div>
       <div className={styles.listWrapper}>
-        {recentCards.map(card => (
+        {recentCards.map((card) => (
           <div key={card.id} className={styles.cardHoverWrapper}>
             <button
               className={styles.deleteButton}
               onClick={async () => {
-                if (!confirm('Delete this flashcard?')) return;
-                const res = await fetch(`/api/flashcards/${card.id}`, { method: 'DELETE' });
+                if (!confirm("Delete this flashcard?")) return;
+                const res = await fetch(`/api/flashcards/${card.id}`, {
+                  method: "DELETE",
+                });
                 if (res.ok) onDelete(card.id);
-                else alert('Failed to delete card.');
+                else alert("Failed to delete card.");
               }}
               aria-label="Delete flashcard"
             >

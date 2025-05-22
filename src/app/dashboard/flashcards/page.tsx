@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect, useCallback } from 'react';
-import FlashcardList from '../../../../components/FlashCardList';
-import AddFlashcardButton from '../../../../components/addFlashcardButton';
-import FlashcardModal from '../../../../components/flashcardModal';
-import FlashcardForm from '../../../../components/FlashCardForm';
-import styles from '../../../../styles/flashcardsPage.module.css';
+import React, { useState, useEffect, useCallback } from "react";
+import FlashcardList from "../../../../components/FlashCardList";
+import AddFlashcardButton from "../../../../components/addFlashcardButton";
+import FlashcardModal from "../../../../components/flashcardModal";
+import FlashcardForm from "../../../../components/FlashCardForm";
+import styles from "../../../../styles/flashcardsPage.module.css";
 
 export interface Flashcard {
   id: number;
@@ -33,8 +33,8 @@ export default function FlashcardsPage() {
   const fetchFlashcards = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await fetch('/api/flashcards');
-      if (!res.ok) throw new Error('Failed to fetch flashcards');
+      const res = await fetch("/api/flashcards");
+      if (!res.ok) throw new Error("Failed to fetch flashcards");
       const data: Flashcard[] = await res.json();
       setFlashcards(data);
     } catch {
@@ -50,11 +50,11 @@ export default function FlashcardsPage() {
 
   const handleAddFlashcard = (newCard: Flashcard) => {
     setShowModal(false);
-    setFlashcards(prev => [newCard, ...prev]);
+    setFlashcards((prev) => [newCard, ...prev]);
   };
 
   const handleDelete = (id: number) => {
-    setFlashcards(prev => prev.filter(card => card.id !== id));
+    setFlashcards((prev) => prev.filter((card) => card.id !== id));
   };
 
   const [showModal, setShowModal] = useState(false);
@@ -64,8 +64,8 @@ export default function FlashcardsPage() {
   const fetchFlashcards = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await fetch('/api/flashcards');
-      if (!res.ok) throw new Error('Failed to fetch flashcards');
+      const res = await fetch("/api/flashcards");
+      if (!res.ok) throw new Error("Failed to fetch flashcards");
       const data: Flashcard[] = await res.json();
       setFlashcards(data);
     } catch {
@@ -81,11 +81,11 @@ export default function FlashcardsPage() {
 
   const handleAddFlashcard = (newCard: Flashcard) => {
     setShowModal(false);
-    setFlashcards(prev => [newCard, ...prev]);
+    setFlashcards((prev) => [newCard, ...prev]);
   };
 
   const handleDelete = (id: number) => {
-    setFlashcards(prev => prev.filter(card => card.id !== id));
+    setFlashcards((prev) => prev.filter((card) => card.id !== id));
   };
 
   return (

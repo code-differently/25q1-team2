@@ -2,8 +2,8 @@
 
 "use client";
 
-import { SignIn } from '@clerk/nextjs';
-import React from 'react';
+import { SignIn } from "@clerk/nextjs";
+import React from "react";
 
 /**
  * SignInPage is a client-side page component that renders the Clerk-provided sign-in form.
