@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../../../../styles/mockInterviews.module.css';
 
-
 const questions = [
   'Describe a time when you had to step up and demonstrate leadership skills.',
   'Tell me about a time you were under a lot of pressure at work or school. What was going on, and how did you get through it?',
@@ -28,7 +27,6 @@ const questions = [
  * @returns The rendered Mock Interview practice interface.
  */
 export default function MockInterview() {
-
   const [index, setIndex] = useState(0);
   const [answer, setAnswer] = useState('');
   const [feedback, setFeedback] = useState('');
@@ -75,7 +73,6 @@ export default function MockInterview() {
    */
   const handleSubmit = async () => {
     if (!answer.trim()) return handleShake();
-
     setLoading(true);
     const res = await fetch('/api/getFeedback', {
       method: 'POST',
