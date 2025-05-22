@@ -11,7 +11,10 @@
 !.yarn/versions
 
 # testing
+# coverage artifacts
 /coverage
+**/__coverage__/
+
 
 # next.js
 /.next/
