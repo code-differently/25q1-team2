@@ -1,9 +1,23 @@
+// src/app/dashboard/layout.tsx (Dashboard layout)
 "use client";
 
-import React from 'react';
-import styles from "../../../styles/DashboardHome.module.css";
+import Sidebar from "../../../components/Sidebar";
+import { SignedIn, SignedOut, RedirectToSignIn, UserButton } from "@clerk/nextjs";
+import React from "react";
 
-export default function DashboardHome() {
+/**
+ * DashboardLayout is a client-side layout component for all pages under `/dashboard`.
+ *
+ * Features:
+ * - Only renders for signed-in users using Clerk's `SignedIn` wrapper.
+ * - Redirects to the sign-in page if the user is not authenticated via `SignedOut`.
+ * - Includes a sidebar and a top-right user button with sign-out capability.
+ * - Renders child components within a styled main content area.
+ *
+ * @param children The content to render inside the dashboard layout.
+ * @returns The full dashboard layout including sidebar and header.
+ */
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className={styles.home}>
       <div className={styles.gradientOverlay} />
