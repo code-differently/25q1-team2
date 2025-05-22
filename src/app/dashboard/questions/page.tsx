@@ -86,7 +86,6 @@ export default function QuestionsPage() {
   if (results) {
     const score = results.filter(r=>r.correct).length;
     // wrap an overall correct/incorrect class to style border & text
-    const wrapperClass = results.every(r=>r.correct) ? 'correct' : 'incorrect';
     return (
       <div className={styles.pageWrapper}>
         <div className={styles.background} />
@@ -147,4 +146,4 @@ export default function QuestionsPage() {
     </div>
   );
 }
-}
+
