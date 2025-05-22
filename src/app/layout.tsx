@@ -3,14 +3,6 @@ import { ClerkProvider } from "@clerk/nextjs";
 import React from "react";
 import "./globals.css";
 
-/**
- * Metadata for the application, used for setting the document title and description.
- */
-<<<<<<< HEAD
-=======
->>>>>>> 92ec69c (Feat deployment fix (#63))
-=======
->>>>>>> 4a8c8ce (task:added javadoc comments to code and finished feedback test)
 export const metadata = {
   title: "Flashcard Game",
   description: "Built with Clerk + Next.js",
@@ -35,7 +27,6 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body>{children}</body>
         <body>{children}</body>
       </html>
     </ClerkProvider>
