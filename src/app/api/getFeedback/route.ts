@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
     await prisma.behavioralQuestion.create({
       data: {
         prompt: question,
-
+      
       },
     });
 
