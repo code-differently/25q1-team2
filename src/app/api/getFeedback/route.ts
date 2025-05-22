@@ -46,7 +46,11 @@ export async function POST(req: NextRequest) {
     await prisma.behavioralQuestion.create({
       data: {
         prompt: question,
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> 92ec69c (Feat deployment fix (#63))
       },
     });
 

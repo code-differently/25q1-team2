@@ -6,6 +6,7 @@ import { getAuth } from '@clerk/nextjs/server';
 const prisma = new PrismaClient();
 
 /**
+<<<<<<< HEAD
  * Handles POST requests to save a user's mock interview answer and AI feedback.
  *
  * This endpoint:
@@ -23,6 +24,12 @@ const prisma = new PrismaClient();
 export async function POST(req: NextRequest) {
   const { userId } = getAuth(req); 
 
+=======
+ * Save a new feedback entry
+ */
+export async function POST(req: NextRequest) {
+  const { userId } = getAuth(req);
+>>>>>>> 92ec69c (Feat deployment fix (#63))
   if (!userId) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
@@ -35,6 +42,7 @@ export async function POST(req: NextRequest) {
 
     // Ensure user exists
     await prisma.user.upsert({
+<<<<<<< HEAD
         where: { id: userId },
         update: {},
         create: {
@@ -42,6 +50,13 @@ export async function POST(req: NextRequest) {
           
         },
       });
+=======
+      where: { id: userId },
+      update: {},
+      create: { id: userId }
+    });
+
+>>>>>>> 92ec69c (Feat deployment fix (#63))
     const saved = await prisma.userAnswer.create({
       data: { userId, questionId, answer, feedback }
     });
