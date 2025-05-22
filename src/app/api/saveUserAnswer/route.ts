@@ -7,6 +7,9 @@ const prisma = new PrismaClient();
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a8c8ce (task:added javadoc comments to code and finished feedback test)
  * Handles POST requests to save a user's mock interview answer and AI feedback.
  *
  * This endpoint:
@@ -20,6 +23,7 @@ const prisma = new PrismaClient();
  *
  * @param req The incoming Next.js request object containing JSON with `questionId`, `answer`, and `feedback`.
  * @returns A JSON response with the saved record or an error message.
+<<<<<<< HEAD
  */
 export async function POST(req: NextRequest) {
   const { userId } = getAuth(req); 
@@ -30,6 +34,12 @@ export async function POST(req: NextRequest) {
 export async function POST(req: NextRequest) {
   const { userId } = getAuth(req);
 >>>>>>> 92ec69c (Feat deployment fix (#63))
+=======
+ */
+export async function POST(req: NextRequest) {
+  const { userId } = getAuth(req); 
+
+>>>>>>> 4a8c8ce (task:added javadoc comments to code and finished feedback test)
   if (!userId) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
@@ -43,6 +53,9 @@ export async function POST(req: NextRequest) {
     // Ensure user exists
     await prisma.user.upsert({
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4a8c8ce (task:added javadoc comments to code and finished feedback test)
         where: { id: userId },
         update: {},
         create: {
@@ -50,6 +63,7 @@ export async function POST(req: NextRequest) {
           
         },
       });
+<<<<<<< HEAD
 =======
       where: { id: userId },
       update: {},
@@ -57,6 +71,8 @@ export async function POST(req: NextRequest) {
     });
 
 >>>>>>> 92ec69c (Feat deployment fix (#63))
+=======
+>>>>>>> 4a8c8ce (task:added javadoc comments to code and finished feedback test)
     const saved = await prisma.userAnswer.create({
       data: { userId, questionId, answer, feedback }
     });
