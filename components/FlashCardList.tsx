@@ -1,56 +1,49 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import "../styles/flashcardList.module.css";
-interface Flashcard {
-  id: number;
-  questionText: string;
-  answer: string;
+import React from 'react';
+import FlashcardFlip from './FlashCardFlip';
+import styles from '../styles/flashcardList.module.css';
+import type { Flashcard } from '@/app/dashboard/flashcards/page';
+
+interface FlashcardListProps {
+  flashcards: Flashcard[];
+  loading: boolean;
+  onDelete: (id: number) => void;
 }
 
-export default function FlashcardList() {
-  const [flashcards, setFlashcards] = useState<Flashcard[]>([]);
-  const [loading, setLoading] = useState(true);
+export default function FlashcardList({ flashcards, loading, onDelete }: FlashcardListProps) {
+  if (loading) {
+    return <p className={styles.noFlashcards}>Loading flashcards...</p>;
+  }
+  if (flashcards.length === 0) {
+    return <p className={styles.noFlashcards}>No flashcards yet. Add some!</p>;
+  }
 
-  useEffect(() => {
-    async function fetchFlashcards() {
-      try {
-        const res = await fetch('/api/flashcards');
-        if (!res.ok) throw new Error('Failed to fetch flashcards');
-        const data = await res.json();
-        setFlashcards(data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchFlashcards();
-  }, []);
-
-  if (loading)
-    return <p className="no-flashcards">Loading flashcards...</p>;
-
+  const recentCards = flashcards.slice(0, 10);
   return (
-    <div className="flashcard-list-container">
-      <h2 className="flashcard-list-title">Flashcards</h2>
-      {flashcards.length === 0 ? (
-        <p className="no-flashcards">No flashcards yet. Add some!</p>
-      ) : (
-        <ul className="flashcard-list">
-          {flashcards.map(({ id, questionText, answer }) => (
-            <li key={id} className="flashcard-item">
-              <p className="flashcard-question">
-                <strong>Q:</strong> {questionText}
-              </p>
-              <p className="flashcard-answer">
-                <strong>A:</strong> {answer}
-              </p>
-            </li>
-          ))}
-        </ul>
-      )}
+    <div>
+      <div className={styles.headerRow}>
+        <h2 className={styles.title}>Your Flashcards</h2>
+      </div>
+      <div className={styles.listWrapper}>
+        {recentCards.map(card => (
+          <div key={card.id} className={styles.cardHoverWrapper}>
+            <button
+              className={styles.deleteButton}
+              onClick={async () => {
+                if (!confirm('Delete this flashcard?')) return;
+                const res = await fetch(`/api/flashcards/${card.id}`, { method: 'DELETE' });
+                if (res.ok) onDelete(card.id);
+                else alert('Failed to delete card.');
+              }}
+              aria-label="Delete flashcard"
+            >
+              ×
+            </button>
+            <FlashcardFlip question={card.questionText} answer={card.answer} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

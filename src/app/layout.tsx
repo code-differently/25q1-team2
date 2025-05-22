@@ -1,6 +1,5 @@
 // src/app/layout.tsx
 import { ClerkProvider } from "@clerk/nextjs";
-import { Inter } from "next/font/google";
 import React from "react";
 import "./globals.css";
 
@@ -33,7 +32,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={inter.className}>{children}</body>
+        <body>{children}</body>
       </html>
     </ClerkProvider>
   );
