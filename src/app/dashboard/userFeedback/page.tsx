@@ -12,7 +12,6 @@ type FeedbackEntry = {
   createdAt: string;
 };
 
-
 export default function FeedbackHistoryPage() {
   const [history, setHistory] = useState<FeedbackEntry[]>([]);
   const [filtered, setFiltered] = useState<FeedbackEntry[]>([]);
@@ -57,6 +56,11 @@ export default function FeedbackHistoryPage() {
             (e.answer?.toLowerCase() || "").includes(term) ||
             (e.feedback?.toLowerCase() || "").includes(term)
         )
+            (e.question?.toLowerCase() || "").includes(term) ||
+            (e.answer?.toLowerCase() || "").includes(term) ||
+            (e.feedback?.toLowerCase() || "").includes(term),
+        ),
+
       );
     }
   }, [searchTerm, history]);
@@ -164,7 +168,10 @@ export default function FeedbackHistoryPage() {
               >
                 <X size={20} />
               </button>
+
               <h2 className={styles.modalTitle}>{modalEntry.question.text}</h2>
+
+              <h2 className={styles.modalTitle}>{modalEntry.question}</h2>
               <p>
                 <strong>Your Answer:</strong> {modalEntry.answer}
               </p>
