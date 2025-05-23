@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 /**
  * Handles GET requests to retrieve the feedback history for the authenticated user.
- * 
+ *
  * This endpoint:
  * - Authenticates the user via Clerk.
  * - Fetches the user's previous answers from the database, ordered by most recent.
@@ -32,6 +32,9 @@ export async function GET(req: NextRequest) {
     return NextResponse.json(answers, { status: 200 });
   } catch (error) {
     console.error("[GET ERROR]", error);
-    return NextResponse.json({ error: "Failed to fetch history" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to fetch history" },
+      { status: 500 },
+    );
   }
 }

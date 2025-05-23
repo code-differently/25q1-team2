@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { NextResponse } from "next/server";
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -15,13 +15,16 @@ const prisma = new PrismaClient();
 export async function GET() {
   try {
     const questions = await prisma.question.findMany({
-      orderBy: { createdAt: 'desc' },
+      orderBy: { createdAt: "desc" },
     });
 
     return NextResponse.json(questions, { status: 200 });
   } catch (error) {
-    console.error('[GET QUESTIONS ERROR]', error);
-    return NextResponse.json({ error: 'Failed to fetch questions' }, { status: 500 });
+    console.error("[GET QUESTIONS ERROR]", error);
+    return NextResponse.json(
+      { error: "Failed to fetch questions" },
+      { status: 500 },
+    );
   }
 }
 
@@ -46,7 +49,7 @@ export async function POST(req: Request) {
     const { questionId, answerText } = await req.json();
 
     if (!questionId || !answerText) {
-      return NextResponse.json({ error: 'Missing fields' }, { status: 400 });
+      return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
 
     const question = await prisma.question.findUnique({
@@ -54,14 +57,17 @@ export async function POST(req: Request) {
     });
 
     if (!question) {
-      return NextResponse.json({ error: 'Question not found' }, { status: 404 });
+      return NextResponse.json(
+        { error: "Question not found" },
+        { status: 404 },
+      );
     }
 
     const userAnswer = answerText.toLowerCase();
-    const requiredKeywords = question.keywords.map(k => k.toLowerCase());
+    const requiredKeywords = question.keywords.map((k) => k.toLowerCase());
 
-    const allKeywordsPresent = requiredKeywords.every(keyword =>
-      userAnswer.includes(keyword)
+    const allKeywordsPresent = requiredKeywords.every((keyword) =>
+      userAnswer.includes(keyword),
     );
 
     return NextResponse.json(
@@ -69,9 +75,13 @@ export async function POST(req: Request) {
         correct: allKeywordsPresent,
         correctAnswer: question.answer,
       },
-      { status: 200 }
-  )} catch (error) {
-    console.error('[POST ANSWER ERROR]', error);
-    return NextResponse.json({ error: 'Failed to check answer' }, { status: 500 });
+      { status: 200 },
+    );
+  } catch (error) {
+    console.error("[POST ANSWER ERROR]", error);
+    return NextResponse.json(
+      { error: "Failed to check answer" },
+      { status: 500 },
+    );
   }
 }

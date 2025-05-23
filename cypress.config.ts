@@ -1,9 +1,9 @@
-import { createClerkClient } from '@clerk/backend';
-import { clerkSetup } from '@clerk/testing/cypress';
-import { defineConfig } from 'cypress';
-import dotenv from 'dotenv';
+import { createClerkClient } from "@clerk/backend";
+import { clerkSetup } from "@clerk/testing/cypress";
+import { defineConfig } from "cypress";
+import dotenv from "dotenv";
 // Import the code coverage task
-import codeCoverageTask from '@cypress/code-coverage/task';
+import codeCoverageTask from "@cypress/code-coverage/task";
 
 dotenv.config();
 
@@ -14,20 +14,20 @@ const clerkClient = createClerkClient({
 export default defineConfig({
   e2e: {
     defaultCommandTimeout: 30000,
-    baseUrl: 'http://localhost:3000',
-    specPattern: 'cypress/e2e/**/*.cy.{js,ts}',
-    screenshotsFolder: 'cypress/screenshots',
-    videosFolder: 'cypress/videos',
+    baseUrl: "http://localhost:3000",
+    specPattern: "cypress/e2e/**/*.cy.{js,ts}",
+    screenshotsFolder: "cypress/screenshots",
+    videosFolder: "cypress/videos",
     video: true,
     screenshotOnRunFailure: true,
-    supportFile: 'cypress/support/e2e.ts',
+    supportFile: "cypress/support/e2e.ts",
 
     setupNodeEvents(on, config) {
       // Register Cypress Code Coverage task
       codeCoverageTask(on, config);
 
       // Register Clerk testing task
-      on('task', {
+      on("task", {
         async createClerkUserWithSession() {
           const timestamp = Date.now();
           const username = `testuser${timestamp}`;
@@ -39,8 +39,8 @@ export default defineConfig({
             emailAddress: [email],
             username,
             password,
-            firstName: 'Test',
-            lastName: 'Bot',
+            firstName: "Test",
+            lastName: "Bot",
           });
 
           // Create a session for that user

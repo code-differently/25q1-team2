@@ -12,10 +12,10 @@
 .modal {
   background: #10181f;
   border-radius: 20px;
-  width: clamp(300px, 90%, 600px);      /* shrinks/grows between 300px and 600px */
-  max-height: 90vh;                     /* never exceed viewport height */
-  overflow-y: auto;                     /* scroll if content is tall */
-  padding: clamp(20px, 5vw, 40px);      /* fluid padding */
+  width: clamp(300px, 90%, 600px); /* shrinks/grows between 300px and 600px */
+  max-height: 90vh; /* never exceed viewport height */
+  overflow-y: auto; /* scroll if content is tall */
+  padding: clamp(20px, 5vw, 40px); /* fluid padding */
   box-shadow: 0 10px 50px #000d;
   position: relative;
   display: flex;

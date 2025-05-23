@@ -7,7 +7,7 @@
   left: 250px;
   right: 0;
   bottom: 0;
-  background-image: url('./images/Untitleddesign.png');
+  background-image: url("./images/Untitleddesign.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -105,10 +105,22 @@
   white-space: nowrap;
 }
 
-.recordButton { background: #00ffff; color: #0a0a23; }
-.sendButton   { background: #00ffff; color: #0a0a23; }
-.toggleMode   { background: #ff66cc; color: #fff; }
-.stopButton   { background: #ff4444; color: #fff; }
+.recordButton {
+  background: #00ffff;
+  color: #0a0a23;
+}
+.sendButton {
+  background: #00ffff;
+  color: #0a0a23;
+}
+.toggleMode {
+  background: #ff66cc;
+  color: #fff;
+}
+.stopButton {
+  background: #ff4444;
+  color: #fff;
+}
 
 .recordButton:hover,
 .sendButton:hover,
@@ -143,6 +155,12 @@
 
 /* ✨ Fade-in animation */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

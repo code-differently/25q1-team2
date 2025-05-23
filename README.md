@@ -36,6 +36,7 @@
 
 
 ## Demo
+
 🔗 Live: [https://25q1-team2.vercel.app](https://25q1-team2.vercel.app)
 
 ## 📸 Screenshot Gallery
@@ -135,10 +136,11 @@ npm run dev
 ---
 
 ## Usage
-1. Sign up / log in via Clerk  
-2. **Flashcards**: add & review cards  
-3. **Mock Interview**: text‑based practice  
-4. **Voice Interview**: record & get AI feedback  
+
+1. Sign up / log in via Clerk
+2. **Flashcards**: add & review cards
+3. **Mock Interview**: text‑based practice
+4. **Voice Interview**: record & get AI feedback
 5. **History**: revisit past sessions
 
 ---
@@ -181,6 +183,7 @@ open coverage/lcov-report/index.html
 ## Team UNIFY
 
 ### Our Mission
+
 > Empower aspiring tech professionals with engaging, AI‑driven practice tools that build confidence and simulate real interview scenarios.
 
 <table>
@@ -219,6 +222,7 @@ open coverage/lcov-report/index.html
 ---
 
 ## License
+
 MIT © UNIFY Team
 
 ---

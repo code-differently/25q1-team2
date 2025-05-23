@@ -1,8 +1,7 @@
 {
-    "extends": "./tsconfig.json",
-    "compilerOptions": {
-      "moduleResolution": "node",
-      "jsx": "react-jsx" // Required for testing JSX
-    }
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "jsx": "react-jsx" // Required for testing JSX
   }
-  
+}

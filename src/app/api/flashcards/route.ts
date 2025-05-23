@@ -1,6 +1,6 @@
 // src/app/api/flashcards/route.ts
-import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { NextResponse } from "next/server";
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -21,7 +21,7 @@ export async function POST(req: Request) {
     const { questionText, answer } = await req.json();
 
     if (!questionText || !answer) {
-      return NextResponse.json({ error: 'Missing fields' }, { status: 400 });
+      return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
 
     const newFlashcard = await prisma.flashcard.create({
@@ -30,21 +30,26 @@ export async function POST(req: Request) {
 
     return NextResponse.json(newFlashcard, { status: 201 });
   } catch (error) {
-    console.error('[POST ERROR]', error);
-    return NextResponse.json({ error: 'Failed to create flashcard' }, { status: 500 });
+    console.error("[POST ERROR]", error);
+    return NextResponse.json(
+      { error: "Failed to create flashcard" },
+      { status: 500 },
+    );
   }
 }
 
 export async function GET() {
   try {
     const flashcards = await prisma.flashcard.findMany({
-      orderBy: { createdAt: 'desc' },
+      orderBy: { createdAt: "desc" },
     });
 
     return NextResponse.json(flashcards, { status: 200 });
   } catch (error) {
-    console.error('[GET ERROR]', error);
-    return NextResponse.json({ error: 'Failed to fetch flashcards' }, { status: 500 });
+    console.error("[GET ERROR]", error);
+    return NextResponse.json(
+      { error: "Failed to fetch flashcards" },
+      { status: 500 },
+    );
   }
 }
-

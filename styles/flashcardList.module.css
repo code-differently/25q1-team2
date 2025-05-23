@@ -10,7 +10,7 @@
   border: none;
   border-radius: 7px;
   font-size: 1.13rem;
-  font-family: 'Orbitron', 'Arial', sans-serif;
+  font-family: "Orbitron", "Arial", sans-serif;
   font-weight: bold;
   padding: 9px 20px;
   margin-left: 16px;
@@ -34,7 +34,7 @@
   right: 17px;
   width: 30px;
   height: 30px;
-  background: rgba(34, 40, 44, 0.90);
+  background: rgba(34, 40, 44, 0.9);
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -44,7 +44,9 @@
   cursor: pointer;
   z-index: 2;
   box-shadow: 0 2px 7px #0005;
-  transition: opacity 0.23s, background 0.14s;
+  transition:
+    opacity 0.23s,
+    background 0.14s;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -64,7 +66,10 @@
 /* Modal styling */
 .modalOverlay {
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: rgba(16, 30, 24, 0.63);
   z-index: 1000;
   display: flex;
@@ -103,7 +108,7 @@
 }
 
 .modalTitle {
-  font-family: 'Orbitron', 'Arial', sans-serif;
+  font-family: "Orbitron", "Arial", sans-serif;
   color: #fff;
   font-size: 1.38rem;
   margin-bottom: 22px;

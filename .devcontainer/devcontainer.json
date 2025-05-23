@@ -1,33 +1,33 @@
 {
-	"name": "Node.js Dev",
-	"image": "mcr.microsoft.com/devcontainers/base:bullseye",
-	"features": {
-		"ghcr.io/devcontainers/features/node:1": {},
-		"ghcr.io/devcontainers-contrib/features/ts-node:1": {},
-		"ghcr.io/warrenbuckley/codespace-features/sqlite:1": {},
-		"ghcr.io/devcontainers/features/github-cli:1": {},
-		"ghcr.io/devcontainers-extra/features/vercel-cli:1": {}
-	},
-	"portsAttributes": {
-		"80": {
-			"requireLocalPort": true,
-			"elevateIfNeeded": true
-		}
-	},
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"esbenp.prettier-vscode",
-				"ms-vscode.vscode-typescript-next",
-				"Prisma.prisma",
-				"alexcvzz.vscode-sqlite",
-				"ms-azuretools.vscode-docker",
-				"mechatroner.rainbow-csv"
-			],
-			"settings": {
-				"terminal.integrated.defaultProfile.linux": "zsh",
-				"terminal.integrated.profiles.linux": { "zsh": { "path": "/bin/zsh" } }
-			}
-		}
-	}
+  "name": "Node.js Dev",
+  "image": "mcr.microsoft.com/devcontainers/base:bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/devcontainers-contrib/features/ts-node:1": {},
+    "ghcr.io/warrenbuckley/codespace-features/sqlite:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers-extra/features/vercel-cli:1": {}
+  },
+  "portsAttributes": {
+    "80": {
+      "requireLocalPort": true,
+      "elevateIfNeeded": true
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "ms-vscode.vscode-typescript-next",
+        "Prisma.prisma",
+        "alexcvzz.vscode-sqlite",
+        "ms-azuretools.vscode-docker",
+        "mechatroner.rainbow-csv"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "terminal.integrated.profiles.linux": { "zsh": { "path": "/bin/zsh" } }
+      }
+    }
+  }
 }
