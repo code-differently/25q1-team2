@@ -85,9 +85,12 @@
 .cardHeader {
   display: flex;
   align-items: center;
-  padding: 1rem;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
   cursor: pointer;
+  gap: 1rem;
 }
+
 .dot {
   width: 10px;
   height: 10px;
@@ -95,22 +98,34 @@
   border-radius: 50%;
   margin-right: 0.75rem;
 }
+
 .summaryText {
+  flex: 0 1 auto;
   font-weight: 600;
-  flex: 1;
+  font-size: 1rem;
+  max-width: 60%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
+
 .preview {
+  font-size: 0.85rem;
   color: #a0a0ff;
-  margin-left: 1rem;
-  max-width: 200px;
+  text-align: right;
+  max-width: 40%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+
 .cardBody {
   padding: 1rem 1.5rem;
   border-top: 1px solid #444;
 }
+
+
 
 /* Action buttons */
 .actionRow {

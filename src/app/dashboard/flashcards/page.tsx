@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import FlashcardList from "../../../../components/FlashCardList";
-import AddFlashcardButton from "../../../../components/addFlashcardButton";
-import FlashcardModal from "../../../../components/flashcardModal";
-import FlashcardForm from "../../../../components/FlashCardForm";
+import FlashcardList from "../../../components/FlashCardList";
+import AddFlashcardButton from "../../../components/addFlashcardButton";
+import FlashcardModal from "../../../components/flashcardModal";
+import FlashcardForm from "../../../components/FlashCardForm";
 import styles from "../../../../styles/flashcardsPage.module.css";
 
 export interface Flashcard {

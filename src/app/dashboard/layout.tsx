@@ -1,7 +1,7 @@
 // src/app/dashboard/layout.tsx (Dashboard layout)
 "use client";
 
-import Sidebar from "../../../components/Sidebar";
+import Sidebar from "../../components/Sidebar";
 import {
   SignedIn,
   SignedOut,
