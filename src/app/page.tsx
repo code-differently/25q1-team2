@@ -32,7 +32,9 @@ export default function Home() {
       <SignedOut>
         <div className={styles.container}>
           <h1 className={styles.title}>HIRED.EXE</h1>
-          <p className={styles.subtitle}>Your personal interview prep assistant</p>
+          <p className={styles.subtitle}>
+            Your personal interview prep assistant
+          </p>
           <div className={styles.buttons}>
             <SignInButton mode="modal">
               <button className={styles.btn}>Login</button>

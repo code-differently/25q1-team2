@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React, { useEffect, useRef, useState } from 'react';
-import styles from '../../../../styles/VoiceInterview.module.css';
+import React, { useEffect, useRef, useState } from "react";
+import styles from "../../../../styles/VoiceInterview.module.css";
 
 /**
  * InterviewAssistant component for AI-driven voice and text mock interviews.
@@ -12,11 +12,14 @@ import styles from '../../../../styles/VoiceInterview.module.css';
  */
 export default function InterviewAssistant() {
   const [isRecording, setIsRecording] = useState(false);
-  const [userText, setUserText] = useState('');
-  const [chatLog, setChatLog] = useState<{ sender: 'user' | 'ai'; text: string }[]>([]);
-  const [mode, setMode] = useState<'voice' | 'text'>('voice');
+  const [userText, setUserText] = useState("");
+  const [chatLog, setChatLog] = useState<
+    { sender: "user" | "ai"; text: string }[]
+  >([]);
+  const [mode, setMode] = useState<"voice" | "text">("voice");
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
-  const [selectedVoice, setSelectedVoice] = useState<SpeechSynthesisVoice | null>(null);
+  const [selectedVoice, setSelectedVoice] =
+    useState<SpeechSynthesisVoice | null>(null);
   const [isTyping, setIsTyping] = useState(false);
 
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
@@ -41,9 +44,9 @@ export default function InterviewAssistant() {
       const top5 = list.slice(0, 5);
       setVoices(top5);
 
-      const saved = localStorage.getItem('preferredVoice');
+      const saved = localStorage.getItem("preferredVoice");
       if (saved) {
-        const found = top5.find(v => v.name === saved);
+        const found = top5.find((v) => v.name === saved);
         if (found) setSelectedVoice(found);
       } else if (top5.length) {
         setSelectedVoice(top5[0]);
@@ -73,12 +76,12 @@ export default function InterviewAssistant() {
    * @param text The text to display.
    * @param sender Indicates whether the text is from the 'ai' or 'user'.
    */
-  const typeText = async (text: string, sender: 'ai' | 'user') => {
+  const typeText = async (text: string, sender: "ai" | "user") => {
     if (!text) return;
     setIsTyping(true);
     for (let i = 1; i <= text.length; i++) {
       const slice = text.slice(0, i);
-      setChatLog(prev => {
+      setChatLog((prev) => {
         if (i === 1) {
           return [...prev, { sender, text: slice }];
         } else {
@@ -87,7 +90,7 @@ export default function InterviewAssistant() {
           return copy;
         }
       });
-      await new Promise(r => setTimeout(r, 20));
+      await new Promise((r) => setTimeout(r, 20));
     }
     setIsTyping(false);
   };
@@ -98,9 +101,10 @@ export default function InterviewAssistant() {
   useEffect(() => {
     if (greeted.current) return;
     greeted.current = true;
-    const greet = 'Welcome to your AI mock interview! When you’re ready, answer the first question: “Tell me about yourself.”';
+    const greet =
+      "Welcome to your AI mock interview! When you’re ready, answer the first question: “Tell me about yourself.”";
     speak(greet);
-    typeText(greet, 'ai');
+    typeText(greet, "ai");
   }, []);
 
   /**
@@ -110,9 +114,9 @@ export default function InterviewAssistant() {
    * @param aiMessage The AI's response message.
    */
   const handleResponse = (userMessage: string, aiMessage: string) => {
-    setChatLog(prev => [...prev, { sender: 'user', text: userMessage }]);
+    setChatLog((prev) => [...prev, { sender: "user", text: userMessage }]);
     speak(aiMessage);
-    typeText(aiMessage, 'ai');
+    typeText(aiMessage, "ai");
   };
 
   /**
@@ -123,14 +127,15 @@ export default function InterviewAssistant() {
     const mr = new MediaRecorder(stream);
     mediaRecorderRef.current = mr;
     audioChunks.current = [];
-    mr.ondataavailable = e => e.data.size && audioChunks.current.push(e.data);
+    mr.ondataavailable = (e) => e.data.size && audioChunks.current.push(e.data);
     mr.onstop = async () => {
-      const blob = new Blob(audioChunks.current, { type: 'audio/webm' });
+      const blob = new Blob(audioChunks.current, { type: "audio/webm" });
       const fd = new FormData();
-      fd.append('audio', blob, 'user.webm');
-      const res = await fetch('/api/transcribe', { method: 'POST', body: fd });
+      fd.append("audio", blob, "user.webm");
+      const res = await fetch("/api/transcribe", { method: "POST", body: fd });
       const data = await res.json();
-      if (data.transcript && data.aiText) handleResponse(data.transcript, data.aiText);
+      if (data.transcript && data.aiText)
+        handleResponse(data.transcript, data.aiText);
     };
     mr.start();
     setIsRecording(true);
@@ -152,14 +157,14 @@ export default function InterviewAssistant() {
   const handleTextSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (!userText.trim()) return;
-    const res = await fetch('/api/transcribe', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    const res = await fetch("/api/transcribe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text: userText }),
     });
     const data = await res.json();
     if (data.aiText) handleResponse(userText, data.aiText);
-    setUserText('');
+    setUserText("");
   };
 
   /**
@@ -168,10 +173,10 @@ export default function InterviewAssistant() {
    * @param name The name of the selected voice.
    */
   const handleVoiceSelect = (name: string) => {
-    const v = voices.find(v => v.name === name);
+    const v = voices.find((v) => v.name === name);
     if (v) {
       setSelectedVoice(v);
-      localStorage.setItem('preferredVoice', v.name);
+      localStorage.setItem("preferredVoice", v.name);
     }
   };
 
@@ -183,7 +188,9 @@ export default function InterviewAssistant() {
         <div ref={chatRef} className={styles.chatWindow}>
           {chatLog.map((m, i) => (
             <div key={i} className={styles.message}>
-              <div className={`${styles.bubble} ${m.sender === 'ai' ? styles.ai : styles.user}`}>
+              <div
+                className={`${styles.bubble} ${m.sender === "ai" ? styles.ai : styles.user}`}
+              >
                 {m.text}
               </div>
             </div>
@@ -193,41 +200,50 @@ export default function InterviewAssistant() {
         <div className={styles.controls}>
           <button
             className={styles.toggleMode}
-            onClick={() => setMode(prev => (prev === 'voice' ? 'text' : 'voice'))}
+            onClick={() =>
+              setMode((prev) => (prev === "voice" ? "text" : "voice"))
+            }
           >
-            🎚️ Switch to {mode === 'voice' ? 'Text' : 'Voice'}
+            🎚️ Switch to {mode === "voice" ? "Text" : "Voice"}
           </button>
 
-          {mode === 'voice' ? (
+          {mode === "voice" ? (
             <button
               className={styles.recordButton}
               disabled={isTyping}
               onClick={isRecording ? stopRecording : startRecording}
             >
-              {isRecording ? '🛑 Stop Recording' : '🎙️ Start Speaking'}
+              {isRecording ? "🛑 Stop Recording" : "🎙️ Start Speaking"}
             </button>
           ) : (
             <form onSubmit={handleTextSubmit} className={styles.controls}>
               <input
                 className={styles.textInput}
-                placeholder='Type your answer...'
+                placeholder="Type your answer..."
                 value={userText}
-                onChange={e => setUserText(e.target.value)}
+                onChange={(e) => setUserText(e.target.value)}
               />
-              <button type='submit' className={styles.sendButton} disabled={isTyping}>
+              <button
+                type="submit"
+                className={styles.sendButton}
+                disabled={isTyping}
+              >
                 🚀 Send
               </button>
             </form>
           )}
 
-          <button className={styles.stopButton} onClick={() => speechSynthesis.cancel()}>
+          <button
+            className={styles.stopButton}
+            onClick={() => speechSynthesis.cancel()}
+          >
             ⏹️ Stop Speaking
           </button>
 
           <select
             className={styles.voiceSelect}
-            value={selectedVoice?.name || ''}
-            onChange={e => handleVoiceSelect(e.target.value)}
+            value={selectedVoice?.name || ""}
+            onChange={(e) => handleVoiceSelect(e.target.value)}
           >
             {voices.map((v, i) => (
               <option key={i} value={v.name}>

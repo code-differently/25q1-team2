@@ -32,31 +32,32 @@ export async function POST(req: NextRequest) {
 
     const { question, answer } = await req.json();
 
-    if (typeof question !== "string" || typeof answer !== "string") {
+    const questionText =
+      typeof question === "string" ? question : question?.text;
+
+    if (!questionText || typeof answer !== "string") {
       return NextResponse.json(
         { error: "Missing or invalid question or answer" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     // Get AI feedback
-    const feedback = await getFeedbackOnAnswer(question, answer);
+    const feedback = await getFeedbackOnAnswer(questionText, answer);
 
-    // Save question to database
+    // Save question to database (optional, this doesn't affect userAnswer saving)
     await prisma.behavioralQuestion.create({
       data: {
-        prompt: question,
-
+        prompt: questionText,
       },
     });
 
-    // Return AI feedback
     return NextResponse.json({ feedback }, { status: 200 });
   } catch (error) {
     console.error("Error in getFeedback API:", error);
     return NextResponse.json(
       { error: "Failed to get feedback" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
