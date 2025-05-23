@@ -56,14 +56,10 @@ export default function FeedbackHistoryPage() {
             (e.answer?.toLowerCase() || "").includes(term) ||
             (e.feedback?.toLowerCase() || "").includes(term)
         )
-            (e.question?.toLowerCase() || "").includes(term) ||
-            (e.answer?.toLowerCase() || "").includes(term) ||
-            (e.feedback?.toLowerCase() || "").includes(term),
-        ),
-
       );
     }
   }, [searchTerm, history]);
+  
 
   const copyFeedback = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -172,9 +168,7 @@ export default function FeedbackHistoryPage() {
               >
                 <X size={20} />
               </button>
-              <h2 className={styles.modalTitle}>
-                {modalEntry.question.text}
-              </h2>
+              <h2 className={styles.modalTitle}>{modalEntry.question.text}</h2>
               <p>
                 <strong>Your Answer:</strong> {modalEntry.answer}
               </p>
@@ -188,4 +182,4 @@ export default function FeedbackHistoryPage() {
       </div>
     </>
   );
-}
+
