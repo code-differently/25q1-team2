@@ -6,7 +6,7 @@ import styles from "../../../../styles/UserFeedback.module.css";
 
 type FeedbackEntry = {
   id: number;
-  question: string;
+  question: { text: string };
   answer: string;
   feedback: string;
   createdAt: string;
@@ -27,11 +27,11 @@ export default function FeedbackHistoryPage() {
         if (!res.ok) throw new Error("Failed to fetch history");
         const data: FeedbackEntry[] = await res.json();
         const cleaned = data.filter(
-          (e) => e.question && e.answer && e.feedback,
+          (e) => e.question && e.answer && e.feedback
         );
         const sorted = cleaned.sort(
           (a, b) =>
-            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         );
         setHistory(sorted);
         setFiltered(sorted);
@@ -52,13 +52,14 @@ export default function FeedbackHistoryPage() {
       setFiltered(
         history.filter(
           (e) =>
-            (e.question?.toLowerCase() || "").includes(term) ||
+            (e.question?.text?.toLowerCase() || "").includes(term) ||
             (e.answer?.toLowerCase() || "").includes(term) ||
-            (e.feedback?.toLowerCase() || "").includes(term),
-        ),
+            (e.feedback?.toLowerCase() || "").includes(term)
+        )
       );
     }
   }, [searchTerm, history]);
+  
 
   const copyFeedback = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -103,54 +104,55 @@ export default function FeedbackHistoryPage() {
           </div>
 
           <div className={styles.timeline}>
-            {filtered.map((entry) => (
-              <details key={entry.id} className={styles.card}>
-                <summary className={styles.cardHeader}>
-                  <div className={styles.summaryRow}>
-                    <span className={styles.dot} />
-                    <span className={styles.preview}>
-                      Feedback:{" "}
-                      {entry.feedback
-                        ?.replace(/^Feedback:\s*/i, "")
-                        .slice(0, 50)}
-                      {entry.feedback?.length > 50 ? "…" : ""}
-                    </span>
+            {filtered.map((entry) => {
+              const cleanFeedback =
+                entry.feedback?.replace(/^Feedback:\s*/i, "") || "";
+              return (
+                <details key={entry.id} className={styles.card}>
+                  <summary className={styles.cardHeader}>
+                    <div className={styles.summaryRow}>
+                      <span className={styles.dot} />
+                      <span className={styles.preview}>
+                        Feedback: {cleanFeedback.slice(0, 50)}
+                        {cleanFeedback.length > 50 ? "…" : ""}
+                      </span>
+                    </div>
+                  </summary>
+                  <div className={styles.cardBody}>
+                    <div className={styles.actionRow}>
+                      <button
+                        className={styles.viewBtn}
+                        onClick={() => setModalEntry(entry)}
+                      >
+                        View Full
+                      </button>
+                      <button
+                        className={styles.deleteBtn}
+                        onClick={() => handleDelete(entry.id)}
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
+                    <p>
+                      <strong>✍️ Your Answer:</strong> {entry.answer}
+                    </p>
+                    <div className={styles.feedbackWrapper}>
+                      <pre className={styles.feedback}>{entry.feedback}</pre>
+                      <button
+                        className={styles.copyBtn}
+                        onClick={() => copyFeedback(entry.feedback)}
+                        title="Copy feedback"
+                      >
+                        <Copy size={16} />
+                      </button>
+                    </div>
+                    <p className={styles.timestamp}>
+                      🕒 {new Date(entry.createdAt).toLocaleString()}
+                    </p>
                   </div>
-                </summary>
-                <div className={styles.cardBody}>
-                  <div className={styles.actionRow}>
-                    <button
-                      className={styles.viewBtn}
-                      onClick={() => setModalEntry(entry)}
-                    >
-                      View Full
-                    </button>
-                    <button
-                      className={styles.deleteBtn}
-                      onClick={() => handleDelete(entry.id)}
-                    >
-                      <Trash2 size={16} />
-                    </button>
-                  </div>
-                  <p>
-                    <strong>✍️ Your Answer:</strong> {entry.answer}
-                  </p>
-                  <div className={styles.feedbackWrapper}>
-                    <pre className={styles.feedback}>{entry.feedback}</pre>
-                    <button
-                      className={styles.copyBtn}
-                      onClick={() => copyFeedback(entry.feedback)}
-                      title="Copy feedback"
-                    >
-                      <Copy size={16} />
-                    </button>
-                  </div>
-                  <p className={styles.timestamp}>
-                    🕒 {new Date(entry.createdAt).toLocaleString()}
-                  </p>
-                </div>
-              </details>
-            ))}
+                </details>
+              );
+            })}
           </div>
         </div>
 
@@ -166,7 +168,7 @@ export default function FeedbackHistoryPage() {
               >
                 <X size={20} />
               </button>
-              <h2 className={styles.modalTitle}>{modalEntry.question}</h2>
+              <h2 className={styles.modalTitle}>{modalEntry.question.text}</h2>
               <p>
                 <strong>Your Answer:</strong> {modalEntry.answer}
               </p>
