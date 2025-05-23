@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { FaCircleQuestion, FaLightbulb } from "react-icons/fa6";
-import styles from "../styles/flashcardForm.module.css";
+import styles from "../../styles/flashcardForm.module.css";
 import type { Flashcard } from "@/app/dashboard/flashcards/page";
 
 export default function FlashcardForm({

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import styles from "../styles/flashcardModal.module.css";
+import styles from "../../styles/flashcardModal.module.css";
 
 export default function FlashcardModal({
   isOpen,

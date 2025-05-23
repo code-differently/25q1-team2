@@ -26,15 +26,15 @@ export default function FeedbackHistoryPage() {
         const res = await fetch("/api/getFeedbackHistory");
         if (!res.ok) throw new Error("Failed to fetch history");
         const data: FeedbackEntry[] = await res.json();
-const cleaned = data.filter(
-  (e) => e.question && e.answer && e.feedback
-);
-const sorted = cleaned.sort(
-  (a, b) =>
-    new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
-);
-setHistory(sorted);
-setFiltered(sorted);
+        const cleaned = data.filter(
+          (e) => e.question && e.answer && e.feedback,
+        );
+        const sorted = cleaned.sort(
+          (a, b) =>
+            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+        );
+        setHistory(sorted);
+        setFiltered(sorted);
       } catch (e: unknown) {
         const err = e instanceof Error ? e : new Error(String(e));
         setError(err.message);
@@ -54,12 +54,11 @@ setFiltered(sorted);
           (e) =>
             (e.question?.toLowerCase() || "").includes(term) ||
             (e.answer?.toLowerCase() || "").includes(term) ||
-            (e.feedback?.toLowerCase() || "").includes(term)
-        )
+            (e.feedback?.toLowerCase() || "").includes(term),
+        ),
       );
     }
   }, [searchTerm, history]);
-  
 
   const copyFeedback = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -107,15 +106,16 @@ setFiltered(sorted);
             {filtered.map((entry) => (
               <details key={entry.id} className={styles.card}>
                 <summary className={styles.cardHeader}>
-                <div className={styles.summaryRow}>
-  <span className={styles.dot} />
-  <span className={styles.preview}>
-  Feedback: {entry.feedback?.replace(/^Feedback:\s*/i, "").slice(0, 50)}
-  {entry.feedback?.length > 50 ? "…" : ""}
-</span>
-
-</div>
-
+                  <div className={styles.summaryRow}>
+                    <span className={styles.dot} />
+                    <span className={styles.preview}>
+                      Feedback:{" "}
+                      {entry.feedback
+                        ?.replace(/^Feedback:\s*/i, "")
+                        .slice(0, 50)}
+                      {entry.feedback?.length > 50 ? "…" : ""}
+                    </span>
+                  </div>
                 </summary>
                 <div className={styles.cardBody}>
                   <div className={styles.actionRow}>

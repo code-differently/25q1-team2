@@ -4,17 +4,40 @@ import React, { useState, useEffect } from "react";
 import styles from "../../../../styles/mockInterviews.module.css";
 
 const questions = [
-  { id: 1, text: "Describe a time when you had to step up and demonstrate leadership skills." },
-  { id: 2, text: "Tell me about a time you were under a lot of pressure at work or school. What was going on, and how did you get through it?" },
-  { id: 3, text: "Give me an example of a time you managed numerous responsibilities. How did you handle that?" },
-  { id: 4, text: "Can you share an example of a time when you had to adapt to a rapidly changing project requirement?" },
+  {
+    id: 1,
+    text: "Describe a time when you had to step up and demonstrate leadership skills.",
+  },
+  {
+    id: 2,
+    text: "Tell me about a time you were under a lot of pressure at work or school. What was going on, and how did you get through it?",
+  },
+  {
+    id: 3,
+    text: "Give me an example of a time you managed numerous responsibilities. How did you handle that?",
+  },
+  {
+    id: 4,
+    text: "Can you share an example of a time when you had to adapt to a rapidly changing project requirement?",
+  },
   { id: 5, text: "Tell me about a time you worked well under pressure." },
-  { id: 6, text: "Describe a time you received tough or critical feedback. How did you respond to it?" },
-  { id: 7, text: "Describe a time when you had to give someone difficult feedback. How did you handle it?" },
-  { id: 8, text: "Describe a time when you anticipated potential problems and developed preventive measures." },
-  { id: 9, text: "Tell me about a time when you had to deal with a significant change at work. How did you adapt to this change?" },
+  {
+    id: 6,
+    text: "Describe a time you received tough or critical feedback. How did you respond to it?",
+  },
+  {
+    id: 7,
+    text: "Describe a time when you had to give someone difficult feedback. How did you handle it?",
+  },
+  {
+    id: 8,
+    text: "Describe a time when you anticipated potential problems and developed preventive measures.",
+  },
+  {
+    id: 9,
+    text: "Tell me about a time when you had to deal with a significant change at work. How did you adapt to this change?",
+  },
 ];
-
 
 export default function MockInterview() {
   const [index, setIndex] = useState(0);
@@ -85,7 +108,7 @@ export default function MockInterview() {
           feedback,
         }),
       });
-  
+
       const result = await res.json();
       if (!res.ok) throw new Error(result.error || "Unknown error");
       alert("✅ Feedback saved!");

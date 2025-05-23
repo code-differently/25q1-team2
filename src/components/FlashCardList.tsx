@@ -2,7 +2,7 @@
 
 import React from "react";
 import FlashcardFlip from "./FlashCardFlip";
-import styles from "../styles/flashcardList.module.css";
+import styles from "../../styles/flashcardList.module.css";
 import type { Flashcard } from "@/app/dashboard/flashcards/page";
 
 interface FlashcardListProps {

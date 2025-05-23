@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import styles from "../styles/flashcardButton.module.css";
+import styles from "../../styles/flashcardButton.module.css";
 
 export default function AddFlashcardButton({
   onClick,

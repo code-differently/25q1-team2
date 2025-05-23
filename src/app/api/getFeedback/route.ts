@@ -32,7 +32,8 @@ export async function POST(req: NextRequest) {
 
     const { question, answer } = await req.json();
 
-    const questionText = typeof question === "string" ? question : question?.text;
+    const questionText =
+      typeof question === "string" ? question : question?.text;
 
     if (!questionText || typeof answer !== "string") {
       return NextResponse.json(
