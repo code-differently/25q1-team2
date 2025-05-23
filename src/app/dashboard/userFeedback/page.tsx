@@ -6,11 +6,12 @@ import styles from "../../../../styles/UserFeedback.module.css";
 
 type FeedbackEntry = {
   id: number;
-  question: string;
+  question: { text: string };
   answer: string;
   feedback: string;
   createdAt: string;
 };
+
 
 export default function FeedbackHistoryPage() {
   const [history, setHistory] = useState<FeedbackEntry[]>([]);
@@ -52,17 +53,14 @@ export default function FeedbackHistoryPage() {
       setFiltered(
         history.filter(
           (e) =>
-            (e.question?.toLowerCase() || "").includes(term) ||
+            (e.question?.text?.toLowerCase() || "").includes(term) ||
             (e.answer?.toLowerCase() || "").includes(term) ||
-            (e.feedback?.toLowerCase() || "").includes(term),
-        ),
+            (e.feedback?.toLowerCase() || "").includes(term)
+        )
       );
     }
   }, [searchTerm, history]);
-
-  const copyFeedback = (text: string) => {
-    navigator.clipboard.writeText(text);
-  };
+  
 
   const handleDelete = async (id: number) => {
     if (!confirm("Are you sure you want to delete this feedback?")) return;
@@ -166,7 +164,7 @@ export default function FeedbackHistoryPage() {
               >
                 <X size={20} />
               </button>
-              <h2 className={styles.modalTitle}>{modalEntry.question}</h2>
+              <h2 className={styles.modalTitle}>{modalEntry.question.text}</h2>
               <p>
                 <strong>Your Answer:</strong> {modalEntry.answer}
               </p>
