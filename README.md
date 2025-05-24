@@ -1,4 +1,4 @@
-# Decode: Interactive Interview Preparation Platform
+# Hired-exe: Interactive Interview Preparation Platform
 
 ![UNIFY Logo](./images/unify.png)
 
@@ -32,7 +32,7 @@
   <img src="./images/group.png" alt="Team UNIFY Group Photo" style="max-width: 100%; height: auto;/>
 </p>
 
-<p align="center"><em>Team UNIFY – Built different 💪</em></p>
+<p align="center"><em>Practice Smarter. Speak Stronger. Get Hired. — Powered by UNIFY!</em></p>
 
 
 ## Demo
@@ -81,8 +81,8 @@
   <!-- Row 4 -->
   <tr>
     <td align="center" colspan="2">
-      <img src="./images/about.png" alt="About" width="50%"/><br/>
-      <strong>About</strong>
+      <img src="./images/about.png" alt="About Page" width="50%"/><br/>
+      <strong>About Page</strong>
     </td>
   </tr>
 </table>
@@ -164,9 +164,9 @@ open coverage/lcov-report/index.html
 ---
 
 ## Known Issues
-- [ ] Light/dark mode toggle causes layout shifts  
-- [ ] Feedback containers overflow on small screens  
-- [ ] Whisper transcription lags on headless Cypress
+-  Light/dark mode toggle causes inconsistent page layout 
+-  User Feedback container is too small for viewers. Would like to expand it for easier viewing. 
+-  Whisper transcription lags during testing through Cypress test-suite
 
 ---
 
@@ -190,23 +190,24 @@ open coverage/lcov-report/index.html
   <tr>
     <td align="center">
       <img src="./images/karen.png" alt="Karen Alabi" width="100" height="100" /><br>
-      <strong>Karen Alabi</strong><br>Project Manager
+      <strong>Karen Alabi</strong><br> SCRUM Master & Project Manager
     </td>
     <td align="center">
       <img src="./images/justin.png" alt="Justin Eklund" width="100" height="100" /><br>
-      <strong>Justin Eklund</strong><br>QA & Documentation
+      <strong>Justin Eklund</strong><br>QA Tester & Documentation
     </td>
     <td align="center">
       <img src="./images/dylan.png" alt="Dylan Lafferty" width="100" height="100" /><br>
-      <strong>Dylan Lafferty</strong><br>Lead Developer
+      <strong>Dylan Lafferty</strong><br> Technical Lead Developer
     </td>
     <td align="center">
       <img src="./images/bryana.png" alt="Bryana Singleton‑Barnhart" width="100" height="100" /><br>
-      <strong>Bryana Singleton‑Barnhart</strong><br>UI/UX Designer
+      <strong>Bryana Singleton‑Barnhart</strong><br>UI/UX Designer & 
+      Front-end Developer
     </td>
     <td align="center">
       <img src="./images/meiko.png" alt="Meiko Stephens" width="100" height="100" /><br>
-      <strong>Meiko Stephens</strong><br>DevOps Engineer
+      <strong>Meiko Stephens</strong><br>DevOps Engineer & Back-end Developer
     </td>
   </tr>
 </table>
